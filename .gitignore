@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+out
+website/
+docs-minimind/
+docs/
+images/
+.idea/
+MEMORY.md
+USER.md
+dataset/
