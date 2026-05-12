@@ -120,17 +120,24 @@ def execute_tool(name, args):
         工具执行结果字典，超时或失败返回 None
     """
     fn = MOCK_RESULTS.get(name)
-    if not fn: return None
-    try:
-        # 设置 1 秒超时，防止 eval 等操作卡死
-        signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError()))
-        signal.alarm(1)
-        return fn(args)
-    except:
-        return None
-    finally:
-        try: signal.alarm(0)
-        except: pass
+    if fn:
+        try:
+            # 设置 1 秒超时，防止 eval 等操作卡死
+            signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(TimeoutError()))
+            signal.alarm(1)
+            return fn(args)
+        except:
+            return None
+        finally:
+            try: signal.alarm(0)
+            except: pass
+    # 通用 mock: 对未注册的工具返回包含参数值的模拟结果
+    # 这样 GT 验证（validate_gt_in_text）可以在 mock 结果中找到正确的参数值
+    if args:
+        result = {"status": "success", "tool": name}
+        result.update({k: v for k, v in args.items() if v is not None})
+        return result
+    return {"status": "success", "tool": name, "result": "ok"}
 
 # ======== 多轮 Rollout ========
 def rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=3, max_new_tokens=256, thinking_ratio=0.5, device="cuda"):
@@ -296,8 +303,8 @@ def calculate_rewards(prompts, completions, gt_batch, tools_batch, num_gen, rewa
 
     B. 有工具调用:
     - 标签扣分: 工具调用标签不匹配 -0.5/个
-    - 工具对齐分: 正确调用工具数量与 GT 差值
-    - GT 验证分: 最终回答包含 GT 答案的比例（2.5 * matched/total）
+    - 工具对齐分: 正确调用工具数量与 GT 差值（权重 1.0）
+    - GT 验证分: 工具调用参数包含 GT 答案的比例（2.5 * matched/total）
     - 未完成扣分: -0.5
     - 重复惩罚
     - 总分 Clip 到 [-3.0, 3.0]
@@ -358,22 +365,33 @@ def calculate_rewards(prompts, completions, gt_batch, tools_batch, num_gen, rewa
         else:
             gt = gt_batch[sample_idx]
             valid_call_count = 0
+            all_tool_args_text = []  # 收集所有工具调用的参数值，用于 GT 验证
             for tool_call in tool_calls:
                 name, raw = tool_call.get("name", ""), tool_call.get("arguments", {})
                 if isinstance(raw, str):
                     try: raw = json.loads(raw)
                     except: raw = {}
                 # 校验工具名和参数是否正确
-                check = CHECK_ARGS.get(name)
-                valid_call_count += int(bool(name in valid_names and check and check(raw)))
+                check = CHECK_ARGS.get(name, lambda a: bool(a))  # 通用检查: 有参数即有效
+                valid_call_count += int(bool(name in valid_names and check(raw)))
+                # 收集参数值文本（用于 GT 匹配）
+                if isinstance(raw, dict):
+                    all_tool_args_text.extend(str(v) for v in raw.values() if v is not None)
             
-            # 工具对齐分: 正确调用数量与 GT 差值
+            # 工具对齐分: 正确调用数量与 GT 差值（权重 1.0，鼓励冷启动阶段学会调用格式）
             tool_gap = abs(valid_call_count - len(gt)) + max(0, len(tool_calls) - valid_call_count)
-            reward += 0.5 if tool_gap == 0 else -0.5 * tool_gap
+            reward += 1.0 if tool_gap == 0 else -0.5 * tool_gap
 
-            # GT 验证分: 检查最终回答是否包含预期答案
-            final_text = "" if unfinished else (answer.split('゜')[-1] if '゜' in answer else answer)
-            verified = validate_gt_in_text(final_text, gt) if gt else set()
+            # GT 验证分: 检查工具调用参数是否包含预期答案（而非最终回答文本）
+            # xlam 数据集的 GT 是工具调用的输入参数值，直接在参数中匹配更合理
+            tool_args_combined = " ".join(all_tool_args_text)
+            final_text = (answer.split('゜')[-1] if '゜' in answer else answer) if not unfinished else ""
+            # 同时在工具参数和最终回答中搜索 GT，取并集
+            verified = set()
+            if gt:
+                verified |= validate_gt_in_text(tool_args_combined, gt)
+                if final_text:
+                    verified |= validate_gt_in_text(final_text, gt)
             if gt: reward += 2.5 * len(verified) / len(gt)  # GT 分（核心奖励）
             if unfinished: reward -= 0.5  # 未完成扣分
             reward -= rep_penalty(final_text if final_text else answer)  # 重复惩罚

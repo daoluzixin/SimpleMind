@@ -1,0 +1,108 @@
+
+==================================================
+  Test 1: Multi-tool (translate+calc)
+  Query: Translate Good morning to chinese and compute 2045*6994
+==================================================
+Prompt tokens: 468
+Generated (572 chars):
+<plan>
+[{"step": 1, "tool": "translate_text", "args_desc": "text=Good morning, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "none", "args_desc": "", "expect": "组织最终回答"}]
+</plan>
+ゅ{"name": "translate_text", "arguments": {"text": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 4, "tool": "none", "args_desc": "", "expect": "组织最终回答"}]
+</plan>
+ゅ{"n
+
+Has <plan>: True | Expected: True | PASS
+
+==================================================
+  Test 2: Single tool (weather-shanghai)
+  Query: 上海天气怎么样？
+==================================================
+Prompt tokens: 348
+Generated (344 chars):
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "none", "args_desc": "", "expect": "组织最终回答"}]
+</plan>
+ゅ{"name": "get_current_weather", "arguments": {"location": "北京"}}゜<|im_end|>
+
+Has <plan>: True | Expected: True | PASS
+
+==================================================
+  Test 3: No tools (should NOT plan)
+  Query: 你好，今天心情怎么样？
+==================================================
+Prompt tokens: 148
+Generated (10 chars):
+<|im_end|>
+
+Has <plan>: False | Expected: False | PASS
+
+==================================================
+  Test 4: Weather (shenzhen)
+  Query: 帮我查一下深圳的天气
+==================================================
+Prompt tokens: 350
+Generated (344 chars):
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "none", "args_desc": "", "expect": "组织最终回答"}]
+</plan>
+ゅ{"name": "get_current_weather", "arguments": {"location": "北京"}}゜<|im_end|>
+
+Has <plan>: True | Expected: True | PASS
+
+==================================================
+  Test 5: Multi-tool (translate+weather)
+  Query: 把Hello翻译成中文，然后查一下广州天气
+==================================================
+Prompt tokens: 459
+Generated (437 chars):
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=广州", "expect": "获取广州的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=广州", "expect": "获取广州的天气"}, {"step": 3, "tool": "get_current_weather", "args_desc": "location=广州", "expect": "获取广州的天气"}, {"step": 4, "tool": "none", "args_desc": "", "expect": "组织最终回答"}]
+</plan>
+ゅ{"name": "get_current_weather", "arguments": {"location": "广州"}}゜<|im_end|>
+
+Has <plan>: True | Expected: True | PASS
+
+==================================================
+  Test 6: General chat (fibonacci)
+==================================================
+Generated (765 chars):
+在Python中，你可以使用递归方法来计算斐波那契数列。递归方法是一种非常基础且强大的方法，它接受一个参数n，表示要计算的斐波那契数列的值。递归方法的实现通常如下：
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    elif n == 2:
+        return 0
+    elif n == 3:
+        return 1
+    else:
+        fib_sequence = [0, 1]
+        for i in range(2, n + 1):
+            fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+        return fib_sequence[:n]
+```
+在这个函数中，我们首先检查n是否小于等于1，如果是，则返回0。然后我们创建一个空的列表来存储斐波那契数列。
+然后，我们遍历斐波那契数列的每个元素，将它添加到列表的末尾。如果循环结束，它会递归地调用自身来计算下一个斐波那契数。最后，函数返回计算得到的斐波那契数列。
+现在我们可以使用此函数来计算斐波那契数列的前n个数字。以下是计算斐波那契数列的函数示例：
+```python
+def fibonacci(n):
+    i
+
+==================================================
+  Test 7: General chat (machine learning)
+==================================================
+Generated (10 chars):
+<|im_end|>
+
+==================================================
+  SUMMARY (v6 step500 checkpoint)
+==================================================
+  [PASS] Test 1: Multi-tool (translate+calc): plan=True
+  [PASS] Test 2: Single tool (weather-shanghai): plan=True
+  [PASS] Test 3: No tools (should NOT plan): plan=False
+  [PASS] Test 4: Weather (shenzhen): plan=True
+  [PASS] Test 5: Multi-tool (translate+weather): plan=True
+
+  PlanRate (tool tests): 4/4 = 100%
+  Overall accuracy: 5/5 = 100%

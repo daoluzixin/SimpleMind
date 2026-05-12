@@ -1,0 +1,41 @@
+Model Params: 63.91M
+Trainable Params: 63.912M
+Epoch:[1/2](100/1543), loss: 0.8755, logits_loss: 0.8755, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 2.0min
+Epoch:[1/2](200/1543), loss: 0.0198, logits_loss: 0.0198, aux_loss: 0.0000, lr: 0.00000991, epoch_time: 2.0min
+Epoch:[1/2](300/1543), loss: 0.7903, logits_loss: 0.7903, aux_loss: 0.0000, lr: 0.00000979, epoch_time: 1.0min
+Epoch:[1/2](400/1543), loss: 1.0723, logits_loss: 1.0723, aux_loss: 0.0000, lr: 0.00000963, epoch_time: 1.0min
+Epoch:[1/2](500/1543), loss: 0.6262, logits_loss: 0.6262, aux_loss: 0.0000, lr: 0.00000943, epoch_time: 1.0min
+Epoch:[1/2](600/1543), loss: 0.6823, logits_loss: 0.6823, aux_loss: 0.0000, lr: 0.00000919, epoch_time: 1.0min
+Epoch:[1/2](700/1543), loss: 0.3807, logits_loss: 0.3807, aux_loss: 0.0000, lr: 0.00000890, epoch_time: 1.0min
+Epoch:[1/2](800/1543), loss: 0.5149, logits_loss: 0.5149, aux_loss: 0.0000, lr: 0.00000859, epoch_time: 1.0min
+Epoch:[1/2](900/1543), loss: 0.5395, logits_loss: 0.5395, aux_loss: 0.0000, lr: 0.00000824, epoch_time: 1.0min
+Epoch:[1/2](1000/1543), loss: 0.7327, logits_loss: 0.7327, aux_loss: 0.0000, lr: 0.00000786, epoch_time: 0.0min
+[Checkpoint] New best loss=0.732750 at step 1000
+[Checkpoint] Saved step 1000 (epoch 1), metrics={loss=0.7327, lr=0.0000}
+Epoch:[1/2](1100/1543), loss: 0.7415, logits_loss: 0.7415, aux_loss: 0.0000, lr: 0.00000746, epoch_time: 0.0min
+Epoch:[1/2](1200/1543), loss: 0.6483, logits_loss: 0.6483, aux_loss: 0.0000, lr: 0.00000704, epoch_time: 0.0min
+Epoch:[1/2](1300/1543), loss: 0.4856, logits_loss: 0.4856, aux_loss: 0.0000, lr: 0.00000660, epoch_time: 0.0min
+Epoch:[1/2](1400/1543), loss: 0.2736, logits_loss: 0.2736, aux_loss: 0.0000, lr: 0.00000615, epoch_time: 0.0min
+Epoch:[1/2](1500/1543), loss: 0.0068, logits_loss: 0.0068, aux_loss: 0.0000, lr: 0.00000570, epoch_time: 0.0min
+Epoch:[1/2](1543/1543), loss: 0.0030, logits_loss: 0.0030, aux_loss: 0.0000, lr: 0.00000550, epoch_time: 0.0min
+[Checkpoint] New best loss=0.003012 at step 1543
+[Checkpoint] Saved step 1543 (epoch 1), metrics={loss=0.0030, lr=0.0000}
+Epoch:[2/2](100/1543), loss: 0.5037, logits_loss: 0.5037, aux_loss: 0.0000, lr: 0.00000504, epoch_time: 2.0min
+Epoch:[2/2](200/1543), loss: 0.5946, logits_loss: 0.5946, aux_loss: 0.0000, lr: 0.00000459, epoch_time: 2.0min
+Epoch:[2/2](300/1543), loss: 0.3097, logits_loss: 0.3097, aux_loss: 0.0000, lr: 0.00000415, epoch_time: 1.0min
+Epoch:[2/2](400/1543), loss: 0.7996, logits_loss: 0.7996, aux_loss: 0.0000, lr: 0.00000372, epoch_time: 1.0min
+Epoch:[2/2](500/1543), loss: 0.9152, logits_loss: 0.9152, aux_loss: 0.0000, lr: 0.00000331, epoch_time: 1.0min
+Epoch:[2/2](600/1543), loss: 0.4660, logits_loss: 0.4660, aux_loss: 0.0000, lr: 0.00000292, epoch_time: 1.0min
+Epoch:[2/2](700/1543), loss: 1.1483, logits_loss: 1.1483, aux_loss: 0.0000, lr: 0.00000256, epoch_time: 1.0min
+Epoch:[2/2](800/1543), loss: 0.3614, logits_loss: 0.3614, aux_loss: 0.0000, lr: 0.00000223, epoch_time: 1.0min
+Epoch:[2/2](900/1543), loss: 0.3228, logits_loss: 0.3228, aux_loss: 0.0000, lr: 0.00000193, epoch_time: 1.0min
+Epoch:[2/2](1000/1543), loss: 0.6428, logits_loss: 0.6428, aux_loss: 0.0000, lr: 0.00000167, epoch_time: 0.0min
+[Checkpoint] Saved step 1000 (epoch 2), metrics={loss=0.6428, lr=0.0000}
+Epoch:[2/2](1100/1543), loss: 0.1418, logits_loss: 0.1418, aux_loss: 0.0000, lr: 0.00000145, epoch_time: 0.0min
+Epoch:[2/2](1200/1543), loss: 0.6929, logits_loss: 0.6929, aux_loss: 0.0000, lr: 0.00000127, epoch_time: 0.0min
+Epoch:[2/2](1300/1543), loss: 0.3713, logits_loss: 0.3713, aux_loss: 0.0000, lr: 0.00000114, epoch_time: 0.0min
+Epoch:[2/2](1400/1543), loss: 0.7087, logits_loss: 0.7087, aux_loss: 0.0000, lr: 0.00000105, epoch_time: 0.0min
+Epoch:[2/2](1500/1543), loss: 0.4145, logits_loss: 0.4145, aux_loss: 0.0000, lr: 0.00000100, epoch_time: 0.0min
+Epoch:[2/2](1543/1543), loss: 0.3084, logits_loss: 0.3084, aux_loss: 0.0000, lr: 0.00000100, epoch_time: 0.0min
+[Checkpoint] Removed old checkpoint: plan_warmup_v2_768_step1000_resume.pth
+[Checkpoint] Saved step 1543 (epoch 2), metrics={loss=0.3084, lr=0.0000}

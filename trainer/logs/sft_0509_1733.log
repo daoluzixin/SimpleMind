@@ -1,0 +1,766 @@
+nohup: ignoring input
+Model Params: 63.91M
+Trainable Params: 63.912M
+Epoch:[1/2](100/56608), loss: 2.1116, logits_loss: 2.1116, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 173.0min
+Epoch:[1/2](200/56608), loss: 2.1417, logits_loss: 2.1417, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 169.0min
+Epoch:[1/2](300/56608), loss: 1.9949, logits_loss: 1.9949, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 168.0min
+Epoch:[1/2](400/56608), loss: 2.2056, logits_loss: 2.2056, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 167.0min
+Epoch:[1/2](500/56608), loss: 1.8258, logits_loss: 1.8258, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 167.0min
+Epoch:[1/2](600/56608), loss: 1.8874, logits_loss: 1.8874, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 166.0min
+Epoch:[1/2](700/56608), loss: 1.8242, logits_loss: 1.8242, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 166.0min
+Epoch:[1/2](800/56608), loss: 1.8590, logits_loss: 1.8590, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 165.0min
+Epoch:[1/2](900/56608), loss: 1.7617, logits_loss: 1.7617, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 165.0min
+Epoch:[1/2](1000/56608), loss: 1.9489, logits_loss: 1.9489, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 165.0min
+[Checkpoint] New best loss=1.948947 at step 1000
+[Checkpoint] Saved step 1000 (epoch 1), metrics={loss=1.9489, lr=0.0000}
+Epoch:[1/2](1100/56608), loss: 1.9463, logits_loss: 1.9463, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 171.0min
+Epoch:[1/2](1200/56608), loss: 1.9511, logits_loss: 1.9511, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 170.0min
+Epoch:[1/2](1300/56608), loss: 1.8285, logits_loss: 1.8285, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 169.0min
+Epoch:[1/2](1400/56608), loss: 1.9194, logits_loss: 1.9194, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 169.0min
+Epoch:[1/2](1500/56608), loss: 1.6539, logits_loss: 1.6539, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 168.0min
+Epoch:[1/2](1600/56608), loss: 1.9852, logits_loss: 1.9852, aux_loss: 0.0000, lr: 0.00001000, epoch_time: 167.0min
+Epoch:[1/2](1700/56608), loss: 2.0146, logits_loss: 2.0146, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 167.0min
+Epoch:[1/2](1800/56608), loss: 1.9709, logits_loss: 1.9709, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 166.0min
+Epoch:[1/2](1900/56608), loss: 1.9359, logits_loss: 1.9359, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 166.0min
+Epoch:[1/2](2000/56608), loss: 1.7246, logits_loss: 1.7246, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 165.0min
+[Checkpoint] New best loss=1.724604 at step 2000
+[Checkpoint] Saved step 2000 (epoch 1), metrics={loss=1.7246, lr=0.0000}
+Epoch:[1/2](2100/56608), loss: 1.7126, logits_loss: 1.7126, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 170.0min
+Epoch:[1/2](2200/56608), loss: 1.6784, logits_loss: 1.6784, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 170.0min
+Epoch:[1/2](2300/56608), loss: 1.8943, logits_loss: 1.8943, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 169.0min
+Epoch:[1/2](2400/56608), loss: 1.8229, logits_loss: 1.8229, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 168.0min
+Epoch:[1/2](2500/56608), loss: 1.7752, logits_loss: 1.7752, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 167.0min
+Epoch:[1/2](2600/56608), loss: 1.8127, logits_loss: 1.8127, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 167.0min
+Epoch:[1/2](2700/56608), loss: 1.8927, logits_loss: 1.8927, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 166.0min
+Epoch:[1/2](2800/56608), loss: 1.5330, logits_loss: 1.5330, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 166.0min
+Epoch:[1/2](2900/56608), loss: 1.8957, logits_loss: 1.8957, aux_loss: 0.0000, lr: 0.00000999, epoch_time: 165.0min
+Epoch:[1/2](3000/56608), loss: 1.8472, logits_loss: 1.8472, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 165.0min
+[Checkpoint] Saved step 3000 (epoch 1), metrics={loss=1.8472, lr=0.0000}
+Epoch:[1/2](3100/56608), loss: 1.6431, logits_loss: 1.6431, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 166.0min
+Epoch:[1/2](3200/56608), loss: 1.7061, logits_loss: 1.7061, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 166.0min
+Epoch:[1/2](3300/56608), loss: 1.8487, logits_loss: 1.8487, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 165.0min
+Epoch:[1/2](3400/56608), loss: 1.6950, logits_loss: 1.6950, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 165.0min
+Epoch:[1/2](3500/56608), loss: 1.6475, logits_loss: 1.6475, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 164.0min
+Epoch:[1/2](3600/56608), loss: 1.6949, logits_loss: 1.6949, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 164.0min
+Epoch:[1/2](3700/56608), loss: 1.7612, logits_loss: 1.7612, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 163.0min
+Epoch:[1/2](3800/56608), loss: 1.8640, logits_loss: 1.8640, aux_loss: 0.0000, lr: 0.00000998, epoch_time: 163.0min
+Epoch:[1/2](3900/56608), loss: 1.8305, logits_loss: 1.8305, aux_loss: 0.0000, lr: 0.00000997, epoch_time: 162.0min
+Epoch:[1/2](4000/56608), loss: 1.7943, logits_loss: 1.7943, aux_loss: 0.0000, lr: 0.00000997, epoch_time: 162.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step1000_resume.pth
+[Checkpoint] Saved step 4000 (epoch 1), metrics={loss=1.7943, lr=0.0000}
+Epoch:[1/2](4100/56608), loss: 1.7880, logits_loss: 1.7880, aux_loss: 0.0000, lr: 0.00000997, epoch_time: 163.0min
+Epoch:[1/2](4200/56608), loss: 1.7867, logits_loss: 1.7867, aux_loss: 0.0000, lr: 0.00000997, epoch_time: 162.0min
+Epoch:[1/2](4300/56608), loss: 1.7262, logits_loss: 1.7262, aux_loss: 0.0000, lr: 0.00000997, epoch_time: 162.0min
+Epoch:[1/2](4400/56608), loss: 1.5749, logits_loss: 1.5749, aux_loss: 0.0000, lr: 0.00000997, epoch_time: 162.0min
+Epoch:[1/2](4500/56608), loss: 1.7922, logits_loss: 1.7922, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 161.0min
+Epoch:[1/2](4600/56608), loss: 1.9024, logits_loss: 1.9024, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 161.0min
+Epoch:[1/2](4700/56608), loss: 1.9178, logits_loss: 1.9178, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 160.0min
+Epoch:[1/2](4800/56608), loss: 1.6854, logits_loss: 1.6854, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 160.0min
+Epoch:[1/2](4900/56608), loss: 1.8538, logits_loss: 1.8538, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 159.0min
+Epoch:[1/2](5000/56608), loss: 1.7737, logits_loss: 1.7737, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 159.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step2000_resume.pth
+[Checkpoint] Saved step 5000 (epoch 1), metrics={loss=1.7737, lr=0.0000}
+Epoch:[1/2](5100/56608), loss: 1.7251, logits_loss: 1.7251, aux_loss: 0.0000, lr: 0.00000996, epoch_time: 160.0min
+Epoch:[1/2](5200/56608), loss: 1.6589, logits_loss: 1.6589, aux_loss: 0.0000, lr: 0.00000995, epoch_time: 159.0min
+Epoch:[1/2](5300/56608), loss: 1.7302, logits_loss: 1.7302, aux_loss: 0.0000, lr: 0.00000995, epoch_time: 159.0min
+Epoch:[1/2](5400/56608), loss: 1.6889, logits_loss: 1.6889, aux_loss: 0.0000, lr: 0.00000995, epoch_time: 158.0min
+Epoch:[1/2](5500/56608), loss: 1.7388, logits_loss: 1.7388, aux_loss: 0.0000, lr: 0.00000995, epoch_time: 158.0min
+Epoch:[1/2](5600/56608), loss: 1.8279, logits_loss: 1.8279, aux_loss: 0.0000, lr: 0.00000995, epoch_time: 157.0min
+Epoch:[1/2](5700/56608), loss: 1.8275, logits_loss: 1.8275, aux_loss: 0.0000, lr: 0.00000994, epoch_time: 157.0min
+Epoch:[1/2](5800/56608), loss: 1.7246, logits_loss: 1.7246, aux_loss: 0.0000, lr: 0.00000994, epoch_time: 157.0min
+Epoch:[1/2](5900/56608), loss: 1.8299, logits_loss: 1.8299, aux_loss: 0.0000, lr: 0.00000994, epoch_time: 156.0min
+Epoch:[1/2](6000/56608), loss: 1.6918, logits_loss: 1.6918, aux_loss: 0.0000, lr: 0.00000994, epoch_time: 156.0min
+[Checkpoint] New best loss=1.691761 at step 6000
+[Checkpoint] Removed old checkpoint: full_sft_768_step3000_resume.pth
+[Checkpoint] Saved step 6000 (epoch 1), metrics={loss=1.6918, lr=0.0000}
+Epoch:[1/2](6100/56608), loss: 1.6868, logits_loss: 1.6868, aux_loss: 0.0000, lr: 0.00000994, epoch_time: 157.0min
+Epoch:[1/2](6200/56608), loss: 1.7046, logits_loss: 1.7046, aux_loss: 0.0000, lr: 0.00000993, epoch_time: 157.0min
+Epoch:[1/2](6300/56608), loss: 1.7205, logits_loss: 1.7205, aux_loss: 0.0000, lr: 0.00000993, epoch_time: 156.0min
+Epoch:[1/2](6400/56608), loss: 1.7732, logits_loss: 1.7732, aux_loss: 0.0000, lr: 0.00000993, epoch_time: 156.0min
+Epoch:[1/2](6500/56608), loss: 1.7490, logits_loss: 1.7490, aux_loss: 0.0000, lr: 0.00000993, epoch_time: 155.0min
+Epoch:[1/2](6600/56608), loss: 1.8433, logits_loss: 1.8433, aux_loss: 0.0000, lr: 0.00000992, epoch_time: 155.0min
+Epoch:[1/2](6700/56608), loss: 1.9310, logits_loss: 1.9310, aux_loss: 0.0000, lr: 0.00000992, epoch_time: 155.0min
+Epoch:[1/2](6800/56608), loss: 1.8649, logits_loss: 1.8649, aux_loss: 0.0000, lr: 0.00000992, epoch_time: 154.0min
+Epoch:[1/2](6900/56608), loss: 1.8388, logits_loss: 1.8388, aux_loss: 0.0000, lr: 0.00000992, epoch_time: 154.0min
+Epoch:[1/2](7000/56608), loss: 1.7274, logits_loss: 1.7274, aux_loss: 0.0000, lr: 0.00000992, epoch_time: 153.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step4000_resume.pth
+[Checkpoint] Saved step 7000 (epoch 1), metrics={loss=1.7274, lr=0.0000}
+Epoch:[1/2](7100/56608), loss: 1.7813, logits_loss: 1.7813, aux_loss: 0.0000, lr: 0.00000991, epoch_time: 154.0min
+Epoch:[1/2](7200/56608), loss: 1.5626, logits_loss: 1.5626, aux_loss: 0.0000, lr: 0.00000991, epoch_time: 153.0min
+Epoch:[1/2](7300/56608), loss: 1.7544, logits_loss: 1.7544, aux_loss: 0.0000, lr: 0.00000991, epoch_time: 153.0min
+Epoch:[1/2](7400/56608), loss: 1.8624, logits_loss: 1.8624, aux_loss: 0.0000, lr: 0.00000991, epoch_time: 153.0min
+Epoch:[1/2](7500/56608), loss: 1.5802, logits_loss: 1.5802, aux_loss: 0.0000, lr: 0.00000990, epoch_time: 152.0min
+Epoch:[1/2](7600/56608), loss: 1.8553, logits_loss: 1.8553, aux_loss: 0.0000, lr: 0.00000990, epoch_time: 152.0min
+Epoch:[1/2](7700/56608), loss: 1.7875, logits_loss: 1.7875, aux_loss: 0.0000, lr: 0.00000990, epoch_time: 151.0min
+Epoch:[1/2](7800/56608), loss: 1.7545, logits_loss: 1.7545, aux_loss: 0.0000, lr: 0.00000990, epoch_time: 151.0min
+Epoch:[1/2](7900/56608), loss: 1.7075, logits_loss: 1.7075, aux_loss: 0.0000, lr: 0.00000989, epoch_time: 151.0min
+Epoch:[1/2](8000/56608), loss: 1.6587, logits_loss: 1.6587, aux_loss: 0.0000, lr: 0.00000989, epoch_time: 150.0min
+[Checkpoint] New best loss=1.658723 at step 8000
+[Checkpoint] Removed old checkpoint: full_sft_768_step5000_resume.pth
+[Checkpoint] Saved step 8000 (epoch 1), metrics={loss=1.6587, lr=0.0000}
+Epoch:[1/2](8100/56608), loss: 1.5393, logits_loss: 1.5393, aux_loss: 0.0000, lr: 0.00000989, epoch_time: 151.0min
+Epoch:[1/2](8200/56608), loss: 1.5959, logits_loss: 1.5959, aux_loss: 0.0000, lr: 0.00000988, epoch_time: 151.0min
+Epoch:[1/2](8300/56608), loss: 1.3705, logits_loss: 1.3705, aux_loss: 0.0000, lr: 0.00000988, epoch_time: 150.0min
+Epoch:[1/2](8400/56608), loss: 1.7660, logits_loss: 1.7660, aux_loss: 0.0000, lr: 0.00000988, epoch_time: 150.0min
+Epoch:[1/2](8500/56608), loss: 1.8225, logits_loss: 1.8225, aux_loss: 0.0000, lr: 0.00000988, epoch_time: 149.0min
+Epoch:[1/2](8600/56608), loss: 1.8368, logits_loss: 1.8368, aux_loss: 0.0000, lr: 0.00000987, epoch_time: 149.0min
+Epoch:[1/2](8700/56608), loss: 1.6858, logits_loss: 1.6858, aux_loss: 0.0000, lr: 0.00000987, epoch_time: 149.0min
+Epoch:[1/2](8800/56608), loss: 1.7593, logits_loss: 1.7593, aux_loss: 0.0000, lr: 0.00000987, epoch_time: 148.0min
+Epoch:[1/2](8900/56608), loss: 1.6214, logits_loss: 1.6214, aux_loss: 0.0000, lr: 0.00000986, epoch_time: 148.0min
+Epoch:[1/2](9000/56608), loss: 1.7902, logits_loss: 1.7902, aux_loss: 0.0000, lr: 0.00000986, epoch_time: 147.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step6000_resume.pth
+[Checkpoint] Saved step 9000 (epoch 1), metrics={loss=1.7902, lr=0.0000}
+Epoch:[1/2](9100/56608), loss: 1.8355, logits_loss: 1.8355, aux_loss: 0.0000, lr: 0.00000986, epoch_time: 148.0min
+Epoch:[1/2](9200/56608), loss: 1.6636, logits_loss: 1.6636, aux_loss: 0.0000, lr: 0.00000985, epoch_time: 147.0min
+Epoch:[1/2](9300/56608), loss: 1.7010, logits_loss: 1.7010, aux_loss: 0.0000, lr: 0.00000985, epoch_time: 147.0min
+Epoch:[1/2](9400/56608), loss: 1.8449, logits_loss: 1.8449, aux_loss: 0.0000, lr: 0.00000985, epoch_time: 147.0min
+Epoch:[1/2](9500/56608), loss: 1.8299, logits_loss: 1.8299, aux_loss: 0.0000, lr: 0.00000984, epoch_time: 146.0min
+Epoch:[1/2](9600/56608), loss: 1.8402, logits_loss: 1.8402, aux_loss: 0.0000, lr: 0.00000984, epoch_time: 146.0min
+Epoch:[1/2](9700/56608), loss: 1.6296, logits_loss: 1.6296, aux_loss: 0.0000, lr: 0.00000984, epoch_time: 145.0min
+Epoch:[1/2](9800/56608), loss: 1.7482, logits_loss: 1.7482, aux_loss: 0.0000, lr: 0.00000983, epoch_time: 145.0min
+Epoch:[1/2](9900/56608), loss: 1.6750, logits_loss: 1.6750, aux_loss: 0.0000, lr: 0.00000983, epoch_time: 145.0min
+Epoch:[1/2](10000/56608), loss: 1.7528, logits_loss: 1.7528, aux_loss: 0.0000, lr: 0.00000983, epoch_time: 144.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step7000_resume.pth
+[Checkpoint] Saved step 10000 (epoch 1), metrics={loss=1.7528, lr=0.0000}
+Epoch:[1/2](10100/56608), loss: 1.7218, logits_loss: 1.7218, aux_loss: 0.0000, lr: 0.00000982, epoch_time: 145.0min
+Epoch:[1/2](10200/56608), loss: 1.7327, logits_loss: 1.7327, aux_loss: 0.0000, lr: 0.00000982, epoch_time: 144.0min
+Epoch:[1/2](10300/56608), loss: 1.5928, logits_loss: 1.5928, aux_loss: 0.0000, lr: 0.00000982, epoch_time: 144.0min
+Epoch:[1/2](10400/56608), loss: 1.8632, logits_loss: 1.8632, aux_loss: 0.0000, lr: 0.00000981, epoch_time: 143.0min
+Epoch:[1/2](10500/56608), loss: 1.8769, logits_loss: 1.8769, aux_loss: 0.0000, lr: 0.00000981, epoch_time: 143.0min
+Epoch:[1/2](10600/56608), loss: 1.6921, logits_loss: 1.6921, aux_loss: 0.0000, lr: 0.00000981, epoch_time: 143.0min
+Epoch:[1/2](10700/56608), loss: 1.6708, logits_loss: 1.6708, aux_loss: 0.0000, lr: 0.00000980, epoch_time: 142.0min
+Epoch:[1/2](10800/56608), loss: 1.6495, logits_loss: 1.6495, aux_loss: 0.0000, lr: 0.00000980, epoch_time: 142.0min
+Epoch:[1/2](10900/56608), loss: 1.7972, logits_loss: 1.7972, aux_loss: 0.0000, lr: 0.00000980, epoch_time: 141.0min
+Epoch:[1/2](11000/56608), loss: 1.7015, logits_loss: 1.7015, aux_loss: 0.0000, lr: 0.00000979, epoch_time: 141.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step8000_resume.pth
+[Checkpoint] Saved step 11000 (epoch 1), metrics={loss=1.7015, lr=0.0000}
+Epoch:[1/2](11100/56608), loss: 1.7448, logits_loss: 1.7448, aux_loss: 0.0000, lr: 0.00000979, epoch_time: 141.0min
+Epoch:[1/2](11200/56608), loss: 1.6430, logits_loss: 1.6430, aux_loss: 0.0000, lr: 0.00000978, epoch_time: 141.0min
+Epoch:[1/2](11300/56608), loss: 1.6642, logits_loss: 1.6642, aux_loss: 0.0000, lr: 0.00000978, epoch_time: 141.0min
+Epoch:[1/2](11400/56608), loss: 1.7267, logits_loss: 1.7267, aux_loss: 0.0000, lr: 0.00000978, epoch_time: 140.0min
+Epoch:[1/2](11500/56608), loss: 1.9074, logits_loss: 1.9074, aux_loss: 0.0000, lr: 0.00000977, epoch_time: 140.0min
+Epoch:[1/2](11600/56608), loss: 1.3989, logits_loss: 1.3989, aux_loss: 0.0000, lr: 0.00000977, epoch_time: 139.0min
+Epoch:[1/2](11700/56608), loss: 1.7868, logits_loss: 1.7868, aux_loss: 0.0000, lr: 0.00000976, epoch_time: 139.0min
+Epoch:[1/2](11800/56608), loss: 1.6702, logits_loss: 1.6702, aux_loss: 0.0000, lr: 0.00000976, epoch_time: 139.0min
+Epoch:[1/2](11900/56608), loss: 1.8232, logits_loss: 1.8232, aux_loss: 0.0000, lr: 0.00000976, epoch_time: 138.0min
+Epoch:[1/2](12000/56608), loss: 1.5511, logits_loss: 1.5511, aux_loss: 0.0000, lr: 0.00000975, epoch_time: 138.0min
+[Checkpoint] New best loss=1.551110 at step 12000
+[Checkpoint] Removed old checkpoint: full_sft_768_step9000_resume.pth
+[Checkpoint] Saved step 12000 (epoch 1), metrics={loss=1.5511, lr=0.0000}
+Epoch:[1/2](12100/56608), loss: 1.8832, logits_loss: 1.8832, aux_loss: 0.0000, lr: 0.00000975, epoch_time: 138.0min
+Epoch:[1/2](12200/56608), loss: 1.6885, logits_loss: 1.6885, aux_loss: 0.0000, lr: 0.00000974, epoch_time: 138.0min
+Epoch:[1/2](12300/56608), loss: 1.6332, logits_loss: 1.6332, aux_loss: 0.0000, lr: 0.00000974, epoch_time: 138.0min
+Epoch:[1/2](12400/56608), loss: 1.7064, logits_loss: 1.7064, aux_loss: 0.0000, lr: 0.00000974, epoch_time: 137.0min
+Epoch:[1/2](12500/56608), loss: 1.6915, logits_loss: 1.6915, aux_loss: 0.0000, lr: 0.00000973, epoch_time: 137.0min
+Epoch:[1/2](12600/56608), loss: 1.8708, logits_loss: 1.8708, aux_loss: 0.0000, lr: 0.00000973, epoch_time: 137.0min
+Epoch:[1/2](12700/56608), loss: 1.7779, logits_loss: 1.7779, aux_loss: 0.0000, lr: 0.00000972, epoch_time: 136.0min
+Epoch:[1/2](12800/56608), loss: 1.6659, logits_loss: 1.6659, aux_loss: 0.0000, lr: 0.00000972, epoch_time: 136.0min
+Epoch:[1/2](12900/56608), loss: 1.6803, logits_loss: 1.6803, aux_loss: 0.0000, lr: 0.00000971, epoch_time: 135.0min
+Epoch:[1/2](13000/56608), loss: 1.7008, logits_loss: 1.7008, aux_loss: 0.0000, lr: 0.00000971, epoch_time: 135.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step10000_resume.pth
+[Checkpoint] Saved step 13000 (epoch 1), metrics={loss=1.7008, lr=0.0000}
+Epoch:[1/2](13100/56608), loss: 1.5880, logits_loss: 1.5880, aux_loss: 0.0000, lr: 0.00000971, epoch_time: 135.0min
+Epoch:[1/2](13200/56608), loss: 1.7528, logits_loss: 1.7528, aux_loss: 0.0000, lr: 0.00000970, epoch_time: 135.0min
+Epoch:[1/2](13300/56608), loss: 1.8265, logits_loss: 1.8265, aux_loss: 0.0000, lr: 0.00000970, epoch_time: 134.0min
+Epoch:[1/2](13400/56608), loss: 1.8073, logits_loss: 1.8073, aux_loss: 0.0000, lr: 0.00000969, epoch_time: 134.0min
+Epoch:[1/2](13500/56608), loss: 1.6128, logits_loss: 1.6128, aux_loss: 0.0000, lr: 0.00000969, epoch_time: 134.0min
+Epoch:[1/2](13600/56608), loss: 1.7000, logits_loss: 1.7000, aux_loss: 0.0000, lr: 0.00000968, epoch_time: 133.0min
+Epoch:[1/2](13700/56608), loss: 1.7160, logits_loss: 1.7160, aux_loss: 0.0000, lr: 0.00000968, epoch_time: 133.0min
+Epoch:[1/2](13800/56608), loss: 1.8578, logits_loss: 1.8578, aux_loss: 0.0000, lr: 0.00000967, epoch_time: 133.0min
+Epoch:[1/2](13900/56608), loss: 1.8574, logits_loss: 1.8574, aux_loss: 0.0000, lr: 0.00000967, epoch_time: 132.0min
+Epoch:[1/2](14000/56608), loss: 1.6006, logits_loss: 1.6006, aux_loss: 0.0000, lr: 0.00000966, epoch_time: 132.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step11000_resume.pth
+[Checkpoint] Saved step 14000 (epoch 1), metrics={loss=1.6006, lr=0.0000}
+Epoch:[1/2](14100/56608), loss: 1.8762, logits_loss: 1.8762, aux_loss: 0.0000, lr: 0.00000966, epoch_time: 132.0min
+Epoch:[1/2](14200/56608), loss: 1.7125, logits_loss: 1.7125, aux_loss: 0.0000, lr: 0.00000966, epoch_time: 132.0min
+Epoch:[1/2](14300/56608), loss: 1.7248, logits_loss: 1.7248, aux_loss: 0.0000, lr: 0.00000965, epoch_time: 131.0min
+Epoch:[1/2](14400/56608), loss: 1.8445, logits_loss: 1.8445, aux_loss: 0.0000, lr: 0.00000965, epoch_time: 131.0min
+Epoch:[1/2](14500/56608), loss: 1.5084, logits_loss: 1.5084, aux_loss: 0.0000, lr: 0.00000964, epoch_time: 130.0min
+Epoch:[1/2](14600/56608), loss: 1.9638, logits_loss: 1.9638, aux_loss: 0.0000, lr: 0.00000964, epoch_time: 130.0min
+Epoch:[1/2](14700/56608), loss: 1.7330, logits_loss: 1.7330, aux_loss: 0.0000, lr: 0.00000963, epoch_time: 130.0min
+Epoch:[1/2](14800/56608), loss: 1.6680, logits_loss: 1.6680, aux_loss: 0.0000, lr: 0.00000963, epoch_time: 129.0min
+Epoch:[1/2](14900/56608), loss: 1.7657, logits_loss: 1.7657, aux_loss: 0.0000, lr: 0.00000962, epoch_time: 129.0min
+Epoch:[1/2](15000/56608), loss: 1.5527, logits_loss: 1.5527, aux_loss: 0.0000, lr: 0.00000962, epoch_time: 129.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step12000_resume.pth
+[Checkpoint] Saved step 15000 (epoch 1), metrics={loss=1.5527, lr=0.0000}
+Epoch:[1/2](15100/56608), loss: 1.7136, logits_loss: 1.7136, aux_loss: 0.0000, lr: 0.00000961, epoch_time: 129.0min
+Epoch:[1/2](15200/56608), loss: 1.7053, logits_loss: 1.7053, aux_loss: 0.0000, lr: 0.00000961, epoch_time: 128.0min
+Epoch:[1/2](15300/56608), loss: 1.5682, logits_loss: 1.5682, aux_loss: 0.0000, lr: 0.00000960, epoch_time: 128.0min
+Epoch:[1/2](15400/56608), loss: 1.7346, logits_loss: 1.7346, aux_loss: 0.0000, lr: 0.00000960, epoch_time: 128.0min
+Epoch:[1/2](15500/56608), loss: 1.6263, logits_loss: 1.6263, aux_loss: 0.0000, lr: 0.00000959, epoch_time: 127.0min
+Epoch:[1/2](15600/56608), loss: 1.6359, logits_loss: 1.6359, aux_loss: 0.0000, lr: 0.00000958, epoch_time: 127.0min
+Epoch:[1/2](15700/56608), loss: 1.7312, logits_loss: 1.7312, aux_loss: 0.0000, lr: 0.00000958, epoch_time: 127.0min
+Epoch:[1/2](15800/56608), loss: 1.7510, logits_loss: 1.7510, aux_loss: 0.0000, lr: 0.00000957, epoch_time: 126.0min
+Epoch:[1/2](15900/56608), loss: 1.5785, logits_loss: 1.5785, aux_loss: 0.0000, lr: 0.00000957, epoch_time: 126.0min
+Epoch:[1/2](16000/56608), loss: 1.7194, logits_loss: 1.7194, aux_loss: 0.0000, lr: 0.00000956, epoch_time: 126.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step13000_resume.pth
+[Checkpoint] Saved step 16000 (epoch 1), metrics={loss=1.7194, lr=0.0000}
+Epoch:[1/2](16100/56608), loss: 1.4676, logits_loss: 1.4676, aux_loss: 0.0000, lr: 0.00000956, epoch_time: 126.0min
+Epoch:[1/2](16200/56608), loss: 1.4489, logits_loss: 1.4489, aux_loss: 0.0000, lr: 0.00000955, epoch_time: 125.0min
+Epoch:[1/2](16300/56608), loss: 1.7955, logits_loss: 1.7955, aux_loss: 0.0000, lr: 0.00000955, epoch_time: 125.0min
+Epoch:[1/2](16400/56608), loss: 1.6042, logits_loss: 1.6042, aux_loss: 0.0000, lr: 0.00000954, epoch_time: 124.0min
+Epoch:[1/2](16500/56608), loss: 1.6388, logits_loss: 1.6388, aux_loss: 0.0000, lr: 0.00000954, epoch_time: 124.0min
+Epoch:[1/2](16600/56608), loss: 1.6905, logits_loss: 1.6905, aux_loss: 0.0000, lr: 0.00000953, epoch_time: 124.0min
+Epoch:[1/2](16700/56608), loss: 1.7151, logits_loss: 1.7151, aux_loss: 0.0000, lr: 0.00000953, epoch_time: 123.0min
+Epoch:[1/2](16800/56608), loss: 1.8306, logits_loss: 1.8306, aux_loss: 0.0000, lr: 0.00000952, epoch_time: 123.0min
+Epoch:[1/2](16900/56608), loss: 1.6386, logits_loss: 1.6386, aux_loss: 0.0000, lr: 0.00000951, epoch_time: 123.0min
+Epoch:[1/2](17000/56608), loss: 1.5280, logits_loss: 1.5280, aux_loss: 0.0000, lr: 0.00000951, epoch_time: 122.0min
+[Checkpoint] New best loss=1.528000 at step 17000
+[Checkpoint] Removed old checkpoint: full_sft_768_step14000_resume.pth
+[Checkpoint] Saved step 17000 (epoch 1), metrics={loss=1.5280, lr=0.0000}
+Epoch:[1/2](17100/56608), loss: 1.7027, logits_loss: 1.7027, aux_loss: 0.0000, lr: 0.00000950, epoch_time: 123.0min
+Epoch:[1/2](17200/56608), loss: 1.7047, logits_loss: 1.7047, aux_loss: 0.0000, lr: 0.00000950, epoch_time: 122.0min
+Epoch:[1/2](17300/56608), loss: 1.5837, logits_loss: 1.5837, aux_loss: 0.0000, lr: 0.00000949, epoch_time: 122.0min
+Epoch:[1/2](17400/56608), loss: 1.4988, logits_loss: 1.4988, aux_loss: 0.0000, lr: 0.00000949, epoch_time: 122.0min
+Epoch:[1/2](17500/56608), loss: 1.7352, logits_loss: 1.7352, aux_loss: 0.0000, lr: 0.00000948, epoch_time: 121.0min
+Epoch:[1/2](17600/56608), loss: 1.6756, logits_loss: 1.6756, aux_loss: 0.0000, lr: 0.00000947, epoch_time: 121.0min
+Epoch:[1/2](17700/56608), loss: 1.5788, logits_loss: 1.5788, aux_loss: 0.0000, lr: 0.00000947, epoch_time: 120.0min
+Epoch:[1/2](17800/56608), loss: 1.7489, logits_loss: 1.7489, aux_loss: 0.0000, lr: 0.00000946, epoch_time: 120.0min
+Epoch:[1/2](17900/56608), loss: 1.6541, logits_loss: 1.6541, aux_loss: 0.0000, lr: 0.00000946, epoch_time: 120.0min
+Epoch:[1/2](18000/56608), loss: 1.6335, logits_loss: 1.6335, aux_loss: 0.0000, lr: 0.00000945, epoch_time: 119.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step15000_resume.pth
+[Checkpoint] Saved step 18000 (epoch 1), metrics={loss=1.6335, lr=0.0000}
+Epoch:[1/2](18100/56608), loss: 1.8134, logits_loss: 1.8134, aux_loss: 0.0000, lr: 0.00000944, epoch_time: 119.0min
+Epoch:[1/2](18200/56608), loss: 1.7323, logits_loss: 1.7323, aux_loss: 0.0000, lr: 0.00000944, epoch_time: 119.0min
+Epoch:[1/2](18300/56608), loss: 1.6407, logits_loss: 1.6407, aux_loss: 0.0000, lr: 0.00000943, epoch_time: 119.0min
+Epoch:[1/2](18400/56608), loss: 1.5533, logits_loss: 1.5533, aux_loss: 0.0000, lr: 0.00000943, epoch_time: 118.0min
+Epoch:[1/2](18500/56608), loss: 1.7261, logits_loss: 1.7261, aux_loss: 0.0000, lr: 0.00000942, epoch_time: 118.0min
+Epoch:[1/2](18600/56608), loss: 1.6869, logits_loss: 1.6869, aux_loss: 0.0000, lr: 0.00000941, epoch_time: 118.0min
+Epoch:[1/2](18700/56608), loss: 1.5289, logits_loss: 1.5289, aux_loss: 0.0000, lr: 0.00000941, epoch_time: 117.0min
+Epoch:[1/2](18800/56608), loss: 1.7816, logits_loss: 1.7816, aux_loss: 0.0000, lr: 0.00000940, epoch_time: 117.0min
+Epoch:[1/2](18900/56608), loss: 1.7258, logits_loss: 1.7258, aux_loss: 0.0000, lr: 0.00000940, epoch_time: 117.0min
+Epoch:[1/2](19000/56608), loss: 1.4995, logits_loss: 1.4995, aux_loss: 0.0000, lr: 0.00000939, epoch_time: 116.0min
+[Checkpoint] New best loss=1.499468 at step 19000
+[Checkpoint] Removed old checkpoint: full_sft_768_step16000_resume.pth
+[Checkpoint] Saved step 19000 (epoch 1), metrics={loss=1.4995, lr=0.0000}
+Epoch:[1/2](19100/56608), loss: 1.7032, logits_loss: 1.7032, aux_loss: 0.0000, lr: 0.00000938, epoch_time: 116.0min
+Epoch:[1/2](19200/56608), loss: 1.6164, logits_loss: 1.6164, aux_loss: 0.0000, lr: 0.00000938, epoch_time: 116.0min
+Epoch:[1/2](19300/56608), loss: 1.7755, logits_loss: 1.7755, aux_loss: 0.0000, lr: 0.00000937, epoch_time: 116.0min
+Epoch:[1/2](19400/56608), loss: 1.8541, logits_loss: 1.8541, aux_loss: 0.0000, lr: 0.00000936, epoch_time: 115.0min
+Epoch:[1/2](19500/56608), loss: 1.4169, logits_loss: 1.4169, aux_loss: 0.0000, lr: 0.00000936, epoch_time: 115.0min
+Epoch:[1/2](19600/56608), loss: 1.7023, logits_loss: 1.7023, aux_loss: 0.0000, lr: 0.00000935, epoch_time: 115.0min
+Epoch:[1/2](19700/56608), loss: 1.8501, logits_loss: 1.8501, aux_loss: 0.0000, lr: 0.00000934, epoch_time: 114.0min
+Epoch:[1/2](19800/56608), loss: 1.5201, logits_loss: 1.5201, aux_loss: 0.0000, lr: 0.00000934, epoch_time: 114.0min
+Epoch:[1/2](19900/56608), loss: 1.6313, logits_loss: 1.6313, aux_loss: 0.0000, lr: 0.00000933, epoch_time: 114.0min
+Epoch:[1/2](20000/56608), loss: 1.6301, logits_loss: 1.6301, aux_loss: 0.0000, lr: 0.00000932, epoch_time: 113.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step17000_resume.pth
+[Checkpoint] Saved step 20000 (epoch 1), metrics={loss=1.6301, lr=0.0000}
+Epoch:[1/2](20100/56608), loss: 1.7039, logits_loss: 1.7039, aux_loss: 0.0000, lr: 0.00000932, epoch_time: 113.0min
+Epoch:[1/2](20200/56608), loss: 1.8016, logits_loss: 1.8016, aux_loss: 0.0000, lr: 0.00000931, epoch_time: 113.0min
+Epoch:[1/2](20300/56608), loss: 1.8371, logits_loss: 1.8371, aux_loss: 0.0000, lr: 0.00000930, epoch_time: 113.0min
+Epoch:[1/2](20400/56608), loss: 1.5565, logits_loss: 1.5565, aux_loss: 0.0000, lr: 0.00000930, epoch_time: 112.0min
+Epoch:[1/2](20500/56608), loss: 1.4220, logits_loss: 1.4220, aux_loss: 0.0000, lr: 0.00000929, epoch_time: 112.0min
+Epoch:[1/2](20600/56608), loss: 1.7292, logits_loss: 1.7292, aux_loss: 0.0000, lr: 0.00000928, epoch_time: 112.0min
+Epoch:[1/2](20700/56608), loss: 1.5767, logits_loss: 1.5767, aux_loss: 0.0000, lr: 0.00000928, epoch_time: 111.0min
+Epoch:[1/2](20800/56608), loss: 1.4276, logits_loss: 1.4276, aux_loss: 0.0000, lr: 0.00000927, epoch_time: 111.0min
+Epoch:[1/2](20900/56608), loss: 1.6745, logits_loss: 1.6745, aux_loss: 0.0000, lr: 0.00000926, epoch_time: 110.0min
+Epoch:[1/2](21000/56608), loss: 2.0950, logits_loss: 2.0950, aux_loss: 0.0000, lr: 0.00000926, epoch_time: 110.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step18000_resume.pth
+[Checkpoint] Saved step 21000 (epoch 1), metrics={loss=2.0950, lr=0.0000}
+Epoch:[1/2](21100/56608), loss: 1.7811, logits_loss: 1.7811, aux_loss: 0.0000, lr: 0.00000925, epoch_time: 110.0min
+Epoch:[1/2](21200/56608), loss: 1.5121, logits_loss: 1.5121, aux_loss: 0.0000, lr: 0.00000924, epoch_time: 110.0min
+Epoch:[1/2](21300/56608), loss: 1.7387, logits_loss: 1.7387, aux_loss: 0.0000, lr: 0.00000924, epoch_time: 109.0min
+Epoch:[1/2](21400/56608), loss: 1.7065, logits_loss: 1.7065, aux_loss: 0.0000, lr: 0.00000923, epoch_time: 109.0min
+Epoch:[1/2](21500/56608), loss: 1.7315, logits_loss: 1.7315, aux_loss: 0.0000, lr: 0.00000922, epoch_time: 109.0min
+Epoch:[1/2](21600/56608), loss: 1.6867, logits_loss: 1.6867, aux_loss: 0.0000, lr: 0.00000922, epoch_time: 108.0min
+Epoch:[1/2](21700/56608), loss: 1.6389, logits_loss: 1.6389, aux_loss: 0.0000, lr: 0.00000921, epoch_time: 108.0min
+Epoch:[1/2](21800/56608), loss: 1.6813, logits_loss: 1.6813, aux_loss: 0.0000, lr: 0.00000920, epoch_time: 108.0min
+Epoch:[1/2](21900/56608), loss: 1.5060, logits_loss: 1.5060, aux_loss: 0.0000, lr: 0.00000919, epoch_time: 107.0min
+Epoch:[1/2](22000/56608), loss: 1.6532, logits_loss: 1.6532, aux_loss: 0.0000, lr: 0.00000919, epoch_time: 107.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step19000_resume.pth
+[Checkpoint] Saved step 22000 (epoch 1), metrics={loss=1.6532, lr=0.0000}
+Epoch:[1/2](22100/56608), loss: 1.4355, logits_loss: 1.4355, aux_loss: 0.0000, lr: 0.00000918, epoch_time: 107.0min
+Epoch:[1/2](22200/56608), loss: 1.7340, logits_loss: 1.7340, aux_loss: 0.0000, lr: 0.00000917, epoch_time: 107.0min
+Epoch:[1/2](22300/56608), loss: 1.5097, logits_loss: 1.5097, aux_loss: 0.0000, lr: 0.00000917, epoch_time: 106.0min
+Epoch:[1/2](22400/56608), loss: 1.6188, logits_loss: 1.6188, aux_loss: 0.0000, lr: 0.00000916, epoch_time: 106.0min
+Epoch:[1/2](22500/56608), loss: 1.4679, logits_loss: 1.4679, aux_loss: 0.0000, lr: 0.00000915, epoch_time: 106.0min
+Epoch:[1/2](22600/56608), loss: 1.7898, logits_loss: 1.7898, aux_loss: 0.0000, lr: 0.00000914, epoch_time: 105.0min
+Epoch:[1/2](22700/56608), loss: 1.7209, logits_loss: 1.7209, aux_loss: 0.0000, lr: 0.00000914, epoch_time: 105.0min
+Epoch:[1/2](22800/56608), loss: 1.6183, logits_loss: 1.6183, aux_loss: 0.0000, lr: 0.00000913, epoch_time: 105.0min
+Epoch:[1/2](22900/56608), loss: 1.6434, logits_loss: 1.6434, aux_loss: 0.0000, lr: 0.00000912, epoch_time: 104.0min
+Epoch:[1/2](23000/56608), loss: 1.6533, logits_loss: 1.6533, aux_loss: 0.0000, lr: 0.00000911, epoch_time: 104.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step20000_resume.pth
+[Checkpoint] Saved step 23000 (epoch 1), metrics={loss=1.6533, lr=0.0000}
+Epoch:[1/2](23100/56608), loss: 1.7391, logits_loss: 1.7391, aux_loss: 0.0000, lr: 0.00000911, epoch_time: 104.0min
+Epoch:[1/2](23200/56608), loss: 1.6968, logits_loss: 1.6968, aux_loss: 0.0000, lr: 0.00000910, epoch_time: 103.0min
+Epoch:[1/2](23300/56608), loss: 1.5732, logits_loss: 1.5732, aux_loss: 0.0000, lr: 0.00000909, epoch_time: 103.0min
+Epoch:[1/2](23400/56608), loss: 1.4501, logits_loss: 1.4501, aux_loss: 0.0000, lr: 0.00000908, epoch_time: 103.0min
+Epoch:[1/2](23500/56608), loss: 1.7745, logits_loss: 1.7745, aux_loss: 0.0000, lr: 0.00000908, epoch_time: 102.0min
+Epoch:[1/2](23600/56608), loss: 1.7012, logits_loss: 1.7012, aux_loss: 0.0000, lr: 0.00000907, epoch_time: 102.0min
+Epoch:[1/2](23700/56608), loss: 1.8158, logits_loss: 1.8158, aux_loss: 0.0000, lr: 0.00000906, epoch_time: 102.0min
+Epoch:[1/2](23800/56608), loss: 1.7779, logits_loss: 1.7779, aux_loss: 0.0000, lr: 0.00000905, epoch_time: 101.0min
+Epoch:[1/2](23900/56608), loss: 1.4629, logits_loss: 1.4629, aux_loss: 0.0000, lr: 0.00000905, epoch_time: 101.0min
+Epoch:[1/2](24000/56608), loss: 1.7032, logits_loss: 1.7032, aux_loss: 0.0000, lr: 0.00000904, epoch_time: 101.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step21000_resume.pth
+[Checkpoint] Saved step 24000 (epoch 1), metrics={loss=1.7032, lr=0.0000}
+Epoch:[1/2](24100/56608), loss: 2.0430, logits_loss: 2.0430, aux_loss: 0.0000, lr: 0.00000903, epoch_time: 101.0min
+Epoch:[1/2](24200/56608), loss: 1.5256, logits_loss: 1.5256, aux_loss: 0.0000, lr: 0.00000902, epoch_time: 100.0min
+Epoch:[1/2](24300/56608), loss: 1.8112, logits_loss: 1.8112, aux_loss: 0.0000, lr: 0.00000902, epoch_time: 100.0min
+Epoch:[1/2](24400/56608), loss: 1.6565, logits_loss: 1.6565, aux_loss: 0.0000, lr: 0.00000901, epoch_time: 100.0min
+Epoch:[1/2](24500/56608), loss: 1.7965, logits_loss: 1.7965, aux_loss: 0.0000, lr: 0.00000900, epoch_time: 99.0min
+Epoch:[1/2](24600/56608), loss: 1.6920, logits_loss: 1.6920, aux_loss: 0.0000, lr: 0.00000899, epoch_time: 99.0min
+Epoch:[1/2](24700/56608), loss: 1.5739, logits_loss: 1.5739, aux_loss: 0.0000, lr: 0.00000898, epoch_time: 99.0min
+Epoch:[1/2](24800/56608), loss: 1.5790, logits_loss: 1.5790, aux_loss: 0.0000, lr: 0.00000898, epoch_time: 98.0min
+Epoch:[1/2](24900/56608), loss: 1.7609, logits_loss: 1.7609, aux_loss: 0.0000, lr: 0.00000897, epoch_time: 98.0min
+Epoch:[1/2](25000/56608), loss: 1.6459, logits_loss: 1.6459, aux_loss: 0.0000, lr: 0.00000896, epoch_time: 98.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step22000_resume.pth
+[Checkpoint] Saved step 25000 (epoch 1), metrics={loss=1.6459, lr=0.0000}
+Epoch:[1/2](25100/56608), loss: 1.7073, logits_loss: 1.7073, aux_loss: 0.0000, lr: 0.00000895, epoch_time: 97.0min
+Epoch:[1/2](25200/56608), loss: 1.4937, logits_loss: 1.4937, aux_loss: 0.0000, lr: 0.00000894, epoch_time: 97.0min
+Epoch:[1/2](25300/56608), loss: 1.7115, logits_loss: 1.7115, aux_loss: 0.0000, lr: 0.00000894, epoch_time: 97.0min
+Epoch:[1/2](25400/56608), loss: 1.5917, logits_loss: 1.5917, aux_loss: 0.0000, lr: 0.00000893, epoch_time: 96.0min
+Epoch:[1/2](25500/56608), loss: 1.7807, logits_loss: 1.7807, aux_loss: 0.0000, lr: 0.00000892, epoch_time: 96.0min
+Epoch:[1/2](25600/56608), loss: 1.7613, logits_loss: 1.7613, aux_loss: 0.0000, lr: 0.00000891, epoch_time: 96.0min
+Epoch:[1/2](25700/56608), loss: 1.6461, logits_loss: 1.6461, aux_loss: 0.0000, lr: 0.00000890, epoch_time: 95.0min
+Epoch:[1/2](25800/56608), loss: 1.5886, logits_loss: 1.5886, aux_loss: 0.0000, lr: 0.00000890, epoch_time: 95.0min
+Epoch:[1/2](25900/56608), loss: 1.7655, logits_loss: 1.7655, aux_loss: 0.0000, lr: 0.00000889, epoch_time: 95.0min
+Epoch:[1/2](26000/56608), loss: 1.7450, logits_loss: 1.7450, aux_loss: 0.0000, lr: 0.00000888, epoch_time: 94.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step23000_resume.pth
+[Checkpoint] Saved step 26000 (epoch 1), metrics={loss=1.7450, lr=0.0000}
+Epoch:[1/2](26100/56608), loss: 1.6658, logits_loss: 1.6658, aux_loss: 0.0000, lr: 0.00000887, epoch_time: 94.0min
+Epoch:[1/2](26200/56608), loss: 1.7505, logits_loss: 1.7505, aux_loss: 0.0000, lr: 0.00000886, epoch_time: 94.0min
+Epoch:[1/2](26300/56608), loss: 1.6054, logits_loss: 1.6054, aux_loss: 0.0000, lr: 0.00000885, epoch_time: 94.0min
+Epoch:[1/2](26400/56608), loss: 1.4358, logits_loss: 1.4358, aux_loss: 0.0000, lr: 0.00000885, epoch_time: 93.0min
+Epoch:[1/2](26500/56608), loss: 1.6067, logits_loss: 1.6067, aux_loss: 0.0000, lr: 0.00000884, epoch_time: 93.0min
+Epoch:[1/2](26600/56608), loss: 1.7424, logits_loss: 1.7424, aux_loss: 0.0000, lr: 0.00000883, epoch_time: 93.0min
+Epoch:[1/2](26700/56608), loss: 1.6759, logits_loss: 1.6759, aux_loss: 0.0000, lr: 0.00000882, epoch_time: 92.0min
+Epoch:[1/2](26800/56608), loss: 1.5635, logits_loss: 1.5635, aux_loss: 0.0000, lr: 0.00000881, epoch_time: 92.0min
+Epoch:[1/2](26900/56608), loss: 1.6618, logits_loss: 1.6618, aux_loss: 0.0000, lr: 0.00000880, epoch_time: 92.0min
+Epoch:[1/2](27000/56608), loss: 1.6367, logits_loss: 1.6367, aux_loss: 0.0000, lr: 0.00000880, epoch_time: 91.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step24000_resume.pth
+[Checkpoint] Saved step 27000 (epoch 1), metrics={loss=1.6367, lr=0.0000}
+Epoch:[1/2](27100/56608), loss: 1.5082, logits_loss: 1.5082, aux_loss: 0.0000, lr: 0.00000879, epoch_time: 91.0min
+Epoch:[1/2](27200/56608), loss: 1.7853, logits_loss: 1.7853, aux_loss: 0.0000, lr: 0.00000878, epoch_time: 91.0min
+Epoch:[1/2](27300/56608), loss: 1.4790, logits_loss: 1.4790, aux_loss: 0.0000, lr: 0.00000877, epoch_time: 91.0min
+Epoch:[1/2](27400/56608), loss: 1.5319, logits_loss: 1.5319, aux_loss: 0.0000, lr: 0.00000876, epoch_time: 90.0min
+Epoch:[1/2](27500/56608), loss: 1.7812, logits_loss: 1.7812, aux_loss: 0.0000, lr: 0.00000875, epoch_time: 90.0min
+Epoch:[1/2](27600/56608), loss: 1.4999, logits_loss: 1.4999, aux_loss: 0.0000, lr: 0.00000874, epoch_time: 90.0min
+Epoch:[1/2](27700/56608), loss: 1.7193, logits_loss: 1.7193, aux_loss: 0.0000, lr: 0.00000873, epoch_time: 89.0min
+Epoch:[1/2](27800/56608), loss: 1.6340, logits_loss: 1.6340, aux_loss: 0.0000, lr: 0.00000873, epoch_time: 89.0min
+Epoch:[1/2](27900/56608), loss: 1.5306, logits_loss: 1.5306, aux_loss: 0.0000, lr: 0.00000872, epoch_time: 89.0min
+Epoch:[1/2](28000/56608), loss: 1.6180, logits_loss: 1.6180, aux_loss: 0.0000, lr: 0.00000871, epoch_time: 88.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step25000_resume.pth
+[Checkpoint] Saved step 28000 (epoch 1), metrics={loss=1.6180, lr=0.0000}
+Epoch:[1/2](28100/56608), loss: 1.4138, logits_loss: 1.4138, aux_loss: 0.0000, lr: 0.00000870, epoch_time: 88.0min
+Epoch:[1/2](28200/56608), loss: 1.6407, logits_loss: 1.6407, aux_loss: 0.0000, lr: 0.00000869, epoch_time: 88.0min
+Epoch:[1/2](28300/56608), loss: 1.6536, logits_loss: 1.6536, aux_loss: 0.0000, lr: 0.00000868, epoch_time: 87.0min
+Epoch:[1/2](28400/56608), loss: 1.5639, logits_loss: 1.5639, aux_loss: 0.0000, lr: 0.00000867, epoch_time: 87.0min
+Epoch:[1/2](28500/56608), loss: 1.6921, logits_loss: 1.6921, aux_loss: 0.0000, lr: 0.00000866, epoch_time: 87.0min
+Epoch:[1/2](28600/56608), loss: 1.6512, logits_loss: 1.6512, aux_loss: 0.0000, lr: 0.00000866, epoch_time: 86.0min
+Epoch:[1/2](28700/56608), loss: 1.6372, logits_loss: 1.6372, aux_loss: 0.0000, lr: 0.00000865, epoch_time: 86.0min
+Epoch:[1/2](28800/56608), loss: 1.5961, logits_loss: 1.5961, aux_loss: 0.0000, lr: 0.00000864, epoch_time: 86.0min
+Epoch:[1/2](28900/56608), loss: 1.5652, logits_loss: 1.5652, aux_loss: 0.0000, lr: 0.00000863, epoch_time: 85.0min
+Epoch:[1/2](29000/56608), loss: 1.6793, logits_loss: 1.6793, aux_loss: 0.0000, lr: 0.00000862, epoch_time: 85.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step26000_resume.pth
+[Checkpoint] Saved step 29000 (epoch 1), metrics={loss=1.6793, lr=0.0000}
+Epoch:[1/2](29100/56608), loss: 1.7015, logits_loss: 1.7015, aux_loss: 0.0000, lr: 0.00000861, epoch_time: 85.0min
+Epoch:[1/2](29200/56608), loss: 1.6826, logits_loss: 1.6826, aux_loss: 0.0000, lr: 0.00000860, epoch_time: 85.0min
+Epoch:[1/2](29300/56608), loss: 1.6496, logits_loss: 1.6496, aux_loss: 0.0000, lr: 0.00000859, epoch_time: 84.0min
+Epoch:[1/2](29400/56608), loss: 1.6384, logits_loss: 1.6384, aux_loss: 0.0000, lr: 0.00000858, epoch_time: 84.0min
+Epoch:[1/2](29500/56608), loss: 1.5874, logits_loss: 1.5874, aux_loss: 0.0000, lr: 0.00000857, epoch_time: 84.0min
+Epoch:[1/2](29600/56608), loss: 1.6392, logits_loss: 1.6392, aux_loss: 0.0000, lr: 0.00000857, epoch_time: 83.0min
+Epoch:[1/2](29700/56608), loss: 1.5977, logits_loss: 1.5977, aux_loss: 0.0000, lr: 0.00000856, epoch_time: 83.0min
+Epoch:[1/2](29800/56608), loss: 1.5026, logits_loss: 1.5026, aux_loss: 0.0000, lr: 0.00000855, epoch_time: 83.0min
+Epoch:[1/2](29900/56608), loss: 1.7341, logits_loss: 1.7341, aux_loss: 0.0000, lr: 0.00000854, epoch_time: 82.0min
+Epoch:[1/2](30000/56608), loss: 1.6822, logits_loss: 1.6822, aux_loss: 0.0000, lr: 0.00000853, epoch_time: 82.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step27000_resume.pth
+[Checkpoint] Saved step 30000 (epoch 1), metrics={loss=1.6822, lr=0.0000}
+Epoch:[1/2](30100/56608), loss: 1.5237, logits_loss: 1.5237, aux_loss: 0.0000, lr: 0.00000852, epoch_time: 82.0min
+Epoch:[1/2](30200/56608), loss: 1.5935, logits_loss: 1.5935, aux_loss: 0.0000, lr: 0.00000851, epoch_time: 81.0min
+Epoch:[1/2](30300/56608), loss: 1.6626, logits_loss: 1.6626, aux_loss: 0.0000, lr: 0.00000850, epoch_time: 81.0min
+Epoch:[1/2](30400/56608), loss: 1.6522, logits_loss: 1.6522, aux_loss: 0.0000, lr: 0.00000849, epoch_time: 81.0min
+Epoch:[1/2](30500/56608), loss: 1.4376, logits_loss: 1.4376, aux_loss: 0.0000, lr: 0.00000848, epoch_time: 81.0min
+Epoch:[1/2](30600/56608), loss: 1.3975, logits_loss: 1.3975, aux_loss: 0.0000, lr: 0.00000847, epoch_time: 80.0min
+Epoch:[1/2](30700/56608), loss: 1.6933, logits_loss: 1.6933, aux_loss: 0.0000, lr: 0.00000846, epoch_time: 80.0min
+Epoch:[1/2](30800/56608), loss: 1.3979, logits_loss: 1.3979, aux_loss: 0.0000, lr: 0.00000845, epoch_time: 80.0min
+Epoch:[1/2](30900/56608), loss: 1.6666, logits_loss: 1.6666, aux_loss: 0.0000, lr: 0.00000844, epoch_time: 79.0min
+Epoch:[1/2](31000/56608), loss: 1.7015, logits_loss: 1.7015, aux_loss: 0.0000, lr: 0.00000844, epoch_time: 79.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step28000_resume.pth
+[Checkpoint] Saved step 31000 (epoch 1), metrics={loss=1.7015, lr=0.0000}
+Epoch:[1/2](31100/56608), loss: 1.6323, logits_loss: 1.6323, aux_loss: 0.0000, lr: 0.00000843, epoch_time: 79.0min
+Epoch:[1/2](31200/56608), loss: 1.6861, logits_loss: 1.6861, aux_loss: 0.0000, lr: 0.00000842, epoch_time: 78.0min
+Epoch:[1/2](31300/56608), loss: 1.7244, logits_loss: 1.7244, aux_loss: 0.0000, lr: 0.00000841, epoch_time: 78.0min
+Epoch:[1/2](31400/56608), loss: 1.6064, logits_loss: 1.6064, aux_loss: 0.0000, lr: 0.00000840, epoch_time: 78.0min
+Epoch:[1/2](31500/56608), loss: 1.8016, logits_loss: 1.8016, aux_loss: 0.0000, lr: 0.00000839, epoch_time: 77.0min
+Epoch:[1/2](31600/56608), loss: 1.6589, logits_loss: 1.6589, aux_loss: 0.0000, lr: 0.00000838, epoch_time: 77.0min
+Epoch:[1/2](31700/56608), loss: 1.4707, logits_loss: 1.4707, aux_loss: 0.0000, lr: 0.00000837, epoch_time: 77.0min
+Epoch:[1/2](31800/56608), loss: 1.4830, logits_loss: 1.4830, aux_loss: 0.0000, lr: 0.00000836, epoch_time: 76.0min
+Epoch:[1/2](31900/56608), loss: 1.7160, logits_loss: 1.7160, aux_loss: 0.0000, lr: 0.00000835, epoch_time: 76.0min
+Epoch:[1/2](32000/56608), loss: 1.6792, logits_loss: 1.6792, aux_loss: 0.0000, lr: 0.00000834, epoch_time: 76.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step29000_resume.pth
+[Checkpoint] Saved step 32000 (epoch 1), metrics={loss=1.6792, lr=0.0000}
+Epoch:[1/2](32100/56608), loss: 1.4803, logits_loss: 1.4803, aux_loss: 0.0000, lr: 0.00000833, epoch_time: 76.0min
+Epoch:[1/2](32200/56608), loss: 1.6602, logits_loss: 1.6602, aux_loss: 0.0000, lr: 0.00000832, epoch_time: 75.0min
+Epoch:[1/2](32300/56608), loss: 1.7460, logits_loss: 1.7460, aux_loss: 0.0000, lr: 0.00000831, epoch_time: 75.0min
+Epoch:[1/2](32400/56608), loss: 1.6744, logits_loss: 1.6744, aux_loss: 0.0000, lr: 0.00000830, epoch_time: 75.0min
+Epoch:[1/2](32500/56608), loss: 1.5802, logits_loss: 1.5802, aux_loss: 0.0000, lr: 0.00000829, epoch_time: 74.0min
+Epoch:[1/2](32600/56608), loss: 1.6669, logits_loss: 1.6669, aux_loss: 0.0000, lr: 0.00000828, epoch_time: 74.0min
+Epoch:[1/2](32700/56608), loss: 1.8144, logits_loss: 1.8144, aux_loss: 0.0000, lr: 0.00000827, epoch_time: 74.0min
+Epoch:[1/2](32800/56608), loss: 1.5489, logits_loss: 1.5489, aux_loss: 0.0000, lr: 0.00000826, epoch_time: 73.0min
+Epoch:[1/2](32900/56608), loss: 1.6665, logits_loss: 1.6665, aux_loss: 0.0000, lr: 0.00000825, epoch_time: 73.0min
+Epoch:[1/2](33000/56608), loss: 1.6876, logits_loss: 1.6876, aux_loss: 0.0000, lr: 0.00000824, epoch_time: 73.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step30000_resume.pth
+[Checkpoint] Saved step 33000 (epoch 1), metrics={loss=1.6876, lr=0.0000}
+Epoch:[1/2](33100/56608), loss: 1.4752, logits_loss: 1.4752, aux_loss: 0.0000, lr: 0.00000823, epoch_time: 72.0min
+Epoch:[1/2](33200/56608), loss: 1.5563, logits_loss: 1.5563, aux_loss: 0.0000, lr: 0.00000822, epoch_time: 72.0min
+Epoch:[1/2](33300/56608), loss: 1.5977, logits_loss: 1.5977, aux_loss: 0.0000, lr: 0.00000821, epoch_time: 72.0min
+Epoch:[1/2](33400/56608), loss: 1.4121, logits_loss: 1.4121, aux_loss: 0.0000, lr: 0.00000820, epoch_time: 71.0min
+Epoch:[1/2](33500/56608), loss: 1.6248, logits_loss: 1.6248, aux_loss: 0.0000, lr: 0.00000819, epoch_time: 71.0min
+Epoch:[1/2](33600/56608), loss: 1.7680, logits_loss: 1.7680, aux_loss: 0.0000, lr: 0.00000818, epoch_time: 71.0min
+Epoch:[1/2](33700/56608), loss: 1.8439, logits_loss: 1.8439, aux_loss: 0.0000, lr: 0.00000817, epoch_time: 71.0min
+Epoch:[1/2](33800/56608), loss: 1.5056, logits_loss: 1.5056, aux_loss: 0.0000, lr: 0.00000816, epoch_time: 70.0min
+Epoch:[1/2](33900/56608), loss: 1.6582, logits_loss: 1.6582, aux_loss: 0.0000, lr: 0.00000815, epoch_time: 70.0min
+Epoch:[1/2](34000/56608), loss: 1.4612, logits_loss: 1.4612, aux_loss: 0.0000, lr: 0.00000814, epoch_time: 70.0min
+[Checkpoint] New best loss=1.461167 at step 34000
+[Checkpoint] Removed old checkpoint: full_sft_768_step31000_resume.pth
+[Checkpoint] Saved step 34000 (epoch 1), metrics={loss=1.4612, lr=0.0000}
+Epoch:[1/2](34100/56608), loss: 1.5325, logits_loss: 1.5325, aux_loss: 0.0000, lr: 0.00000813, epoch_time: 69.0min
+Epoch:[1/2](34200/56608), loss: 1.7742, logits_loss: 1.7742, aux_loss: 0.0000, lr: 0.00000812, epoch_time: 69.0min
+Epoch:[1/2](34300/56608), loss: 1.6782, logits_loss: 1.6782, aux_loss: 0.0000, lr: 0.00000811, epoch_time: 69.0min
+Epoch:[1/2](34400/56608), loss: 1.6859, logits_loss: 1.6859, aux_loss: 0.0000, lr: 0.00000810, epoch_time: 68.0min
+Epoch:[1/2](34500/56608), loss: 1.8718, logits_loss: 1.8718, aux_loss: 0.0000, lr: 0.00000809, epoch_time: 68.0min
+Epoch:[1/2](34600/56608), loss: 1.6457, logits_loss: 1.6457, aux_loss: 0.0000, lr: 0.00000808, epoch_time: 68.0min
+Epoch:[1/2](34700/56608), loss: 1.6573, logits_loss: 1.6573, aux_loss: 0.0000, lr: 0.00000807, epoch_time: 67.0min
+Epoch:[1/2](34800/56608), loss: 1.9531, logits_loss: 1.9531, aux_loss: 0.0000, lr: 0.00000806, epoch_time: 67.0min
+Epoch:[1/2](34900/56608), loss: 1.6294, logits_loss: 1.6294, aux_loss: 0.0000, lr: 0.00000805, epoch_time: 67.0min
+Epoch:[1/2](35000/56608), loss: 1.5823, logits_loss: 1.5823, aux_loss: 0.0000, lr: 0.00000804, epoch_time: 67.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step32000_resume.pth
+[Checkpoint] Saved step 35000 (epoch 1), metrics={loss=1.5823, lr=0.0000}
+Epoch:[1/2](35100/56608), loss: 1.5574, logits_loss: 1.5574, aux_loss: 0.0000, lr: 0.00000803, epoch_time: 66.0min
+Epoch:[1/2](35200/56608), loss: 1.6543, logits_loss: 1.6543, aux_loss: 0.0000, lr: 0.00000802, epoch_time: 66.0min
+Epoch:[1/2](35300/56608), loss: 1.4636, logits_loss: 1.4636, aux_loss: 0.0000, lr: 0.00000801, epoch_time: 66.0min
+Epoch:[1/2](35400/56608), loss: 1.4167, logits_loss: 1.4167, aux_loss: 0.0000, lr: 0.00000800, epoch_time: 65.0min
+Epoch:[1/2](35500/56608), loss: 1.5505, logits_loss: 1.5505, aux_loss: 0.0000, lr: 0.00000799, epoch_time: 65.0min
+Epoch:[1/2](35600/56608), loss: 1.6187, logits_loss: 1.6187, aux_loss: 0.0000, lr: 0.00000798, epoch_time: 65.0min
+Epoch:[1/2](35700/56608), loss: 1.6704, logits_loss: 1.6704, aux_loss: 0.0000, lr: 0.00000797, epoch_time: 64.0min
+Epoch:[1/2](35800/56608), loss: 1.5746, logits_loss: 1.5746, aux_loss: 0.0000, lr: 0.00000796, epoch_time: 64.0min
+Epoch:[1/2](35900/56608), loss: 1.6867, logits_loss: 1.6867, aux_loss: 0.0000, lr: 0.00000795, epoch_time: 64.0min
+Epoch:[1/2](36000/56608), loss: 1.6719, logits_loss: 1.6719, aux_loss: 0.0000, lr: 0.00000794, epoch_time: 63.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step33000_resume.pth
+[Checkpoint] Saved step 36000 (epoch 1), metrics={loss=1.6719, lr=0.0000}
+Epoch:[1/2](36100/56608), loss: 1.7937, logits_loss: 1.7937, aux_loss: 0.0000, lr: 0.00000792, epoch_time: 63.0min
+Epoch:[1/2](36200/56608), loss: 1.6049, logits_loss: 1.6049, aux_loss: 0.0000, lr: 0.00000791, epoch_time: 63.0min
+Epoch:[1/2](36300/56608), loss: 1.6850, logits_loss: 1.6850, aux_loss: 0.0000, lr: 0.00000790, epoch_time: 63.0min
+Epoch:[1/2](36400/56608), loss: 1.5835, logits_loss: 1.5835, aux_loss: 0.0000, lr: 0.00000789, epoch_time: 62.0min
+Epoch:[1/2](36500/56608), loss: 1.3779, logits_loss: 1.3779, aux_loss: 0.0000, lr: 0.00000788, epoch_time: 62.0min
+Epoch:[1/2](36600/56608), loss: 1.5831, logits_loss: 1.5831, aux_loss: 0.0000, lr: 0.00000787, epoch_time: 62.0min
+Epoch:[1/2](36700/56608), loss: 1.5433, logits_loss: 1.5433, aux_loss: 0.0000, lr: 0.00000786, epoch_time: 61.0min
+Epoch:[1/2](36800/56608), loss: 1.4624, logits_loss: 1.4624, aux_loss: 0.0000, lr: 0.00000785, epoch_time: 61.0min
+Epoch:[1/2](36900/56608), loss: 1.4764, logits_loss: 1.4764, aux_loss: 0.0000, lr: 0.00000784, epoch_time: 61.0min
+Epoch:[1/2](37000/56608), loss: 1.3834, logits_loss: 1.3834, aux_loss: 0.0000, lr: 0.00000783, epoch_time: 60.0min
+[Checkpoint] New best loss=1.383405 at step 37000
+[Checkpoint] Removed old checkpoint: full_sft_768_step34000_resume.pth
+[Checkpoint] Saved step 37000 (epoch 1), metrics={loss=1.3834, lr=0.0000}
+Epoch:[1/2](37100/56608), loss: 1.8767, logits_loss: 1.8767, aux_loss: 0.0000, lr: 0.00000782, epoch_time: 60.0min
+Epoch:[1/2](37200/56608), loss: 1.7254, logits_loss: 1.7254, aux_loss: 0.0000, lr: 0.00000781, epoch_time: 60.0min
+Epoch:[1/2](37300/56608), loss: 1.8561, logits_loss: 1.8561, aux_loss: 0.0000, lr: 0.00000780, epoch_time: 59.0min
+Epoch:[1/2](37400/56608), loss: 1.6446, logits_loss: 1.6446, aux_loss: 0.0000, lr: 0.00000779, epoch_time: 59.0min
+Epoch:[1/2](37500/56608), loss: 1.8213, logits_loss: 1.8213, aux_loss: 0.0000, lr: 0.00000778, epoch_time: 59.0min
+Epoch:[1/2](37600/56608), loss: 1.5496, logits_loss: 1.5496, aux_loss: 0.0000, lr: 0.00000776, epoch_time: 58.0min
+Epoch:[1/2](37700/56608), loss: 1.6038, logits_loss: 1.6038, aux_loss: 0.0000, lr: 0.00000775, epoch_time: 58.0min
+Epoch:[1/2](37800/56608), loss: 1.6813, logits_loss: 1.6813, aux_loss: 0.0000, lr: 0.00000774, epoch_time: 58.0min
+Epoch:[1/2](37900/56608), loss: 1.6932, logits_loss: 1.6932, aux_loss: 0.0000, lr: 0.00000773, epoch_time: 58.0min
+Epoch:[1/2](38000/56608), loss: 1.5824, logits_loss: 1.5824, aux_loss: 0.0000, lr: 0.00000772, epoch_time: 57.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step35000_resume.pth
+[Checkpoint] Saved step 38000 (epoch 1), metrics={loss=1.5824, lr=0.0000}
+Epoch:[1/2](38100/56608), loss: 1.6230, logits_loss: 1.6230, aux_loss: 0.0000, lr: 0.00000771, epoch_time: 57.0min
+Epoch:[1/2](38200/56608), loss: 1.4151, logits_loss: 1.4151, aux_loss: 0.0000, lr: 0.00000770, epoch_time: 57.0min
+Epoch:[1/2](38300/56608), loss: 1.5434, logits_loss: 1.5434, aux_loss: 0.0000, lr: 0.00000769, epoch_time: 56.0min
+Epoch:[1/2](38400/56608), loss: 1.4431, logits_loss: 1.4431, aux_loss: 0.0000, lr: 0.00000768, epoch_time: 56.0min
+Epoch:[1/2](38500/56608), loss: 1.6558, logits_loss: 1.6558, aux_loss: 0.0000, lr: 0.00000767, epoch_time: 56.0min
+Epoch:[1/2](38600/56608), loss: 1.6418, logits_loss: 1.6418, aux_loss: 0.0000, lr: 0.00000766, epoch_time: 55.0min
+Epoch:[1/2](38700/56608), loss: 1.8775, logits_loss: 1.8775, aux_loss: 0.0000, lr: 0.00000765, epoch_time: 55.0min
+Epoch:[1/2](38800/56608), loss: 1.4591, logits_loss: 1.4591, aux_loss: 0.0000, lr: 0.00000763, epoch_time: 55.0min
+Epoch:[1/2](38900/56608), loss: 1.6344, logits_loss: 1.6344, aux_loss: 0.0000, lr: 0.00000762, epoch_time: 54.0min
+Epoch:[1/2](39000/56608), loss: 1.7077, logits_loss: 1.7077, aux_loss: 0.0000, lr: 0.00000761, epoch_time: 54.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step36000_resume.pth
+[Checkpoint] Saved step 39000 (epoch 1), metrics={loss=1.7077, lr=0.0000}
+Epoch:[1/2](39100/56608), loss: 1.6733, logits_loss: 1.6733, aux_loss: 0.0000, lr: 0.00000760, epoch_time: 54.0min
+Epoch:[1/2](39200/56608), loss: 1.6185, logits_loss: 1.6185, aux_loss: 0.0000, lr: 0.00000759, epoch_time: 54.0min
+Epoch:[1/2](39300/56608), loss: 1.5380, logits_loss: 1.5380, aux_loss: 0.0000, lr: 0.00000758, epoch_time: 53.0min
+Epoch:[1/2](39400/56608), loss: 1.6668, logits_loss: 1.6668, aux_loss: 0.0000, lr: 0.00000757, epoch_time: 53.0min
+Epoch:[1/2](39500/56608), loss: 1.4855, logits_loss: 1.4855, aux_loss: 0.0000, lr: 0.00000756, epoch_time: 53.0min
+Epoch:[1/2](39600/56608), loss: 1.6458, logits_loss: 1.6458, aux_loss: 0.0000, lr: 0.00000755, epoch_time: 52.0min
+Epoch:[1/2](39700/56608), loss: 1.8988, logits_loss: 1.8988, aux_loss: 0.0000, lr: 0.00000753, epoch_time: 52.0min
+Epoch:[1/2](39800/56608), loss: 1.6265, logits_loss: 1.6265, aux_loss: 0.0000, lr: 0.00000752, epoch_time: 52.0min
+Epoch:[1/2](39900/56608), loss: 1.7767, logits_loss: 1.7767, aux_loss: 0.0000, lr: 0.00000751, epoch_time: 51.0min
+Epoch:[1/2](40000/56608), loss: 1.6777, logits_loss: 1.6777, aux_loss: 0.0000, lr: 0.00000750, epoch_time: 51.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step37000_resume.pth
+[Checkpoint] Saved step 40000 (epoch 1), metrics={loss=1.6777, lr=0.0000}
+Epoch:[1/2](40100/56608), loss: 1.8039, logits_loss: 1.8039, aux_loss: 0.0000, lr: 0.00000749, epoch_time: 51.0min
+Epoch:[1/2](40200/56608), loss: 1.6955, logits_loss: 1.6955, aux_loss: 0.0000, lr: 0.00000748, epoch_time: 50.0min
+Epoch:[1/2](40300/56608), loss: 1.5209, logits_loss: 1.5209, aux_loss: 0.0000, lr: 0.00000747, epoch_time: 50.0min
+Epoch:[1/2](40400/56608), loss: 1.5240, logits_loss: 1.5240, aux_loss: 0.0000, lr: 0.00000746, epoch_time: 50.0min
+Epoch:[1/2](40500/56608), loss: 1.6447, logits_loss: 1.6447, aux_loss: 0.0000, lr: 0.00000745, epoch_time: 49.0min
+Epoch:[1/2](40600/56608), loss: 1.6186, logits_loss: 1.6186, aux_loss: 0.0000, lr: 0.00000743, epoch_time: 49.0min
+Epoch:[1/2](40700/56608), loss: 1.5328, logits_loss: 1.5328, aux_loss: 0.0000, lr: 0.00000742, epoch_time: 49.0min
+Epoch:[1/2](40800/56608), loss: 1.6227, logits_loss: 1.6227, aux_loss: 0.0000, lr: 0.00000741, epoch_time: 49.0min
+Epoch:[1/2](40900/56608), loss: 1.7477, logits_loss: 1.7477, aux_loss: 0.0000, lr: 0.00000740, epoch_time: 48.0min
+Epoch:[1/2](41000/56608), loss: 1.4391, logits_loss: 1.4391, aux_loss: 0.0000, lr: 0.00000739, epoch_time: 48.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step38000_resume.pth
+[Checkpoint] Saved step 41000 (epoch 1), metrics={loss=1.4391, lr=0.0000}
+Epoch:[1/2](41100/56608), loss: 1.5378, logits_loss: 1.5378, aux_loss: 0.0000, lr: 0.00000738, epoch_time: 48.0min
+Epoch:[1/2](41200/56608), loss: 1.5083, logits_loss: 1.5083, aux_loss: 0.0000, lr: 0.00000737, epoch_time: 47.0min
+Epoch:[1/2](41300/56608), loss: 1.7867, logits_loss: 1.7867, aux_loss: 0.0000, lr: 0.00000735, epoch_time: 47.0min
+Epoch:[1/2](41400/56608), loss: 1.5690, logits_loss: 1.5690, aux_loss: 0.0000, lr: 0.00000734, epoch_time: 47.0min
+Epoch:[1/2](41500/56608), loss: 1.7299, logits_loss: 1.7299, aux_loss: 0.0000, lr: 0.00000733, epoch_time: 46.0min
+Epoch:[1/2](41600/56608), loss: 1.7294, logits_loss: 1.7294, aux_loss: 0.0000, lr: 0.00000732, epoch_time: 46.0min
+Epoch:[1/2](41700/56608), loss: 1.5361, logits_loss: 1.5361, aux_loss: 0.0000, lr: 0.00000731, epoch_time: 46.0min
+Epoch:[1/2](41800/56608), loss: 1.6508, logits_loss: 1.6508, aux_loss: 0.0000, lr: 0.00000730, epoch_time: 45.0min
+Epoch:[1/2](41900/56608), loss: 1.7002, logits_loss: 1.7002, aux_loss: 0.0000, lr: 0.00000729, epoch_time: 45.0min
+Epoch:[1/2](42000/56608), loss: 1.5454, logits_loss: 1.5454, aux_loss: 0.0000, lr: 0.00000727, epoch_time: 45.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step39000_resume.pth
+[Checkpoint] Saved step 42000 (epoch 1), metrics={loss=1.5454, lr=0.0000}
+Epoch:[1/2](42100/56608), loss: 1.4146, logits_loss: 1.4146, aux_loss: 0.0000, lr: 0.00000726, epoch_time: 45.0min
+Epoch:[1/2](42200/56608), loss: 1.6878, logits_loss: 1.6878, aux_loss: 0.0000, lr: 0.00000725, epoch_time: 44.0min
+Epoch:[1/2](42300/56608), loss: 1.7339, logits_loss: 1.7339, aux_loss: 0.0000, lr: 0.00000724, epoch_time: 44.0min
+Epoch:[1/2](42400/56608), loss: 1.5986, logits_loss: 1.5986, aux_loss: 0.0000, lr: 0.00000723, epoch_time: 44.0min
+Epoch:[1/2](42500/56608), loss: 1.7027, logits_loss: 1.7027, aux_loss: 0.0000, lr: 0.00000722, epoch_time: 43.0min
+Epoch:[1/2](42600/56608), loss: 1.6777, logits_loss: 1.6777, aux_loss: 0.0000, lr: 0.00000721, epoch_time: 43.0min
+Epoch:[1/2](42700/56608), loss: 1.7082, logits_loss: 1.7082, aux_loss: 0.0000, lr: 0.00000719, epoch_time: 43.0min
+Epoch:[1/2](42800/56608), loss: 1.6681, logits_loss: 1.6681, aux_loss: 0.0000, lr: 0.00000718, epoch_time: 42.0min
+Epoch:[1/2](42900/56608), loss: 1.7565, logits_loss: 1.7565, aux_loss: 0.0000, lr: 0.00000717, epoch_time: 42.0min
+Epoch:[1/2](43000/56608), loss: 1.7106, logits_loss: 1.7106, aux_loss: 0.0000, lr: 0.00000716, epoch_time: 42.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step40000_resume.pth
+[Checkpoint] Saved step 43000 (epoch 1), metrics={loss=1.7106, lr=0.0000}
+Epoch:[1/2](43100/56608), loss: 1.5164, logits_loss: 1.5164, aux_loss: 0.0000, lr: 0.00000715, epoch_time: 41.0min
+Epoch:[1/2](43200/56608), loss: 1.6376, logits_loss: 1.6376, aux_loss: 0.0000, lr: 0.00000714, epoch_time: 41.0min
+Epoch:[1/2](43300/56608), loss: 1.5230, logits_loss: 1.5230, aux_loss: 0.0000, lr: 0.00000712, epoch_time: 41.0min
+Epoch:[1/2](43400/56608), loss: 1.6950, logits_loss: 1.6950, aux_loss: 0.0000, lr: 0.00000711, epoch_time: 40.0min
+Epoch:[1/2](43500/56608), loss: 1.5676, logits_loss: 1.5676, aux_loss: 0.0000, lr: 0.00000710, epoch_time: 40.0min
+Epoch:[1/2](43600/56608), loss: 1.8030, logits_loss: 1.8030, aux_loss: 0.0000, lr: 0.00000709, epoch_time: 40.0min
+Epoch:[1/2](43700/56608), loss: 1.5333, logits_loss: 1.5333, aux_loss: 0.0000, lr: 0.00000708, epoch_time: 40.0min
+Epoch:[1/2](43800/56608), loss: 1.7285, logits_loss: 1.7285, aux_loss: 0.0000, lr: 0.00000707, epoch_time: 39.0min
+Epoch:[1/2](43900/56608), loss: 1.5035, logits_loss: 1.5035, aux_loss: 0.0000, lr: 0.00000705, epoch_time: 39.0min
+Epoch:[1/2](44000/56608), loss: 1.9174, logits_loss: 1.9174, aux_loss: 0.0000, lr: 0.00000704, epoch_time: 39.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step41000_resume.pth
+[Checkpoint] Saved step 44000 (epoch 1), metrics={loss=1.9174, lr=0.0000}
+Epoch:[1/2](44100/56608), loss: 1.4670, logits_loss: 1.4670, aux_loss: 0.0000, lr: 0.00000703, epoch_time: 38.0min
+Epoch:[1/2](44200/56608), loss: 1.6448, logits_loss: 1.6448, aux_loss: 0.0000, lr: 0.00000702, epoch_time: 38.0min
+Epoch:[1/2](44300/56608), loss: 1.7345, logits_loss: 1.7345, aux_loss: 0.0000, lr: 0.00000701, epoch_time: 38.0min
+Epoch:[1/2](44400/56608), loss: 1.5932, logits_loss: 1.5932, aux_loss: 0.0000, lr: 0.00000700, epoch_time: 37.0min
+Epoch:[1/2](44500/56608), loss: 1.5262, logits_loss: 1.5262, aux_loss: 0.0000, lr: 0.00000698, epoch_time: 37.0min
+Epoch:[1/2](44600/56608), loss: 1.7242, logits_loss: 1.7242, aux_loss: 0.0000, lr: 0.00000697, epoch_time: 37.0min
+Epoch:[1/2](44700/56608), loss: 1.6085, logits_loss: 1.6085, aux_loss: 0.0000, lr: 0.00000696, epoch_time: 36.0min
+Epoch:[1/2](44800/56608), loss: 1.4695, logits_loss: 1.4695, aux_loss: 0.0000, lr: 0.00000695, epoch_time: 36.0min
+Epoch:[1/2](44900/56608), loss: 1.4050, logits_loss: 1.4050, aux_loss: 0.0000, lr: 0.00000694, epoch_time: 36.0min
+Epoch:[1/2](45000/56608), loss: 1.4197, logits_loss: 1.4197, aux_loss: 0.0000, lr: 0.00000692, epoch_time: 35.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step42000_resume.pth
+[Checkpoint] Saved step 45000 (epoch 1), metrics={loss=1.4197, lr=0.0000}
+Epoch:[1/2](45100/56608), loss: 1.4421, logits_loss: 1.4421, aux_loss: 0.0000, lr: 0.00000691, epoch_time: 35.0min
+Epoch:[1/2](45200/56608), loss: 1.7036, logits_loss: 1.7036, aux_loss: 0.0000, lr: 0.00000690, epoch_time: 35.0min
+Epoch:[1/2](45300/56608), loss: 1.3878, logits_loss: 1.3878, aux_loss: 0.0000, lr: 0.00000689, epoch_time: 35.0min
+Epoch:[1/2](45400/56608), loss: 1.6960, logits_loss: 1.6960, aux_loss: 0.0000, lr: 0.00000688, epoch_time: 34.0min
+Epoch:[1/2](45500/56608), loss: 1.5982, logits_loss: 1.5982, aux_loss: 0.0000, lr: 0.00000687, epoch_time: 34.0min
+Epoch:[1/2](45600/56608), loss: 1.7901, logits_loss: 1.7901, aux_loss: 0.0000, lr: 0.00000685, epoch_time: 34.0min
+Epoch:[1/2](45700/56608), loss: 1.7909, logits_loss: 1.7909, aux_loss: 0.0000, lr: 0.00000684, epoch_time: 33.0min
+Epoch:[1/2](45800/56608), loss: 1.6083, logits_loss: 1.6083, aux_loss: 0.0000, lr: 0.00000683, epoch_time: 33.0min
+Epoch:[1/2](45900/56608), loss: 1.3988, logits_loss: 1.3988, aux_loss: 0.0000, lr: 0.00000682, epoch_time: 33.0min
+Epoch:[1/2](46000/56608), loss: 1.6497, logits_loss: 1.6497, aux_loss: 0.0000, lr: 0.00000681, epoch_time: 32.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step43000_resume.pth
+[Checkpoint] Saved step 46000 (epoch 1), metrics={loss=1.6497, lr=0.0000}
+Epoch:[1/2](46100/56608), loss: 1.6542, logits_loss: 1.6542, aux_loss: 0.0000, lr: 0.00000679, epoch_time: 32.0min
+Epoch:[1/2](46200/56608), loss: 1.5617, logits_loss: 1.5617, aux_loss: 0.0000, lr: 0.00000678, epoch_time: 32.0min
+Epoch:[1/2](46300/56608), loss: 1.6795, logits_loss: 1.6795, aux_loss: 0.0000, lr: 0.00000677, epoch_time: 31.0min
+Epoch:[1/2](46400/56608), loss: 1.5481, logits_loss: 1.5481, aux_loss: 0.0000, lr: 0.00000676, epoch_time: 31.0min
+Epoch:[1/2](46500/56608), loss: 1.3758, logits_loss: 1.3758, aux_loss: 0.0000, lr: 0.00000675, epoch_time: 31.0min
+Epoch:[1/2](46600/56608), loss: 1.6419, logits_loss: 1.6419, aux_loss: 0.0000, lr: 0.00000673, epoch_time: 31.0min
+Epoch:[1/2](46700/56608), loss: 1.5946, logits_loss: 1.5946, aux_loss: 0.0000, lr: 0.00000672, epoch_time: 30.0min
+Epoch:[1/2](46800/56608), loss: 1.5259, logits_loss: 1.5259, aux_loss: 0.0000, lr: 0.00000671, epoch_time: 30.0min
+Epoch:[1/2](46900/56608), loss: 1.6664, logits_loss: 1.6664, aux_loss: 0.0000, lr: 0.00000670, epoch_time: 30.0min
+Epoch:[1/2](47000/56608), loss: 1.6890, logits_loss: 1.6890, aux_loss: 0.0000, lr: 0.00000669, epoch_time: 29.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step44000_resume.pth
+[Checkpoint] Saved step 47000 (epoch 1), metrics={loss=1.6890, lr=0.0000}
+Epoch:[1/2](47100/56608), loss: 1.8547, logits_loss: 1.8547, aux_loss: 0.0000, lr: 0.00000667, epoch_time: 29.0min
+Epoch:[1/2](47200/56608), loss: 1.5031, logits_loss: 1.5031, aux_loss: 0.0000, lr: 0.00000666, epoch_time: 29.0min
+Epoch:[1/2](47300/56608), loss: 1.6228, logits_loss: 1.6228, aux_loss: 0.0000, lr: 0.00000665, epoch_time: 28.0min
+Epoch:[1/2](47400/56608), loss: 1.7312, logits_loss: 1.7312, aux_loss: 0.0000, lr: 0.00000664, epoch_time: 28.0min
+Epoch:[1/2](47500/56608), loss: 1.6908, logits_loss: 1.6908, aux_loss: 0.0000, lr: 0.00000663, epoch_time: 28.0min
+Epoch:[1/2](47600/56608), loss: 1.4578, logits_loss: 1.4578, aux_loss: 0.0000, lr: 0.00000661, epoch_time: 27.0min
+Epoch:[1/2](47700/56608), loss: 1.5011, logits_loss: 1.5011, aux_loss: 0.0000, lr: 0.00000660, epoch_time: 27.0min
+Epoch:[1/2](47800/56608), loss: 1.5109, logits_loss: 1.5109, aux_loss: 0.0000, lr: 0.00000659, epoch_time: 27.0min
+Epoch:[1/2](47900/56608), loss: 1.5320, logits_loss: 1.5320, aux_loss: 0.0000, lr: 0.00000658, epoch_time: 26.0min
+Epoch:[1/2](48000/56608), loss: 1.6690, logits_loss: 1.6690, aux_loss: 0.0000, lr: 0.00000656, epoch_time: 26.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step45000_resume.pth
+[Checkpoint] Saved step 48000 (epoch 1), metrics={loss=1.6690, lr=0.0000}
+Epoch:[1/2](48100/56608), loss: 1.5426, logits_loss: 1.5426, aux_loss: 0.0000, lr: 0.00000655, epoch_time: 26.0min
+Epoch:[1/2](48200/56608), loss: 1.7260, logits_loss: 1.7260, aux_loss: 0.0000, lr: 0.00000654, epoch_time: 26.0min
+Epoch:[1/2](48300/56608), loss: 1.5594, logits_loss: 1.5594, aux_loss: 0.0000, lr: 0.00000653, epoch_time: 25.0min
+Epoch:[1/2](48400/56608), loss: 1.6141, logits_loss: 1.6141, aux_loss: 0.0000, lr: 0.00000652, epoch_time: 25.0min
+Epoch:[1/2](48500/56608), loss: 1.3934, logits_loss: 1.3934, aux_loss: 0.0000, lr: 0.00000650, epoch_time: 25.0min
+Epoch:[1/2](48600/56608), loss: 1.4555, logits_loss: 1.4555, aux_loss: 0.0000, lr: 0.00000649, epoch_time: 24.0min
+Epoch:[1/2](48700/56608), loss: 1.3255, logits_loss: 1.3255, aux_loss: 0.0000, lr: 0.00000648, epoch_time: 24.0min
+Epoch:[1/2](48800/56608), loss: 1.6046, logits_loss: 1.6046, aux_loss: 0.0000, lr: 0.00000647, epoch_time: 24.0min
+Epoch:[1/2](48900/56608), loss: 1.4989, logits_loss: 1.4989, aux_loss: 0.0000, lr: 0.00000646, epoch_time: 23.0min
+Epoch:[1/2](49000/56608), loss: 1.5412, logits_loss: 1.5412, aux_loss: 0.0000, lr: 0.00000644, epoch_time: 23.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step46000_resume.pth
+[Checkpoint] Saved step 49000 (epoch 1), metrics={loss=1.5412, lr=0.0000}
+Epoch:[1/2](49100/56608), loss: 1.7656, logits_loss: 1.7656, aux_loss: 0.0000, lr: 0.00000643, epoch_time: 23.0min
+Epoch:[1/2](49200/56608), loss: 1.6068, logits_loss: 1.6068, aux_loss: 0.0000, lr: 0.00000642, epoch_time: 22.0min
+Epoch:[1/2](49300/56608), loss: 1.6064, logits_loss: 1.6064, aux_loss: 0.0000, lr: 0.00000641, epoch_time: 22.0min
+Epoch:[1/2](49400/56608), loss: 1.6548, logits_loss: 1.6548, aux_loss: 0.0000, lr: 0.00000639, epoch_time: 22.0min
+Epoch:[1/2](49500/56608), loss: 1.6045, logits_loss: 1.6045, aux_loss: 0.0000, lr: 0.00000638, epoch_time: 22.0min
+Epoch:[1/2](49600/56608), loss: 1.7323, logits_loss: 1.7323, aux_loss: 0.0000, lr: 0.00000637, epoch_time: 21.0min
+Epoch:[1/2](49700/56608), loss: 1.4977, logits_loss: 1.4977, aux_loss: 0.0000, lr: 0.00000636, epoch_time: 21.0min
+Epoch:[1/2](49800/56608), loss: 1.6849, logits_loss: 1.6849, aux_loss: 0.0000, lr: 0.00000635, epoch_time: 21.0min
+Epoch:[1/2](49900/56608), loss: 1.4931, logits_loss: 1.4931, aux_loss: 0.0000, lr: 0.00000633, epoch_time: 20.0min
+Epoch:[1/2](50000/56608), loss: 1.5496, logits_loss: 1.5496, aux_loss: 0.0000, lr: 0.00000632, epoch_time: 20.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step47000_resume.pth
+[Checkpoint] Saved step 50000 (epoch 1), metrics={loss=1.5496, lr=0.0000}
+Epoch:[1/2](50100/56608), loss: 1.6150, logits_loss: 1.6150, aux_loss: 0.0000, lr: 0.00000631, epoch_time: 20.0min
+Epoch:[1/2](50200/56608), loss: 1.5957, logits_loss: 1.5957, aux_loss: 0.0000, lr: 0.00000630, epoch_time: 19.0min
+Epoch:[1/2](50300/56608), loss: 1.3683, logits_loss: 1.3683, aux_loss: 0.0000, lr: 0.00000628, epoch_time: 19.0min
+Epoch:[1/2](50400/56608), loss: 1.6811, logits_loss: 1.6811, aux_loss: 0.0000, lr: 0.00000627, epoch_time: 19.0min
+Epoch:[1/2](50500/56608), loss: 1.6080, logits_loss: 1.6080, aux_loss: 0.0000, lr: 0.00000626, epoch_time: 18.0min
+Epoch:[1/2](50600/56608), loss: 1.4917, logits_loss: 1.4917, aux_loss: 0.0000, lr: 0.00000625, epoch_time: 18.0min
+Epoch:[1/2](50700/56608), loss: 1.7009, logits_loss: 1.7009, aux_loss: 0.0000, lr: 0.00000623, epoch_time: 18.0min
+Epoch:[1/2](50800/56608), loss: 1.5313, logits_loss: 1.5313, aux_loss: 0.0000, lr: 0.00000622, epoch_time: 17.0min
+Epoch:[1/2](50900/56608), loss: 1.5584, logits_loss: 1.5584, aux_loss: 0.0000, lr: 0.00000621, epoch_time: 17.0min
+Epoch:[1/2](51000/56608), loss: 1.4725, logits_loss: 1.4725, aux_loss: 0.0000, lr: 0.00000620, epoch_time: 17.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step48000_resume.pth
+[Checkpoint] Saved step 51000 (epoch 1), metrics={loss=1.4725, lr=0.0000}
+Epoch:[1/2](51100/56608), loss: 1.7017, logits_loss: 1.7017, aux_loss: 0.0000, lr: 0.00000619, epoch_time: 17.0min
+Epoch:[1/2](51200/56608), loss: 1.5710, logits_loss: 1.5710, aux_loss: 0.0000, lr: 0.00000617, epoch_time: 16.0min
+Epoch:[1/2](51300/56608), loss: 1.5102, logits_loss: 1.5102, aux_loss: 0.0000, lr: 0.00000616, epoch_time: 16.0min
+Epoch:[1/2](51400/56608), loss: 1.6065, logits_loss: 1.6065, aux_loss: 0.0000, lr: 0.00000615, epoch_time: 16.0min
+Epoch:[1/2](51500/56608), loss: 1.4968, logits_loss: 1.4968, aux_loss: 0.0000, lr: 0.00000614, epoch_time: 15.0min
+Epoch:[1/2](51600/56608), loss: 1.3912, logits_loss: 1.3912, aux_loss: 0.0000, lr: 0.00000612, epoch_time: 15.0min
+Epoch:[1/2](51700/56608), loss: 1.4387, logits_loss: 1.4387, aux_loss: 0.0000, lr: 0.00000611, epoch_time: 15.0min
+Epoch:[1/2](51800/56608), loss: 1.5741, logits_loss: 1.5741, aux_loss: 0.0000, lr: 0.00000610, epoch_time: 14.0min
+Epoch:[1/2](51900/56608), loss: 1.6370, logits_loss: 1.6370, aux_loss: 0.0000, lr: 0.00000609, epoch_time: 14.0min
+Epoch:[1/2](52000/56608), loss: 1.5558, logits_loss: 1.5558, aux_loss: 0.0000, lr: 0.00000607, epoch_time: 14.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step49000_resume.pth
+[Checkpoint] Saved step 52000 (epoch 1), metrics={loss=1.5558, lr=0.0000}
+Epoch:[1/2](52100/56608), loss: 1.3658, logits_loss: 1.3658, aux_loss: 0.0000, lr: 0.00000606, epoch_time: 13.0min
+Epoch:[1/2](52200/56608), loss: 1.5046, logits_loss: 1.5046, aux_loss: 0.0000, lr: 0.00000605, epoch_time: 13.0min
+Epoch:[1/2](52300/56608), loss: 1.6618, logits_loss: 1.6618, aux_loss: 0.0000, lr: 0.00000604, epoch_time: 13.0min
+Epoch:[1/2](52400/56608), loss: 1.5417, logits_loss: 1.5417, aux_loss: 0.0000, lr: 0.00000602, epoch_time: 13.0min
+Epoch:[1/2](52500/56608), loss: 1.5608, logits_loss: 1.5608, aux_loss: 0.0000, lr: 0.00000601, epoch_time: 12.0min
+Epoch:[1/2](52600/56608), loss: 1.4200, logits_loss: 1.4200, aux_loss: 0.0000, lr: 0.00000600, epoch_time: 12.0min
+Epoch:[1/2](52700/56608), loss: 1.6306, logits_loss: 1.6306, aux_loss: 0.0000, lr: 0.00000599, epoch_time: 12.0min
+Epoch:[1/2](52800/56608), loss: 1.7495, logits_loss: 1.7495, aux_loss: 0.0000, lr: 0.00000597, epoch_time: 11.0min
+Epoch:[1/2](52900/56608), loss: 1.7120, logits_loss: 1.7120, aux_loss: 0.0000, lr: 0.00000596, epoch_time: 11.0min
+Epoch:[1/2](53000/56608), loss: 1.7606, logits_loss: 1.7606, aux_loss: 0.0000, lr: 0.00000595, epoch_time: 11.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step50000_resume.pth
+[Checkpoint] Saved step 53000 (epoch 1), metrics={loss=1.7606, lr=0.0000}
+Epoch:[1/2](53100/56608), loss: 1.5696, logits_loss: 1.5696, aux_loss: 0.0000, lr: 0.00000594, epoch_time: 10.0min
+Epoch:[1/2](53200/56608), loss: 1.6960, logits_loss: 1.6960, aux_loss: 0.0000, lr: 0.00000592, epoch_time: 10.0min
+Epoch:[1/2](53300/56608), loss: 1.5796, logits_loss: 1.5796, aux_loss: 0.0000, lr: 0.00000591, epoch_time: 10.0min
+Epoch:[1/2](53400/56608), loss: 1.5130, logits_loss: 1.5130, aux_loss: 0.0000, lr: 0.00000590, epoch_time: 9.0min
+Epoch:[1/2](53500/56608), loss: 1.5775, logits_loss: 1.5775, aux_loss: 0.0000, lr: 0.00000589, epoch_time: 9.0min
+Epoch:[1/2](53600/56608), loss: 1.5860, logits_loss: 1.5860, aux_loss: 0.0000, lr: 0.00000588, epoch_time: 9.0min
+Epoch:[1/2](53700/56608), loss: 1.5196, logits_loss: 1.5196, aux_loss: 0.0000, lr: 0.00000586, epoch_time: 9.0min
+Epoch:[1/2](53800/56608), loss: 1.4146, logits_loss: 1.4146, aux_loss: 0.0000, lr: 0.00000585, epoch_time: 8.0min
+Epoch:[1/2](53900/56608), loss: 1.5222, logits_loss: 1.5222, aux_loss: 0.0000, lr: 0.00000584, epoch_time: 8.0min
+Epoch:[1/2](54000/56608), loss: 1.5747, logits_loss: 1.5747, aux_loss: 0.0000, lr: 0.00000583, epoch_time: 8.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step51000_resume.pth
+[Checkpoint] Saved step 54000 (epoch 1), metrics={loss=1.5747, lr=0.0000}
+Epoch:[1/2](54100/56608), loss: 1.4791, logits_loss: 1.4791, aux_loss: 0.0000, lr: 0.00000581, epoch_time: 7.0min
+Epoch:[1/2](54200/56608), loss: 1.6463, logits_loss: 1.6463, aux_loss: 0.0000, lr: 0.00000580, epoch_time: 7.0min
+Epoch:[1/2](54300/56608), loss: 1.5132, logits_loss: 1.5132, aux_loss: 0.0000, lr: 0.00000579, epoch_time: 7.0min
+Epoch:[1/2](54400/56608), loss: 1.5440, logits_loss: 1.5440, aux_loss: 0.0000, lr: 0.00000578, epoch_time: 6.0min
+Epoch:[1/2](54500/56608), loss: 1.5100, logits_loss: 1.5100, aux_loss: 0.0000, lr: 0.00000576, epoch_time: 6.0min
+Epoch:[1/2](54600/56608), loss: 1.4813, logits_loss: 1.4813, aux_loss: 0.0000, lr: 0.00000575, epoch_time: 6.0min
+Epoch:[1/2](54700/56608), loss: 1.4338, logits_loss: 1.4338, aux_loss: 0.0000, lr: 0.00000574, epoch_time: 5.0min
+Epoch:[1/2](54800/56608), loss: 1.7931, logits_loss: 1.7931, aux_loss: 0.0000, lr: 0.00000573, epoch_time: 5.0min
+Epoch:[1/2](54900/56608), loss: 1.5668, logits_loss: 1.5668, aux_loss: 0.0000, lr: 0.00000571, epoch_time: 5.0min
+Epoch:[1/2](55000/56608), loss: 1.5326, logits_loss: 1.5326, aux_loss: 0.0000, lr: 0.00000570, epoch_time: 4.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step52000_resume.pth
+[Checkpoint] Saved step 55000 (epoch 1), metrics={loss=1.5326, lr=0.0000}
+Epoch:[1/2](55100/56608), loss: 1.4568, logits_loss: 1.4568, aux_loss: 0.0000, lr: 0.00000569, epoch_time: 4.0min
+Epoch:[1/2](55200/56608), loss: 1.5565, logits_loss: 1.5565, aux_loss: 0.0000, lr: 0.00000568, epoch_time: 4.0min
+Epoch:[1/2](55300/56608), loss: 1.5182, logits_loss: 1.5182, aux_loss: 0.0000, lr: 0.00000566, epoch_time: 4.0min
+Epoch:[1/2](55400/56608), loss: 1.4602, logits_loss: 1.4602, aux_loss: 0.0000, lr: 0.00000565, epoch_time: 3.0min
+Epoch:[1/2](55500/56608), loss: 1.7145, logits_loss: 1.7145, aux_loss: 0.0000, lr: 0.00000564, epoch_time: 3.0min
+Epoch:[1/2](55600/56608), loss: 1.6280, logits_loss: 1.6280, aux_loss: 0.0000, lr: 0.00000563, epoch_time: 3.0min
+Epoch:[1/2](55700/56608), loss: 1.4959, logits_loss: 1.4959, aux_loss: 0.0000, lr: 0.00000561, epoch_time: 2.0min
+Epoch:[1/2](55800/56608), loss: 1.6015, logits_loss: 1.6015, aux_loss: 0.0000, lr: 0.00000560, epoch_time: 2.0min
+Epoch:[1/2](55900/56608), loss: 1.5698, logits_loss: 1.5698, aux_loss: 0.0000, lr: 0.00000559, epoch_time: 2.0min
+Epoch:[1/2](56000/56608), loss: 1.7864, logits_loss: 1.7864, aux_loss: 0.0000, lr: 0.00000558, epoch_time: 1.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step53000_resume.pth
+[Checkpoint] Saved step 56000 (epoch 1), metrics={loss=1.7864, lr=0.0000}
+Epoch:[1/2](56100/56608), loss: 1.6156, logits_loss: 1.6156, aux_loss: 0.0000, lr: 0.00000556, epoch_time: 1.0min
+Epoch:[1/2](56200/56608), loss: 1.5531, logits_loss: 1.5531, aux_loss: 0.0000, lr: 0.00000555, epoch_time: 1.0min
+Epoch:[1/2](56300/56608), loss: 1.6464, logits_loss: 1.6464, aux_loss: 0.0000, lr: 0.00000554, epoch_time: 0.0min
+Epoch:[1/2](56400/56608), loss: 1.5777, logits_loss: 1.5777, aux_loss: 0.0000, lr: 0.00000553, epoch_time: 0.0min
+Epoch:[1/2](56500/56608), loss: 1.4549, logits_loss: 1.4549, aux_loss: 0.0000, lr: 0.00000551, epoch_time: 0.0min
+Epoch:[1/2](56600/56608), loss: 1.7202, logits_loss: 1.7202, aux_loss: 0.0000, lr: 0.00000550, epoch_time: 0.0min
+Epoch:[1/2](56608/56608), loss: 1.5792, logits_loss: 1.5792, aux_loss: 0.0000, lr: 0.00000550, epoch_time: 0.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step54000_resume.pth
+[Checkpoint] Saved step 56608 (epoch 1), metrics={loss=1.5792, lr=0.0000}
+Epoch:[2/2](100/56608), loss: 1.4361, logits_loss: 1.4361, aux_loss: 0.0000, lr: 0.00000549, epoch_time: 173.0min
+Epoch:[2/2](200/56608), loss: 1.4770, logits_loss: 1.4770, aux_loss: 0.0000, lr: 0.00000548, epoch_time: 170.0min
+Epoch:[2/2](300/56608), loss: 1.3330, logits_loss: 1.3330, aux_loss: 0.0000, lr: 0.00000546, epoch_time: 168.0min
+Epoch:[2/2](400/56608), loss: 1.6348, logits_loss: 1.6348, aux_loss: 0.0000, lr: 0.00000545, epoch_time: 167.0min
+Epoch:[2/2](500/56608), loss: 1.6418, logits_loss: 1.6418, aux_loss: 0.0000, lr: 0.00000544, epoch_time: 167.0min
+Epoch:[2/2](600/56608), loss: 1.6007, logits_loss: 1.6007, aux_loss: 0.0000, lr: 0.00000543, epoch_time: 166.0min
+Epoch:[2/2](700/56608), loss: 1.5560, logits_loss: 1.5560, aux_loss: 0.0000, lr: 0.00000541, epoch_time: 166.0min
+Epoch:[2/2](800/56608), loss: 1.4213, logits_loss: 1.4213, aux_loss: 0.0000, lr: 0.00000540, epoch_time: 165.0min
+Epoch:[2/2](900/56608), loss: 1.6613, logits_loss: 1.6613, aux_loss: 0.0000, lr: 0.00000539, epoch_time: 165.0min
+Epoch:[2/2](1000/56608), loss: 1.4863, logits_loss: 1.4863, aux_loss: 0.0000, lr: 0.00000538, epoch_time: 164.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step55000_resume.pth
+[Checkpoint] Saved step 1000 (epoch 2), metrics={loss=1.4863, lr=0.0000}
+Epoch:[2/2](1100/56608), loss: 1.5976, logits_loss: 1.5976, aux_loss: 0.0000, lr: 0.00000536, epoch_time: 171.0min
+Epoch:[2/2](1200/56608), loss: 1.6768, logits_loss: 1.6768, aux_loss: 0.0000, lr: 0.00000535, epoch_time: 170.0min
+Epoch:[2/2](1300/56608), loss: 1.5052, logits_loss: 1.5052, aux_loss: 0.0000, lr: 0.00000534, epoch_time: 169.0min
+Epoch:[2/2](1400/56608), loss: 1.4934, logits_loss: 1.4934, aux_loss: 0.0000, lr: 0.00000533, epoch_time: 168.0min
+Epoch:[2/2](1500/56608), loss: 1.4259, logits_loss: 1.4259, aux_loss: 0.0000, lr: 0.00000531, epoch_time: 168.0min
+Epoch:[2/2](1600/56608), loss: 1.4782, logits_loss: 1.4782, aux_loss: 0.0000, lr: 0.00000530, epoch_time: 167.0min
+Epoch:[2/2](1700/56608), loss: 1.4584, logits_loss: 1.4584, aux_loss: 0.0000, lr: 0.00000529, epoch_time: 166.0min
+Epoch:[2/2](1800/56608), loss: 1.4556, logits_loss: 1.4556, aux_loss: 0.0000, lr: 0.00000528, epoch_time: 166.0min
+Epoch:[2/2](1900/56608), loss: 1.4027, logits_loss: 1.4027, aux_loss: 0.0000, lr: 0.00000526, epoch_time: 165.0min
+Epoch:[2/2](2000/56608), loss: 1.8056, logits_loss: 1.8056, aux_loss: 0.0000, lr: 0.00000525, epoch_time: 165.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step56000_resume.pth
+[Checkpoint] Saved step 2000 (epoch 2), metrics={loss=1.8056, lr=0.0000}
+Epoch:[2/2](2100/56608), loss: 1.6395, logits_loss: 1.6395, aux_loss: 0.0000, lr: 0.00000524, epoch_time: 168.0min
+Epoch:[2/2](2200/56608), loss: 1.6872, logits_loss: 1.6872, aux_loss: 0.0000, lr: 0.00000523, epoch_time: 167.0min
+Epoch:[2/2](2300/56608), loss: 1.5261, logits_loss: 1.5261, aux_loss: 0.0000, lr: 0.00000521, epoch_time: 167.0min
+Epoch:[2/2](2400/56608), loss: 1.4815, logits_loss: 1.4815, aux_loss: 0.0000, lr: 0.00000520, epoch_time: 166.0min
+Epoch:[2/2](2500/56608), loss: 1.5977, logits_loss: 1.5977, aux_loss: 0.0000, lr: 0.00000519, epoch_time: 165.0min
+Epoch:[2/2](2600/56608), loss: 1.6894, logits_loss: 1.6894, aux_loss: 0.0000, lr: 0.00000518, epoch_time: 165.0min
+Epoch:[2/2](2700/56608), loss: 1.5212, logits_loss: 1.5212, aux_loss: 0.0000, lr: 0.00000516, epoch_time: 164.0min
+Epoch:[2/2](2800/56608), loss: 1.6126, logits_loss: 1.6126, aux_loss: 0.0000, lr: 0.00000515, epoch_time: 164.0min
+Epoch:[2/2](2900/56608), loss: 1.3854, logits_loss: 1.3854, aux_loss: 0.0000, lr: 0.00000514, epoch_time: 163.0min
+Epoch:[2/2](3000/56608), loss: 1.4419, logits_loss: 1.4419, aux_loss: 0.0000, lr: 0.00000513, epoch_time: 163.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step56608_resume.pth
+[Checkpoint] Saved step 3000 (epoch 2), metrics={loss=1.4419, lr=0.0000}
+Epoch:[2/2](3100/56608), loss: 1.5723, logits_loss: 1.5723, aux_loss: 0.0000, lr: 0.00000511, epoch_time: 165.0min
+Epoch:[2/2](3200/56608), loss: 1.5482, logits_loss: 1.5482, aux_loss: 0.0000, lr: 0.00000510, epoch_time: 164.0min
+Epoch:[2/2](3300/56608), loss: 1.6813, logits_loss: 1.6813, aux_loss: 0.0000, lr: 0.00000509, epoch_time: 164.0min
+Epoch:[2/2](3400/56608), loss: 1.5759, logits_loss: 1.5759, aux_loss: 0.0000, lr: 0.00000508, epoch_time: 163.0min
+Epoch:[2/2](3500/56608), loss: 1.5802, logits_loss: 1.5802, aux_loss: 0.0000, lr: 0.00000506, epoch_time: 163.0min
+Epoch:[2/2](3600/56608), loss: 1.6489, logits_loss: 1.6489, aux_loss: 0.0000, lr: 0.00000505, epoch_time: 162.0min
+Epoch:[2/2](3700/56608), loss: 1.4567, logits_loss: 1.4567, aux_loss: 0.0000, lr: 0.00000504, epoch_time: 162.0min
+Epoch:[2/2](3800/56608), loss: 1.4798, logits_loss: 1.4798, aux_loss: 0.0000, lr: 0.00000503, epoch_time: 161.0min
+Epoch:[2/2](3900/56608), loss: 1.5860, logits_loss: 1.5860, aux_loss: 0.0000, lr: 0.00000501, epoch_time: 161.0min
+Epoch:[2/2](4000/56608), loss: 1.6010, logits_loss: 1.6010, aux_loss: 0.0000, lr: 0.00000500, epoch_time: 160.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step1000_resume.pth
+[Checkpoint] Saved step 4000 (epoch 2), metrics={loss=1.6010, lr=0.0000}
+Epoch:[2/2](4100/56608), loss: 1.5360, logits_loss: 1.5360, aux_loss: 0.0000, lr: 0.00000499, epoch_time: 162.0min
+Epoch:[2/2](4200/56608), loss: 1.7274, logits_loss: 1.7274, aux_loss: 0.0000, lr: 0.00000498, epoch_time: 161.0min
+Epoch:[2/2](4300/56608), loss: 1.3719, logits_loss: 1.3719, aux_loss: 0.0000, lr: 0.00000496, epoch_time: 161.0min
+Epoch:[2/2](4400/56608), loss: 1.4533, logits_loss: 1.4533, aux_loss: 0.0000, lr: 0.00000495, epoch_time: 160.0min
+Epoch:[2/2](4500/56608), loss: 1.3935, logits_loss: 1.3935, aux_loss: 0.0000, lr: 0.00000494, epoch_time: 160.0min
+Epoch:[2/2](4600/56608), loss: 1.7352, logits_loss: 1.7352, aux_loss: 0.0000, lr: 0.00000493, epoch_time: 159.0min
+Epoch:[2/2](4700/56608), loss: 1.5520, logits_loss: 1.5520, aux_loss: 0.0000, lr: 0.00000491, epoch_time: 159.0min
+Epoch:[2/2](4800/56608), loss: 1.6970, logits_loss: 1.6970, aux_loss: 0.0000, lr: 0.00000490, epoch_time: 158.0min
+Epoch:[2/2](4900/56608), loss: 1.0565, logits_loss: 1.0565, aux_loss: 0.0000, lr: 0.00000489, epoch_time: 158.0min
+Epoch:[2/2](5000/56608), loss: 1.3252, logits_loss: 1.3252, aux_loss: 0.0000, lr: 0.00000488, epoch_time: 158.0min
+[Checkpoint] New best loss=1.325163 at step 5000
+[Checkpoint] Removed old checkpoint: full_sft_768_step2000_resume.pth
+[Checkpoint] Saved step 5000 (epoch 2), metrics={loss=1.3252, lr=0.0000}
+Epoch:[2/2](5100/56608), loss: 1.5512, logits_loss: 1.5512, aux_loss: 0.0000, lr: 0.00000487, epoch_time: 159.0min
+Epoch:[2/2](5200/56608), loss: 1.3767, logits_loss: 1.3767, aux_loss: 0.0000, lr: 0.00000485, epoch_time: 159.0min
+Epoch:[2/2](5300/56608), loss: 1.5543, logits_loss: 1.5543, aux_loss: 0.0000, lr: 0.00000484, epoch_time: 158.0min
+Epoch:[2/2](5400/56608), loss: 1.5426, logits_loss: 1.5426, aux_loss: 0.0000, lr: 0.00000483, epoch_time: 158.0min
+Epoch:[2/2](5500/56608), loss: 1.4635, logits_loss: 1.4635, aux_loss: 0.0000, lr: 0.00000482, epoch_time: 158.0min
+Epoch:[2/2](5600/56608), loss: 1.5592, logits_loss: 1.5592, aux_loss: 0.0000, lr: 0.00000480, epoch_time: 157.0min
+Epoch:[2/2](5700/56608), loss: 1.6941, logits_loss: 1.6941, aux_loss: 0.0000, lr: 0.00000479, epoch_time: 157.0min
+Epoch:[2/2](5800/56608), loss: 1.5420, logits_loss: 1.5420, aux_loss: 0.0000, lr: 0.00000478, epoch_time: 156.0min
+Epoch:[2/2](5900/56608), loss: 1.5773, logits_loss: 1.5773, aux_loss: 0.0000, lr: 0.00000477, epoch_time: 156.0min
+Epoch:[2/2](6000/56608), loss: 1.6779, logits_loss: 1.6779, aux_loss: 0.0000, lr: 0.00000475, epoch_time: 155.0min
+[Checkpoint] Removed old checkpoint: full_sft_768_step3000_resume.pth
+[Checkpoint] Saved step 6000 (epoch 2), metrics={loss=1.6779, lr=0.0000}
+Epoch:[2/2](6100/56608), loss: 1.5413, logits_loss: 1.5413, aux_loss: 0.0000, lr: 0.00000474, epoch_time: 156.0min
+Epoch:[2/2](6200/56608), loss: 1.5540, logits_loss: 1.5540, aux_loss: 0.0000, lr: 0.00000473, epoch_time: 156.0min
+Epoch:[2/2](6300/56608), loss: 1.5294, logits_loss: 1.5294, aux_loss: 0.0000, lr: 0.00000472, epoch_time: 155.0min

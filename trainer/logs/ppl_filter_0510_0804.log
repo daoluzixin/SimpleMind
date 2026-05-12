@@ -1,0 +1,4 @@
+nohup: ignoring input
+[Filter:percentile] P25=4.45, P90=13.44
+[Filter:percentile] 1270238 → 825654 (65.0% retained)
+[Filter] 输出: ../dataset/pretrain_t2t_mini_filtered.jsonl (825654 条)

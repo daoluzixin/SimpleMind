@@ -1,0 +1,1134 @@
+Model Params: 63.91M
+Trainable Params: 63.912M
+Model Params: 63.91M
+Trainable Params: 63.912M
+=== Plan-then-Execute RL Training (v5) ===
+  Epochs: 3, Steps/epoch: 19994, Batch: 2, Generations: 4
+  Max turns: 4, Max gen len: 384, Loss type: grpo
+  Beta: 0.1, KL clip: 15.0, LR: 3e-06
+  Plan reward weight included in total reward
+[PROMPT_DEBUG] step=1 tools=No msgs=4 prompt_chars=370
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+如何防范和治理网络黑客攻击？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=No msgs=4 prompt_chars=370
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+如何防范和治理网络黑客攻击？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=No msgs=4 prompt_chars=370
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+如何防范和治理网络黑客攻击？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=No msgs=4 prompt_chars=370
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+如何防范和治理网络黑客攻击？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=Yes msgs=4 prompt_chars=1939
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_exchange_rate", "description": "查询两种货币之间的汇率", "parameters": {"type": "object", "properties": {"from_currency": {"type": "string", "description": "源货币代码，如USD、CNY、EUR"}, "to_currency": {"type": "string", "description": "目标货币代码"}}, "required": ["from_currency", "to_currency"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+{"type": "function", "function": {"name": "translate_text", "description": "将文本翻译成目标语言", "parameters": {"type": "object", "properties": {"text": {"type": "string", "description": "要翻译的文本"}, "target_language": {"type": "string", "description": "目标语言，如english、chinese、japanese"}}, "required": ["text", "target_language"]}}}
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+How's the weather in 重庆 today?，另外请将'Happy birthday'翻译为chinese，并且请计算5270+8048<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=Yes msgs=4 prompt_chars=1939
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_exchange_rate", "description": "查询两种货币之间的汇率", "parameters": {"type": "object", "properties": {"from_currency": {"type": "string", "description": "源货币代码，如USD、CNY、EUR"}, "to_currency": {"type": "string", "description": "目标货币代码"}}, "required": ["from_currency", "to_currency"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+{"type": "function", "function": {"name": "translate_text", "description": "将文本翻译成目标语言", "parameters": {"type": "object", "properties": {"text": {"type": "string", "description": "要翻译的文本"}, "target_language": {"type": "string", "description": "目标语言，如english、chinese、japanese"}}, "required": ["text", "target_language"]}}}
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+How's the weather in 重庆 today?，另外请将'Happy birthday'翻译为chinese，并且请计算5270+8048<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=Yes msgs=4 prompt_chars=1939
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_exchange_rate", "description": "查询两种货币之间的汇率", "parameters": {"type": "object", "properties": {"from_currency": {"type": "string", "description": "源货币代码，如USD、CNY、EUR"}, "to_currency": {"type": "string", "description": "目标货币代码"}}, "required": ["from_currency", "to_currency"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+{"type": "function", "function": {"name": "translate_text", "description": "将文本翻译成目标语言", "parameters": {"type": "object", "properties": {"text": {"type": "string", "description": "要翻译的文本"}, "target_language": {"type": "string", "description": "目标语言，如english、chinese、japanese"}}, "required": ["text", "target_language"]}}}
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+How's the weather in 重庆 today?，另外请将'Happy birthday'翻译为chinese，并且请计算5270+8048<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=1 tools=Yes msgs=4 prompt_chars=1939
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_exchange_rate", "description": "查询两种货币之间的汇率", "parameters": {"type": "object", "properties": {"from_currency": {"type": "string", "description": "源货币代码，如USD、CNY、EUR"}, "to_currency": {"type": "string", "description": "目标货币代码"}}, "required": ["from_currency", "to_currency"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+{"type": "function", "function": {"name": "translate_text", "description": "将文本翻译成目标语言", "parameters": {"type": "object", "properties": {"text": {"type": "string", "description": "要翻译的文本"}, "target_language": {"type": "string", "description": "目标语言，如english、chinese、japanese"}}, "required": ["text", "target_language"]}}}
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+How's the weather in 重庆 today?，另外请将'Happy birthday'翻译为chinese，并且请计算5270+8048<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=No msgs=4 prompt_chars=378
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+兆欧表测量电气线路设备的绝缘工作原理是什么？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=No msgs=4 prompt_chars=378
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+兆欧表测量电气线路设备的绝缘工作原理是什么？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=No msgs=4 prompt_chars=378
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+兆欧表测量电气线路设备的绝缘工作原理是什么？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=No msgs=4 prompt_chars=378
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。<|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+兆欧表测量电气线路设备的绝缘工作原理是什么？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=Yes msgs=4 prompt_chars=1227
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+深圳今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=Yes msgs=4 prompt_chars=1227
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+深圳今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=Yes msgs=4 prompt_chars=1227
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+深圳今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[PROMPT_DEBUG] step=2 tools=Yes msgs=4 prompt_chars=1227
+[PROMPT_DEBUG] prompt=
+<|im_start|>system
+你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。
+
+# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "get_current_weather", "description": "获取指定城市的当前天气信息", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "城市名称，如北京、上海"}}, "required": ["location"]}}}
+{"type": "function", "function": {"name": "calculate_math", "description": "计算数学表达式的结果，支持加减乘除、幂运算", "parameters": {"type": "object", "properties": {"expression": {"type": "string", "description": "数学表达式，如123+456、2**10"}}, "required": ["expression"]}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call><|im_end|>
+<|im_start|>user
+北京今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+<plan>
+[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]
+</plan><|im_end|>
+<|im_start|>user
+深圳今天天气怎么样？<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+[PROMPT_DEBUG] ---END---
+[DEBUG] step=10, gt[0]: ['0.048']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][0] text='CNY到JPY的汇率是20.83。'
+  gen[0][0] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][1] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][1] text='\n</think>\n\nCNY到JPY的汇率是20.83。'
+  gen[0][1] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][2] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][2] text='CNY到JPY的汇率是20.83。'
+  gen[0][2] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][3] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][3] text='\n</think>\n\nCNY到JPY的汇率是20.83。'
+  gen[0][3] reward=1.1500 (plan=1.650, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=10, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text=''
+  gen[1][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text='\n</think>\n\n'
+  gen[1][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text='\n</think>\n\n'
+  gen[1][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='\n</think>\n\n'
+  gen[1][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](10/19994), Reward:0.6667, KL:6.2028, GrpStd:0.2132, AdvStd:1.0685, Loss:0.6188, AvgLen:104.75, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=20, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text='\n</think>\n\n'
+  gen[0][0] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text=''
+  gen[0][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='\n</think>\n\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text='\n</think>\n\n'
+  gen[0][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=20, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text='\n</think>\n\n'
+  gen[1][0] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text=''
+  gen[1][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text='\n</think>\n\n'
+  gen[1][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='\n</think>\n\n'
+  gen[1][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](20/19994), Reward:0.3500, KL:4.0535, GrpStd:0.2598, AdvStd:1.0686, Loss:0.4054, AvgLen:3.00, PlanRate:0.00%, ExecRate:0.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=30, gt[0]: ['50.3311']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][0] text='北京当前天气晴，温度28°C。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[0][0] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][1] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][1] text='北京当前天气晴，温度28°C。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[0][1] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][2] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][2] text='\n</think>\n\n北京当前天气晴，温度28°C。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[0][2] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][3] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][3] text='\n</think>\n\n北京当前天气晴，温度28°C。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[0][3] reward=0.8167 (plan=1.317, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=30, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text=''
+  gen[1][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text='\n</think>\n\n'
+  gen[1][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text=''
+  gen[1][2] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='<plan>\n[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}]\n</plan>\nゅ{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}]\n</plan>\nゅ{"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天'
+  gen[1][3] reward=-3.0000 (plan=-0.200, exec=-3.000)
+--------------------------------------------------------------------------------
+Epoch:[1/3](30/19994), Reward:0.0708, KL:5.9797, GrpStd:0.6823, AdvStd:0.7559, Loss:0.7165, AvgLen:155.00, PlanRate:62.50%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=40, gt[0]: ['早上好', '203.0']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "translate_text", "args_desc": "text=Good morning, target_language=chinese", "expect":, degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][0] text='\n</think>\n\n北京当前天气晴，温度28°C。'
+  gen[0][0] reward=0.8967 (plan=1.397, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "translate_text", "args_desc": "text=Good morning, target_language=chinese", "expect":, degenerate=False
+  gen[0][1] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "translate_text", "args": {"text": "Good morning", "target_language": "chinese"}, "success": true}]
+  gen[0][1] text='\n</think>\n\n翻译结果：早上好。'
+  gen[0][1] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "translate_text", "args_desc": "text=Good morning, target_language=chinese", "expect":, degenerate=False
+  gen[0][2] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][2] text='北京当前天气晴，温度28°C。'
+  gen[0][2] reward=0.8967 (plan=1.397, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "translate_text", "args_desc": "text=Good morning, target_language=chinese", "expect":, degenerate=False
+  gen[0][3] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][3] text='北京当前天气晴，温度28°C。'
+  gen[0][3] reward=0.8967 (plan=1.397, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=40, gt[1]: ['我喜欢编程', '4458']
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=7089-2, degenerate=False
+  gen[1][0] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "7089-2631"}, "success": true}]
+  gen[1][0] text='\n</think>\n\n翻译结果：我喜欢编程。7589-2631 的结果是 4458。'
+  gen[1][0] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=7089-2631", "expect": "计算 7089-2631 的结果"}, {"step": 2, "tool": "translate_text", "args_desc": "text=I love programming, target_language=, degenerate=False
+  gen[1][1] turns=2, exec_trace=[{"tool": "calculate_math", "args": {"expression": "7089-2631"}, "success": true}]
+  gen[1][1] text='7089-2631 的结果是 4458。7589-2631 的结果是 4458。'
+  gen[1][1] reward=0.3833 (plan=1.183, exec=-0.800)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=7089-2, degenerate=False
+  gen[1][2] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "7089-2631"}, "success": true}]
+  gen[1][2] text='\n</think>\n\n翻译结果：我喜欢编程。7089-2631 的结果是 4458。'
+  gen[1][2] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=7089-2, degenerate=False
+  gen[1][3] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "7089-2631"}, "success": true}]
+  gen[1][3] text='翻译结果：我喜欢编程。7089-2631 的结果是 4458。'
+  gen[1][3] reward=1.1500 (plan=1.650, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](40/19994), Reward:0.9592, KL:5.6334, GrpStd:0.2208, AdvStd:1.0684, Loss:0.7702, AvgLen:262.25, PlanRate:100.00%, ExecRate:100.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=50, gt[0]: ['2025-03-07 14:30:00', '7.21']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=CNY", "expect": "查询USD到CNY汇率"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "e, degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "CNY"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][0] text='\n</think>\n\nUSD到CNY的汇率是2025-03-07 14:30:00。'
+  gen[0][0] reward=0.9633 (plan=1.463, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=CNY", "expect": "查询USD到CNY汇率"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "e, degenerate=False
+  gen[0][1] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "CNY"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][1] text='USD到CNY的汇率是2025-03-07 14:30:00。'
+  gen[0][1] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=CNY", "expect": "查询USD到CNY汇率"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "e, degenerate=False
+  gen[0][2] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "CNY"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][2] text='\n</think>\n\nUSD到CNY的汇率是2025-03-07 14:30:00。'
+  gen[0][2] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=CNY", "expect": "查询USD到CNY汇率"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "e, degenerate=False
+  gen[0][3] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "CNY"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[0][3] text='\n</think>\n\nUSD到CNY的汇率是2025-03-07 14:30:00。'
+  gen[0][3] reward=0.9633 (plan=1.463, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=50, gt[1]: ['2025-03-07 07:30:00']
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect":, degenerate=False
+  gen[1][0] turns=2, exec_trace=[{"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[1][0] text='\n</think>\n\nAsia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[1][0] reward=0.9100 (plan=1.410, exec=-0.500)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect":, degenerate=False
+  gen[1][1] turns=3, exec_trace=[{"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[1][1] text='Asia/Shanghai当前时间是2025-03-07 14:30:00。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[1][1] reward=0.6917 (plan=1.650, exec=-0.958)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect":, degenerate=False
+  gen[1][2] turns=3, exec_trace=[{"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[1][2] text='Asia/Shanghai当前时间是2025-03-07 14:30:00。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[1][2] reward=0.6917 (plan=1.650, exec=-0.958)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[1][3] turns=3, exec_trace=[{"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[1][3] text='\n</think>\n\nAsia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[1][3] reward=0.9600 (plan=1.460, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](50/19994), Reward:0.9350, KL:6.0714, GrpStd:0.1081, AdvStd:1.0680, Loss:0.8638, AvgLen:305.12, PlanRate:100.00%, ExecRate:100.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=60, gt[0]: ['18°C', '小雨', '我喜欢编程', '149.6686']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][0] text='\n</think>\n\n翻译结果：我喜欢编程。'
+  gen[0][0] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", degenerate=False
+  gen[0][1] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][1] text='\n</think>\n\n翻译结果：我喜欢编程。'
+  gen[0][1] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", degenerate=False
+  gen[0][2] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][2] text='\n</think>\n\n翻译结果：我喜欢编程。'
+  gen[0][2] reward=0.9633 (plan=1.463, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=I love programming, target_language=chinese", "expect": "翻译文本到chinese"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", degenerate=False
+  gen[0][3] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "I love programming", "target_language": "chinese"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][3] text='翻译结果：我喜欢编程。'
+  gen[0][3] reward=0.9633 (plan=1.463, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=60, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text=''
+  gen[1][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text=''
+  gen[1][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text=''
+  gen[1][2] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text=''
+  gen[1][3] reward=-0.1000 (plan=0.200, exec=-0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](60/19994), Reward:0.4783, KL:6.2001, GrpStd:0.0467, AdvStd:0.7551, Loss:0.8533, AvgLen:134.75, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=70, gt[0]: ['The weather is nice today']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "translate_text", "args": {"location": "北京"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "math"}, "success": true}]
+  gen[0][0] text='\n</think>\n\n翻译结果：今天天气真好。translate_text=今天天气真好, target_language=english。翻译结果：翻译文本到english。'
+  gen[0][0] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][1] turns=2, exec_trace=[{"tool": "translate_text", "args": {"location": "北京"}, "success": true}]
+  gen[0][1] text='ゅ{"name": "calculate_math", "arguments": {"expression": "margs_desc": "expression=math", "expect": "计算 "math"}}゜'
+  gen[0][1] reward=1.4500 (plan=1.650, exec=-0.200)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][2] turns=4, exec_trace=[{"tool": "translate_text", "args": {"location": "北京"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "monthly"}, "success": false}, {"tool": "calculate_math", "args": {"expressi
+  gen[0][2] text='翻译结果：今天天气真好。ゅ{"name": "none", "arguments": {"expression": "monthly"}}゜'
+  gen[0][2] reward=0.8700 (plan=1.070, exec=-0.200)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][3] turns=3, exec_trace=[{"tool": "translate_text", "args": {"location": "北京"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "translate_text"}, "success": false}]
+  gen[0][3] text='翻译结果：The translated_text=greeting, target_language=english。translate_text。'
+  gen[0][3] reward=0.8167 (plan=1.317, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=70, gt[1]: ['7.85', '78.8577', 'Machine learning is interesting', '18°C', '小雨', '7860']
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}]
+  gen[1][0] text='\n</think>\n\n成都当前天气小雨。'
+  gen[1][0] reward=-0.6000 (plan=-0.100, exec=-0.500)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 3, ", degenerate=False
+  gen[1][1] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}]
+  gen[1][1] text='CNY到Zero"'
+  gen[1][1] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 3, ", degenerate=False
+  gen[1][2] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}]
+  gen[1][2] text='成都当前天气小雨。'
+  gen[1][2] reward=1.1500 (plan=1.650, exec=-0.500)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 3, ", degenerate=False
+  gen[1][3] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}]
+  gen[1][3] text='\n</think>\n\n翻译结果：成都当前天气小雨。'
+  gen[1][3] reward=1.1500 (plan=1.650, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](70/19994), Reward:0.8504, KL:6.0844, GrpStd:0.5126, AdvStd:1.0688, Loss:0.7993, AvgLen:233.50, PlanRate:87.50%, ExecRate:100.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=80, gt[0]: ['3399', 'Hello World', '206.6929']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=4363-964", "expect": "计算 4363-964 的结果"}, {"step": 2, "tool": "unit_converter", "args_desc": "value=64.0, from_unit=meters, to_unit=feet", degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "4363-964"}, "success": true}]
+  gen[0][0] text='\n</think>\n\n北京当前天气晴，温度28°C。4363-964 的结果是 3399。'
+  gen[0][0] reward=0.7167 (plan=1.217, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=你好世界, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "unit_converter", "args_desc": "value=63.0, from_unit=meters, t, degenerate=False
+  gen[0][1] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "unit_converter", "args": {"value": 43.0, "from_unit": "meters", "to_unit": "feet"}, "success": true}]
+  gen[0][1] text='\n</think>\n\n北京当前天气晴，温度28°C。'
+  gen[0][1] reward=0.7167 (plan=1.217, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=4363-964", "expect": "计算 4363-964 的结果"}, {"step": 2, "tool": "unit_converter", "args_desc": "value=632.0, from_unit=meters, to_unit=feet, degenerate=False
+  gen[0][2] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "calculate_math", "args": {"expression": "4363-964"}, "success": true}]
+  gen[0][2] text='\n</think>\n\n北京当前天气晴，温度28°C。'
+  gen[0][2] reward=0.7340 (plan=1.234, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=4363-964", "expect": "计算 4363-964 的结果"}, {"step": 2, "tool": "unit_converter", "args_desc": "value=64.0, from_unit=meters, to_unit=feet", degenerate=False
+  gen[0][3] turns=2, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][3] text='\n</think>\n\n4363-964 的结果是 1144.0。'
+  gen[0][3] reward=0.5700 (plan=1.070, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=80, gt[1]: ['2025-03-07 15:30:00', '33.1122', '7.85']
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=EUR", "expect": "查询CNY到EUR汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_curr, degenerate=False
+  gen[1][0] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "EUR"}, "success": true}]
+  gen[1][0] text='\n</think>\n\nCNY到EUR的汇率是1.0。'
+  gen[1][0] reward=0.7767 (plan=1.277, exec=-0.500)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=EUR", "expect": "查询CNY到EUR汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY", "expec, degenerate=False
+  gen[1][1] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "EUR"}, "success": true}]
+  gen[1][1] text='\n</think>\n\nCNY到EUR的汇率是1.0。'
+  gen[1][1] reward=0.7767 (plan=1.277, exec=-0.500)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=EUR", "expect": "查询CNY到EUR汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY", "expec, degenerate=False
+  gen[1][2] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "EUR"}, "success": true}, {"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "EUR"}, "success"
+  gen[1][2] text='CNY到EUR的汇率是1.0。'
+  gen[1][2] reward=0.9633 (plan=1.463, exec=-0.500)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=EUR", "expect": "查询CNY到EUR汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY", "expec, degenerate=False
+  gen[1][3] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "EUR"}, "success": true}]
+  gen[1][3] text='\n</think>\n\nCNY到EUR的汇率是1.0。'
+  gen[1][3] reward=0.7767 (plan=1.277, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](80/19994), Reward:0.7538, KL:6.5520, GrpStd:0.0736, AdvStd:1.0676, Loss:0.9041, AvgLen:322.25, PlanRate:100.00%, ExecRate:100.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=90, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text=''
+  gen[0][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text=''
+  gen[0][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='\n</think>\n\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text='\n</think>\n\n'
+  gen[0][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=90, gt[1]: ['18°C', '小雨']
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时, degenerate=False
+  gen[1][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_time", "args": {"timezone": "Asia/Shanghai"}, "success": true}]
+  gen[1][0] text='\n</think>\n\n成都当前天气小雨，温度18°C。Asia/Shanghai当前时间是2025-03-07 14:30:00。'
+  gen[1][0] reward=0.9633 (plan=1.463, exec=-0.500)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时, degenerate=False
+  gen[1][1] turns=2, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}]
+  gen[1][1] text='\n</think>\n\n成都当前天气小雨，温度18°C。'
+  gen[1][1] reward=0.6833 (plan=1.183, exec=-0.500)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时, degenerate=False
+  gen[1][2] turns=2, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}]
+  gen[1][2] text='\n</think>\n\n成都当前天气小雨，温度18°C。'
+  gen[1][2] reward=0.6833 (plan=1.183, exec=-0.500)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时, degenerate=False
+  gen[1][3] turns=2, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[1][3] text='\n</think>\n\n北京当前天气晴，温度28°C。'
+  gen[1][3] reward=0.6833 (plan=1.183, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](90/19994), Reward:0.4767, KL:5.6391, GrpStd:0.2106, AdvStd:1.0684, Loss:0.6819, AvgLen:139.00, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=100, gt[0]: ['18208', 'The weather is nice today']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=9446+8762", "expect": "计算 9446+8762 的结果"}, {"step": 2, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "e, degenerate=False
+  gen[0][0] turns=2, exec_trace=[{"tool": "calculate_math", "args": {"expression": "9446+8762"}, "success": true}]
+  gen[0][0] text='9446+8762 的结果是 18208。'
+  gen[0][0] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=9446+8762", "expect": "计算 9446+8762 的结果"}, {"step": 2, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "e, degenerate=False
+  gen[0][1] turns=2, exec_trace=[{"tool": "calculate_math", "args": {"expression": "9446+8762"}, "success": true}]
+  gen[0][1] text='9446+8762 的结果是 18208。'
+  gen[0][1] reward=0.5700 (plan=1.070, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=9446+8762", "expect": "计算 9446+8762 的结果"}, {"step": 2, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "e, degenerate=False
+  gen[0][2] turns=2, exec_trace=[{"tool": "calculate_math", "args": {"expression": "9446+8762"}, "success": true}]
+  gen[0][2] text='\n</think>\n\n9446+8762 的结果是 18208。'
+  gen[0][2] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=9446+8762", "expect": "计算 9446+8762 的结果"}, {"step": 2, "tool": "translate_text", "args_desc": "text=今天天气真好, target_language=english", "e, degenerate=False
+  gen[0][3] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "translate_text", "args": {"location": "北京"}, "success": true}]
+  gen[0][3] text='北京当前天气晴，温度28°C。'
+  gen[0][3] reward=0.7340 (plan=1.234, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=100, gt[1]: ['80558979', '9.12', '-15.5556', 'Machine learning is interesting', '18°C', '小雨']
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text='\n</think>\n\n<plan>\n[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 3, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"'
+  gen[1][0] reward=-1.1000 (plan=-0.100, exec=-1.000)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=GBP", "expect": "查询CNY到GBP汇率"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": , degenerate=False
+  gen[1][1] turns=4, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"l
+  gen[1][1] text='翻译结果：成都。'
+  gen[1][1] reward=0.7700 (plan=1.270, exec=-0.500)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 3, ", degenerate=False
+  gen[1][2] turns=4, exec_trace=[{"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "成都"}, "success": true}, {"tool": "get_current_weather", "args": {"l
+  gen[1][2] text='<tool_call>\n\n"fahrenheit"}}゜'
+  gen[1][2] reward=1.2900 (plan=1.490, exec=-0.200)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='<plan>\n[{"step": 1, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=成都", "expect": "获取成都的天气"}, {"step": 3, "tool": "translate_text", "args_desc": "text=机器学习很有趣, target_language=english", "expect": "翻译文'
+  gen[1][3] reward=-1.1000 (plan=-0.100, exec=-1.000)
+--------------------------------------------------------------------------------
+Epoch:[1/3](100/19994), Reward:0.3497, KL:6.8522, GrpStd:0.5907, AdvStd:1.0685, Loss:0.9002, AvgLen:314.62, PlanRate:75.00%, ExecRate:75.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=110, gt[0]: ['20.83']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_curr, degenerate=False
+  gen[0][0] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][0] text='\n</think>\n\nCNY到JPY的汇率是20.83。'
+  gen[0][0] reward=0.9100 (plan=1.410, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_curr, degenerate=False
+  gen[0][1] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][1] text='\n</think>\n\nCNY到JPY的汇率是20.83。'
+  gen[0][1] reward=0.9100 (plan=1.410, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_curr, degenerate=False
+  gen[0][2] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][2] text='CNY到JPY的汇率是20.83。'
+  gen[0][2] reward=0.9100 (plan=1.410, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_currency=JPY", "expect": "查询CNY到JPY汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=CNY, to_curr, degenerate=False
+  gen[0][3] turns=2, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "CNY", "to_currency": "JPY"}, "success": true}]
+  gen[0][3] text='CNY到JPY的汇率是20.83。'
+  gen[0][3] reward=0.9100 (plan=1.410, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=110, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text='\n</think>\n\n'
+  gen[1][0] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text=''
+  gen[1][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text='\n</think>\n\n'
+  gen[1][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='\n</think>\n\n'
+  gen[1][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](110/19994), Reward:0.6300, KL:6.0329, GrpStd:0.1299, AdvStd:0.7556, Loss:0.5137, AvgLen:130.50, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=120, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text=''
+  gen[0][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text=''
+  gen[0][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='\n</think>\n\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text=''
+  gen[0][3] reward=-0.1000 (plan=0.200, exec=-0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=120, gt[1]: ['0.79', '2025-03-07 01:30:00', '26°C', '阴']
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=重庆", "expect": "获取重庆的天气"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=GBP", "expect": "查询U, degenerate=False
+  gen[1][0] turns=4, exec_trace=[{"tool": "get_current_weather", "args": {"from_currency": "USD", "to_currency": "GBP"}, "success": true}, {"tool": "get_current_weather", "args": {"from_currency": "USD", "to_currency": "GBP"}, "succ
+  gen[1][0] text='\n</think>\n\nゅ{"name": "get_current_weather", "arguments": {"from_currency": "USD", "to_currency": "GBP"}}゜'
+  gen[1][0] reward=1.0367 (plan=1.237, exec=-0.200)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=GBP", "expect": "查询USD到GBP汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=GBP", "expec, degenerate=False
+  gen[1][1] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "GBP"}, "success": true}, {"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "GBP"}, "success"
+  gen[1][1] text='USD到GBP的汇率是0.79。'
+  gen[1][1] reward=0.9633 (plan=1.463, exec=-0.500)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=GBP", "expect": "查询U, degenerate=False
+  gen[1][2] turns=4, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_weather", "args": {"from_currency": "USD", "to_currency": "GBP"}, "success": true}, {"tool": "get_c
+  gen[1][2] text='\n</think>\n\nUSD到GBP的汇率是22°C。'
+  gen[1][2] reward=0.8433 (plan=1.343, exec=-0.500)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "get_exchange_rate", "args_desc": "from_currency=USD, to_currency=GBP", "expect": "查询USD到GBP汇率"}, {"step": 2, "tool": "get_exchange_rate", "args_desc": "from_currency=GBP", "expec, degenerate=False
+  gen[1][3] turns=3, exec_trace=[{"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "GBP"}, "success": true}, {"tool": "get_exchange_rate", "args": {"from_currency": "USD", "to_currency": "GBP"}, "success"
+  gen[1][3] text='USD到GBP的汇率是0.79。'
+  gen[1][3] reward=0.9633 (plan=1.463, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](120/19994), Reward:0.5008, KL:7.3924, GrpStd:0.1646, AdvStd:1.0681, Loss:0.8575, AvgLen:190.38, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=130, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text=''
+  gen[0][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text='\n</think>\n\n'
+  gen[0][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='\n</think>\n\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text=''
+  gen[0][3] reward=-0.1000 (plan=0.200, exec=-0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=130, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text='\n</think>\n\n'
+  gen[1][0] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text='\n</think>\n\n'
+  gen[1][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text='\n</think>\n\n'
+  gen[1][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='\n</think>\n\n'
+  gen[1][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](130/19994), Reward:0.3500, KL:3.9258, GrpStd:0.1500, AdvStd:0.7557, Loss:0.3926, AvgLen:3.00, PlanRate:0.00%, ExecRate:0.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=140, gt[0]: ['14404']
+  gen[0][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "none", "args_desc": "", "expect": "组织最终回答"}], degenerate=False
+  gen[0][0] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][0] text='北京当前天气晴，温度28°C。'
+  gen[0][0] reward=0.9600 (plan=1.460, exec=-0.500)
+  gen[0][1] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=8214+6190", "expect": "计算 8214+6190 的结果"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, , degenerate=False
+  gen[0][1] turns=2, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][1] text='\n</think>\n\n北京当前天气晴，温度28°C。'
+  gen[0][1] reward=0.8167 (plan=1.317, exec=-0.500)
+  gen[0][2] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=8214+6190", "expect": "计算 8214+6190 的结果"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, , degenerate=False
+  gen[0][2] turns=3, exec_trace=[{"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[0][2] text='\n</think>\n\n北京当前天气晴，温度28°C。8214+6190 的结果是 8214+65%。'
+  gen[0][2] reward=0.8967 (plan=1.397, exec=-0.500)
+  gen[0][3] has_plan=True, plan_steps=[{"step": 1, "tool": "calculate_math", "args_desc": "expression=8214+6190", "expect": "计算 8214+6190 的结果"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, , degenerate=False
+  gen[0][3] turns=2, exec_trace=[{"tool": "calculate_math", "args": {"expression": "8214+6190"}, "success": true}]
+  gen[0][3] text='8214+6190 的结果是 14404。'
+  gen[0][3] reward=0.8167 (plan=1.317, exec=-0.500)
+--------------------------------------------------------------------------------
+[DEBUG] step=140, gt[1]: ['18°C', '小雨', 'Hello World', '2025-03-07 14:30:00']
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text='\n</think>\n\n<plan>\n[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "translate_text", "args_desc": "text=你好世界, target_languag'
+  gen[1][0] reward=-1.1000 (plan=-0.100, exec=-1.000)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text='<plan>\n[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect":'
+  gen[1][1] reward=-1.1000 (plan=-0.100, exec=-1.000)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text='<plan>\n[{"step": 1, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "translate_text", "args_desc": "text=你好世界, target_language=english",'
+  gen[1][2] reward=-1.1000 (plan=-0.100, exec=-1.000)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='<plan>\n[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect": "获取Asia/Shanghai时间"}, {"step": 3, "tool": "get_current_time", "args_desc": "timezone=Asia/Shanghai", "expect":'
+  gen[1][3] reward=-1.1000 (plan=-0.100, exec=-1.000)
+--------------------------------------------------------------------------------
+Epoch:[1/3](140/19994), Reward:-0.1138, KL:6.9834, GrpStd:0.0301, AdvStd:0.7547, Loss:0.7996, AvgLen:316.38, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=150, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text='\n</think>\n\n'
+  gen[0][0] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text='\n</think>\n\n'
+  gen[0][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='\n</think>\n\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text=''
+  gen[0][3] reward=-0.1000 (plan=0.200, exec=-0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=150, gt[1]: []
+  gen[1][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text=''
+  gen[1][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text=''
+  gen[1][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text=''
+  gen[1][2] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text='\n</think>\n\n'
+  gen[1][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](150/19994), Reward:0.2000, KL:3.9179, GrpStd:0.2598, AdvStd:1.0686, Loss:0.3918, AvgLen:2.00, PlanRate:0.00%, ExecRate:0.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=160, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text='\n</think>\n\n'
+  gen[0][0] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text='\n</think>\n\n'
+  gen[0][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='\n</think>\n\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text='\n</think>\n\n'
+  gen[0][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=160, gt[1]: ['10006290', 'Machine learning is interesting']
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=机器学习很有趣, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=4410*2269", "expe, degenerate=False
+  gen[1][0] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "机器学习很有趣", "target_language": "english"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[1][0] text='\n</think>\n\n翻译结果：Machine learning is interesting。'
+  gen[1][0] reward=0.8500 (plan=1.350, exec=-0.500)
+  gen[1][1] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=机器学习很有趣, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=4410*2269", "expe, degenerate=False
+  gen[1][1] turns=2, exec_trace=[{"tool": "translate_text", "args": {"text": "机器学习很有趣", "target_language": "english"}, "success": true}]
+  gen[1][1] text='4410*2269 的结果是 4410*2269。'
+  gen[1][1] reward=0.6500 (plan=1.317, exec=-0.667)
+  gen[1][2] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=机器学习很有趣, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=4410*2269", "expe, degenerate=False
+  gen[1][2] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "机器学习很有趣", "target_language": "english"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[1][2] text='翻译结果：Machine learning is interesting。'
+  gen[1][2] reward=0.8407 (plan=1.341, exec=-0.500)
+  gen[1][3] has_plan=True, plan_steps=[{"step": 1, "tool": "translate_text", "args_desc": "text=机器学习很有趣, target_language=english", "expect": "翻译文本到english"}, {"step": 2, "tool": "calculate_math", "args_desc": "expression=4410*2269", "expe, degenerate=False
+  gen[1][3] turns=3, exec_trace=[{"tool": "translate_text", "args": {"text": "机器学习很有趣", "target_language": "english"}, "success": true}, {"tool": "get_current_weather", "args": {"location": "北京"}, "success": true}]
+  gen[1][3] text='翻译结果：Machine learning is interesting。'
+  gen[1][3] reward=0.8407 (plan=1.341, exec=-0.500)
+--------------------------------------------------------------------------------
+Epoch:[1/3](160/19994), Reward:0.6477, KL:4.8881, GrpStd:0.0420, AdvStd:0.7550, Loss:0.5413, AvgLen:136.50, PlanRate:50.00%, ExecRate:50.00%, DegenRate:0.00%, LR:0.00000300
+[DEBUG] step=170, gt[0]: []
+  gen[0][0] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][0] turns=1, exec_trace=[]
+  gen[0][0] text=''
+  gen[0][0] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][1] turns=1, exec_trace=[]
+  gen[0][1] text=''
+  gen[0][1] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[0][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][2] turns=1, exec_trace=[]
+  gen[0][2] text='</plan>\n'
+  gen[0][2] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[0][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[0][3] turns=1, exec_trace=[]
+  gen[0][3] text='\n</think>\n\n'
+  gen[0][3] reward=0.5000 (plan=0.200, exec=0.300)
+--------------------------------------------------------------------------------
+[DEBUG] step=170, gt[1]: []
+  gen[1][0] has_plan=True, plan_steps=[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, ", degenerate=False
+  gen[1][0] turns=1, exec_trace=[]
+  gen[1][0] text='\n</think>\n\n<plan>\n[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 2, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取北京的天气"}, {"step": 3, "tool": "none", "args_desc": "", "expect": "组织最终回答"}]\n</plan>\nゅ{"step": 1, "tool": '
+  gen[1][0] reward=-1.9000 (plan=-0.200, exec=-1.700)
+  gen[1][1] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][1] turns=1, exec_trace=[]
+  gen[1][1] text='“意识”与“智能”之间的界限是一个复杂且哲学性极强的问题。从哲学的角度来看，意识可能与智能、意识的产生、智能的运作等密切相关。智能是生物体通过学习、推理和适应环境的能力，使它们能够执行需要智能的任务，如学习、推理、解决问题等。而智能则涉及更深层次的认知功能，包括模式识别、学习和适应。两者之间的边界在于：智能是系统性的信息处理能力，智能是可量化的实体，智能是可量化的属性。'
+  gen[1][1] reward=0.5000 (plan=0.200, exec=0.300)
+  gen[1][2] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][2] turns=1, exec_trace=[]
+  gen[1][2] text=''
+  gen[1][2] reward=-0.1000 (plan=0.200, exec=-0.300)
+  gen[1][3] has_plan=False, plan_steps=[], degenerate=False
+  gen[1][3] turns=1, exec_trace=[]
+  gen[1][3] text=''
+  gen[1][3] reward=-0.1000 (plan=0.200, exec=-0.300)
+--------------------------------------------------------------------------------
+Epoch:[1/3](170/19994), Reward:-0.1000, KL:7.3057, GrpStd:0.6000, AdvStd:1.0688, Loss:0.7334, AvgLen:64.88, PlanRate:12.50%, ExecRate:0.00%, DegenRate:0.00%, LR:0.00000300

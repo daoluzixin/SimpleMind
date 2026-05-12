@@ -1,4 +1,11 @@
-"""MiniMind Plan-then-Execute — 显式规划 + 工具执行训练
+"""MiniMind Plan-then-Execute — 显式规划 + 工具执行训练 (v5 修复版)
+
+v5 关键修复:
+1. plan_rollout_single: Plan 轮结束后自动注入 plan 作为 assistant 消息，
+   继续进入执行轮（之前 plan 输出没有 ゅ...゜ 标记导致直接 break，模型永远无法执行工具）
+2. KL 控制: beta 0.04→0.1，加 per-token KL clip (上限 15)
+3. 退化检测: 检测重复字符/token 生成，提前终止并给重惩罚
+4. Reward 简化: 去掉 Plan Critic / 复杂度自适应权重等噪声源，让信号更清晰
 
 核心思想：在多轮工具调用之前，强制模型先输出一段结构化执行计划（<plan> 标签），
 然后再进入执行循环。通过 plan_adherence_reward 验证实际执行是否遵循了计划，
@@ -48,6 +55,7 @@ import warnings
 import torch
 import torch.nn.functional as F
 import torch.distributed as dist
+from collections import Counter
 from contextlib import nullcontext
 from torch import optim
 from torch.nn.parallel import DistributedDataParallel
@@ -71,21 +79,13 @@ warnings.filterwarnings('ignore')
 
 # ================================ Plan 系统提示与解析 ================================
 
-PLAN_SYSTEM_PROMPT = """你是一个具备规划能力的 AI 助手。对于需要工具调用的问题，你必须先制定执行计划再行动。
+PLAN_SYSTEM_PROMPT = """你是一个具备规划能力的 AI 助手。需要工具时，必须先输出 <plan>...</plan> 再行动。不需要工具时直接回答。"""
 
-工作流程：
-1. 分析用户问题，判断是否需要工具调用
-2. 如果需要工具，先输出 <plan>...</plan> 标签包裹的 JSON 执行计划
-3. 然后按计划逐步执行工具调用
-4. 最终根据工具结果回答用户
-
-Plan 格式要求：
-<plan>
-[{"step": 1, "tool": "工具名", "args_desc": "参数描述", "expect": "预期结果"},
- {"step": 2, "tool": "工具名或none", "args_desc": "参数描述", "expect": "预期结果"}]
-</plan>
-
-如果问题不需要工具（闲聊/知识问答），直接回答即可，不需要输出 plan。"""
+# Few-shot 示例：作为对话注入 prompt，让小模型直接看到 plan 格式的实际用法
+PLAN_FEWSHOT_MESSAGES = [
+    {"role": "user", "content": "北京今天天气怎么样？"},
+    {"role": "assistant", "content": '<plan>\n[{"step": 1, "tool": "get_current_weather", "args_desc": "location=北京", "expect": "获取天气"}]\n</plan>'},
+]
 
 
 def parse_plan(text):
@@ -143,6 +143,39 @@ def extract_execution_trace(all_outputs):
     return trace
 
 
+# ================================ 退化检测 ================================
+
+def _is_degenerate(text, threshold=0.6):
+    """检测生成文本是否退化（大量重复字符/token）
+
+    检测模式：
+    1. 连续重复字符占比过高（如 ' " ' " ' "...）
+    2. 同一个短 token 重复出现次数过多
+    """
+    if len(text) < 10:
+        return False
+    chars = text.strip()
+    if not chars:
+        return True
+    # 最常见字符占比
+    char_counts = Counter(chars)
+    most_common_ratio = char_counts.most_common(1)[0][1] / len(chars)
+    if most_common_ratio > threshold:
+        return True
+    # 检测短 token 重复模式（如 '" ' 重复）
+    for pat_len in range(1, 5):
+        if len(chars) < pat_len * 4:
+            continue
+        pat = chars[:pat_len]
+        repeat_count = 0
+        for i in range(0, len(chars) - pat_len + 1, pat_len):
+            if chars[i:i + pat_len] == pat:
+                repeat_count += 1
+        if repeat_count >= len(chars) / pat_len * threshold:
+            return True
+    return False
+
+
 # ================================ Plan-aware Rollout ================================
 
 # Plan/Execute 阶段标记常量（用于信用分离）
@@ -154,13 +187,13 @@ PHASE_SYNTHESIZE = 3  # 最终回答合成阶段的 token
 def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
                         max_new_tokens=512, thinking_ratio=0.5, device="cuda",
                         active_replan=True):
-    """Plan-then-Execute 的单条样本 Rollout（增强版）
+    """Plan-then-Execute 的单条样本 Rollout（v5 修复版）
 
-    改进点:
-    1. 返回 phase_mask 用于 Plan/Execute 信用分离
-    2. 记录每步执行与 plan 的逐步对齐信息
-    3. 主动 Replanning: 工具返回异常时注入修正提示
-    4. 记录 plan token 边界用于 token-level reward shaping
+    v5 关键修复:
+    1. Plan 轮结束后自动注入 plan 作为 assistant 消息，继续进入执行轮
+       （之前 plan 输出没有 ゅ...゜ 标记导致直接 break，模型永远无法执行工具）
+    2. 检测退化生成（重复字符），提前终止避免浪费 token
+    3. 简化 phase 标记逻辑
 
     Args:
         rollout_engine: 推理引擎
@@ -189,7 +222,7 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
     response_ids = []
     response_mask = []
     response_old_logps = []
-    phase_labels = []  # 新增：每个 response token 属于哪个阶段
+    phase_labels = []
     unfinished = False
     open_thinking = random.random() < thinking_ratio
 
@@ -198,10 +231,11 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
         "plan_raw": "",
         "has_plan": False,
         "execution_trace": [],
-        "step_adherence": [],   # 新增：逐步对齐状态
+        "step_adherence": [],
         "replanned": False,
-        "replan_trigger": None,  # 新增：触发 replan 的原因
-        "plan_token_range": (0, 0),  # 新增：plan 所在的 token 范围
+        "replan_trigger": None,
+        "plan_token_range": (0, 0),
+        "degenerate": False,  # v5 新增：是否检测到退化
     }
 
     # 追踪当前 plan 预期的下一步
@@ -238,6 +272,23 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
 
         all_outputs.append(new_text)
 
+        # ===== v5 新增：退化检测 =====
+        # 如果生成了大量重复字符，提前终止（仍记录 token 用于训练，让惩罚信号传播）
+        if _is_degenerate(new_text):
+            plan_info["degenerate"] = True
+            current_phase = PHASE_PLAN if turn == 0 else PHASE_EXECUTE
+            response_ids.extend(new_ids)
+            response_mask.extend([1] * len(new_ids))
+            response_old_logps.extend(new_logps)
+            phase_labels.extend([current_phase] * len(new_ids))
+            if turn == 0:
+                plan_info["plan_token_range"] = (len(response_ids) - len(new_ids), len(response_ids))
+                steps, raw, has = parse_plan(new_text)
+                plan_info["plan_steps"] = steps
+                plan_info["plan_raw"] = raw
+                plan_info["has_plan"] = has
+            break
+
         # 确定当前 turn 的阶段标签
         if turn == 0:
             current_phase = PHASE_PLAN
@@ -259,21 +310,57 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
             plan_end = len(response_ids)
             plan_info["plan_token_range"] = (plan_start, plan_end)
 
-        # 第一轮：尝试解析 plan
+        # ===== 第一轮（Plan 轮）：特殊处理 =====
         if turn == 0:
-            parse_text = new_text.split('゜')[-1] if '゜' in new_text else new_text
-            steps, raw, has = parse_plan(parse_text)
+            # 解析 plan
+            steps, raw, has = parse_plan(new_text)
             plan_info["plan_steps"] = steps
             plan_info["plan_raw"] = raw
             plan_info["has_plan"] = has
 
-        # 解析工具调用
-        calls = parse_tool_calls(new_text)
-        if not calls:
-            break  # 没有工具调用，结束
+            # 检查 plan 轮是否同时包含了工具调用（模型跳过纯 plan 直接调工具）
+            calls = parse_tool_calls(new_text)
+            if not calls:
+                # Plan 输出格式是 <plan>...</plan>，不包含 ゅ...゜ 工具调用标记，
+                # 所以 parse_tool_calls 会返回空。但这不意味着 rollout 应该结束——
+                # 如果有工具可用且 plan 中包含工具步骤，应该继续进入执行轮。
+                if tools and has and any(s.get("tool", "none") != "none" for s in steps):
+                    # Plan 成功解析且包含工具步骤 → 注入 plan 作为 assistant 消息，继续执行
+                    messages.append({"role": "assistant", "content": new_text})
+                    # 注入一个 user 提示，引导模型开始执行 plan
+                    messages.append({"role": "user", "content": "请按照你的计划执行。"})
+                    # 添加环境 token（user 消息模板）
+                    observe_context = tokenizer.apply_chat_template(
+                        messages, tokenize=False, add_generation_prompt=True,
+                        tools=tools, open_thinking=open_thinking
+                    )
+                    observe_ids = tokenizer(observe_context, return_tensors="pt",
+                                            add_special_tokens=False)["input_ids"][0].tolist()
+                    current_len = len(prompt_ids) + len(response_ids)
+                    obs_delta = observe_ids[current_len:]
+                    response_ids.extend(obs_delta)
+                    response_mask.extend([0] * len(obs_delta))
+                    response_old_logps.extend([0.0] * len(obs_delta))
+                    phase_labels.extend([0] * len(obs_delta))
+                    continue  # 进入下一轮（执行轮）
+                else:
+                    # 无工具 / plan 中没有工具步骤 → 正常结束
+                    break
+            # 如果 plan 轮同时包含了工具调用（模型跳过了纯 plan 直接调工具），继续处理
+
+        else:
+            # 非 plan 轮：正常检查工具调用
+            calls = parse_tool_calls(new_text)
+            if not calls:
+                break  # 没有工具调用，结束
 
         unfinished = turn == max_turns - 1
-        messages.append({"role": "assistant", "content": new_text})
+        # turn==0 且有 calls 时，messages.append 在这里处理
+        # turn==0 且无 calls 时，已在上面 continue 或 break
+        if turn > 0 or calls:
+            # 避免重复 append（turn==0 且走了 continue 分支的已经 append 过了）
+            if not (turn == 0 and not calls):
+                messages.append({"role": "assistant", "content": new_text})
 
         # 执行工具调用并记录 trace + 逐步对齐
         for call in calls:
@@ -294,17 +381,13 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
                 expected_tool = expected.get("tool", "")
                 if expected_tool == name:
                     step_aligned = True
-                    expected_step_idx += 1
                 elif expected_tool == "none":
-                    # plan 预期不调工具但实际调了——跳过对齐
-                    expected_step_idx += 1
-                else:
-                    # 偏离 plan：记录但不阻止执行
-                    expected_step_idx += 1
+                    pass
+                expected_step_idx += 1
 
             plan_info["step_adherence"].append({
                 "expected_tool": plan_info["plan_steps"][expected_step_idx - 1].get("tool", "?")
-                    if plan_info["has_plan"] and expected_step_idx > 0 and expected_step_idx <= len(plan_info["plan_steps"])
+                    if plan_info["has_plan"] and 0 < expected_step_idx <= len(plan_info["plan_steps"])
                     else "?",
                 "actual_tool": name,
                 "aligned": step_aligned,
@@ -320,8 +403,7 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
             # 主动 Replanning 触发：工具返回失败时
             if active_replan and tool_failed and not unfinished:
                 replan_hint = (
-                    '{"error": "tool execution failed", "hint": "你可能需要修正执行计划，'
-                    '请重新输出 <plan>...</plan> 后继续执行"}'
+                    '{"error": "tool execution failed", "hint": "请修正计划后继续"}'
                 )
                 messages.append({"role": "tool", "content": replan_hint})
                 plan_info["replan_trigger"] = "tool_failure_at_step_{}".format(
@@ -346,9 +428,8 @@ def plan_rollout_single(rollout_engine, tokenizer, messages, tools, max_turns=4,
         # 检测 replanning：如果后续轮次又出现了 <plan>，说明模型自主修正了计划
         if turn > 0 and '<plan>' in new_text:
             plan_info["replanned"] = True
-            # 重新解析 plan 用于后续步骤的对齐
-            re_parse_text = new_text.split('゜')[-1] if '゜' in new_text else new_text
-            new_steps, _, new_has = parse_plan(re_parse_text)
+            # 重新解析 plan 用于后续步骤的对齐（直接搜索 <plan> 标签）
+            new_steps, _, new_has = parse_plan(new_text)
             if new_has:
                 plan_info["plan_steps"] = new_steps
                 expected_step_idx = 0  # 重置对齐指针
@@ -374,17 +455,12 @@ def _lcs_len(a, b):
 
 
 def calculate_plan_adherence(plan_steps, execution_trace, step_adherence=None):
-    """计算 plan 与实际执行的对齐度（增强版）
-
-    改进:
-    - 新增 step_adherence 参数，利用逐步对齐信息提供更精细的评分
-    - 区分「可接受偏离」和「有害偏离」
+    """计算 plan 与实际执行的对齐度
 
     对齐维度:
-    1. 步骤数对齐: plan 步骤数 vs 实际调用数（满分 0.2）
-    2. 工具名对齐: plan 中预定的工具 vs 实际调用的工具（满分 0.3）
-    3. 顺序对齐: LCS 衡量执行顺序与 plan 的一致性（满分 0.25）
-    4. 逐步精确对齐: 每一步是否严格匹配 plan 预期（满分 0.25）
+    1. 步骤数对齐: plan 步骤数 vs 实际调用数（满分 0.25）
+    2. 工具名对齐: plan 中预定的工具 vs 实际调用的工具（满分 0.35）
+    3. 顺序对齐: LCS 衡量执行顺序与 plan 的一致性（满分 0.4）
 
     Returns:
         adherence_score: 0~1 之间的对齐分数
@@ -400,148 +476,56 @@ def calculate_plan_adherence(plan_steps, execution_trace, step_adherence=None):
     if not planned_tools:
         return 0.2 if not actual_tools else 0.0, {"reason": "plan says no tools"}
 
-    # 1. 步骤数对齐（满分 0.2）
+    # 1. 步骤数对齐（满分 0.25）
     count_diff = abs(len(planned_tools) - len(actual_tools))
-    count_score = max(0, 0.2 - 0.1 * count_diff)
+    count_score = max(0, 0.25 - 0.1 * count_diff)
 
-    # 2. 工具名对齐（满分 0.3）
+    # 2. 工具名对齐（满分 0.35）
     planned_set = set(planned_tools)
     actual_set = set(actual_tools)
     if planned_set:
-        # Precision & Recall 的 F1
         precision = len(planned_set & actual_set) / len(actual_set) if actual_set else 0.0
         recall = len(planned_set & actual_set) / len(planned_set)
         name_f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
     else:
         name_f1 = 1.0 if not actual_set else 0.0
-    name_score = 0.3 * name_f1
+    name_score = 0.35 * name_f1
 
-    # 3. 顺序对齐（满分 0.25）
+    # 3. 顺序对齐（满分 0.4）
     if planned_tools and actual_tools:
         lcs = _lcs_len(planned_tools, actual_tools)
-        order_score = 0.25 * lcs / max(len(planned_tools), len(actual_tools))
+        order_score = 0.4 * lcs / max(len(planned_tools), len(actual_tools))
     else:
         order_score = 0.0
 
-    # 4. 逐步精确对齐（满分 0.25）—— 使用 step_adherence 信息
-    step_score = 0.0
-    if step_adherence:
-        aligned_count = sum(1 for s in step_adherence if s.get("aligned", False))
-        total_steps = len(step_adherence)
-        if total_steps > 0:
-            step_score = 0.25 * aligned_count / total_steps
-    elif planned_tools and actual_tools:
-        # 降级方案：无逐步信息时，用 exact prefix match
-        prefix_match = 0
-        for p, a in zip(planned_tools, actual_tools):
-            if p == a:
-                prefix_match += 1
-            else:
-                break
-        step_score = 0.25 * prefix_match / max(len(planned_tools), len(actual_tools))
-
-    total = count_score + name_score + order_score + step_score
+    total = count_score + name_score + order_score
     details = {
         "planned_tools": planned_tools,
         "actual_tools": actual_tools,
         "count_score": count_score,
         "name_score": name_score,
         "order_score": order_score,
-        "step_score": step_score,
     }
     return total, details
-
-
-def estimate_task_complexity(gt, tools, plan_steps):
-    """估算任务复杂度，用于自适应调节 plan 奖励权重
-
-    复杂度维度:
-    - GT 验证点数量（越多越复杂）
-    - 需要的工具数量
-    - Plan 中的步骤数
-
-    Returns:
-        complexity: 0.0（极简）~ 1.0（高复杂度）
-        plan_weight: plan 奖励的加权系数（简单问题降低，复杂问题提升）
-    """
-    signals = []
-
-    # GT 数量信号
-    gt_count = len(gt) if gt else 0
-    signals.append(min(gt_count / 3.0, 1.0))  # 3 个 GT 及以上为满复杂度
-
-    # 涉及的不同工具数量
-    if plan_steps:
-        unique_tools = len(set(s.get("tool", "") for s in plan_steps if s.get("tool", "none") != "none"))
-        signals.append(min(unique_tools / 3.0, 1.0))
-    else:
-        signals.append(0.0)
-
-    # Plan 步骤数
-    step_count = len(plan_steps) if plan_steps else 0
-    signals.append(min(step_count / 4.0, 1.0))
-
-    complexity = sum(signals) / len(signals) if signals else 0.0
-
-    # 自适应权重：复杂任务 plan 权重 1.5x，简单任务 0.5x
-    # 用 sigmoid 映射 complexity → [0.5, 1.5]
-    plan_weight = 0.5 + 1.0 / (1.0 + math.exp(-5.0 * (complexity - 0.4)))
-
-    return complexity, plan_weight
-
-
-def derive_optimal_plan(gt, tools, execution_trace):
-    """Plan Critic: 基于 GT 和实际执行结果，反向推导「理想 plan」
-
-    用于评估 plan 质量——不是看 plan 格式，而是看 plan 的内容是否接近最优解。
-    最优 plan = 只调必要的工具、按正确顺序、最终能得到 GT 中的答案。
-
-    Returns:
-        optimal_tools: 最优 plan 应该调用的工具序列
-        plan_efficiency: 实际 plan 相对于最优 plan 的效率 (0~1)
-    """
-    if not gt or not tools:
-        return [], 1.0  # 无法评估，默认满分
-
-    valid_names = {t['function']['name'] for t in tools}
-
-    # 从执行 trace 中找出「成功且对最终答案有贡献」的工具调用
-    # 贡献判定：成功执行的工具调用
-    essential_tools = []
-    for step in execution_trace:
-        if step.get("success", False) and step.get("tool", "") in valid_names:
-            essential_tools.append(step["tool"])
-
-    # 去重保序（保留第一次出现的顺序）
-    seen = set()
-    optimal_tools = []
-    for t in essential_tools:
-        if t not in seen:
-            seen.add(t)
-            optimal_tools.append(t)
-
-    return optimal_tools, 1.0  # 效率计算在 reward 函数中做
 
 
 def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
                            plan_infos, all_turn_outputs_batch, unfinished_batch,
                            reward_model=None, device="cuda"):
-    """计算 Plan-then-Execute 场景的综合奖励（增强版）
+    """计算 Plan-then-Execute 场景的综合奖励（v5 简化版）
 
-    改进:
-    1. 利用逐步对齐（step_adherence）提供更精细的 adherence 评分
-    2. 引入 Plan Critic：对比实际 plan 与最优 plan 的差距
-    3. 复杂度自适应权重：简单任务降低 plan 权重，复杂任务提升
-    4. 区分被动 replan 和主动触发 replan 的奖励
+    v5 简化:
+    - 去掉 Plan Critic（derive_optimal_plan）和复杂度自适应权重
+    - 对 64M 小模型，信号越简单越好
+    - 加强退化检测惩罚
 
     奖励组成:
     1. plan_format_reward: plan 格式正确性（+0.5/-0.3）
-    2. plan_quality_reward: 步骤合理性 + 工具选择 + 与最优 plan 的接近度
-    3. plan_adherence_reward: 逐步对齐 (step_adherence 增强版)
-    4. replanning_reward: replan 有效性（区分主动/被动触发）
+    2. plan_quality_reward: 步骤合理性 + 工具选择
+    3. plan_adherence_reward: 逐步对齐
+    4. replanning_reward: replan 有效性
     5. execution_reward: GT 验证 + 工具调用正确性
-    6. 格式/重复惩罚
-    * 所有 plan 奖励乘以复杂度自适应权重
+    6. 格式/重复/退化惩罚
 
     Returns:
         rewards: 总奖励 [B*num_gen]
@@ -564,6 +548,14 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
         p_reward = 0.0  # plan 相关奖励
         e_reward = 0.0  # 执行相关奖励
 
+        # ===== v5 新增：退化惩罚 =====
+        if plan_info.get("degenerate", False):
+            # 退化生成：给重惩罚，跳过其他 reward 计算
+            rewards[idx] = -3.0
+            plan_scores[idx] = -1.5
+            exec_scores[idx] = -1.5
+            continue
+
         # 提取最终回答
         answer = response
         if '゜' in response:
@@ -580,11 +572,6 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
         valid_names = {t['function']['name'] for t in tools} if tools else set()
         needs_tools = len(gt) > 0  # 有 GT 通常需要工具
 
-        # ======== 复杂度自适应权重 ========
-        _, plan_weight = estimate_task_complexity(
-            gt, tools, plan_info.get("plan_steps", [])
-        )
-
         # ======== Plan 相关奖励 ========
 
         if needs_tools:
@@ -598,7 +585,7 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
                 else:
                     p_reward -= 0.3  # 完全没有输出 plan
 
-            # ---- 2. Plan 质量奖励（含 Plan Critic）----
+            # ---- 2. Plan 质量奖励（v5 简化版）----
             if plan_info["has_plan"] and plan_info["plan_steps"]:
                 steps = plan_info["plan_steps"]
                 planned_tools = [s.get("tool", "") for s in steps if s.get("tool", "none") != "none"]
@@ -616,21 +603,7 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
                     if valid_ratio < 0.5:
                         p_reward -= 0.2
 
-                # 2c. Plan Critic: 与最优 plan 的接近度
-                if plan_info["execution_trace"]:
-                    optimal_tools, _ = derive_optimal_plan(gt, tools, plan_info["execution_trace"])
-                    if optimal_tools and planned_tools:
-                        # 计算 plan 与最优 plan 的 LCS 相似度
-                        critic_lcs = _lcs_len(planned_tools, optimal_tools)
-                        critic_score = critic_lcs / max(len(planned_tools), len(optimal_tools))
-                        p_reward += 0.3 * critic_score  # 最高 +0.3
-
-                        # 冗余惩罚：plan 中有多少步是多余的
-                        redundant = len(planned_tools) - len(optimal_tools)
-                        if redundant > 1:
-                            p_reward -= 0.1 * min(redundant - 1, 2)
-
-            # ---- 3. Plan 对齐奖励（逐步增强版）----
+            # ---- 3. Plan 对齐奖励 ----
             if plan_info["has_plan"] and plan_info["execution_trace"]:
                 adherence, _ = calculate_plan_adherence(
                     plan_info["plan_steps"],
@@ -639,20 +612,13 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
                 )
                 p_reward += 0.8 * adherence
 
-            # ---- 4. Replanning 奖励（区分主动/被动）----
+            # ---- 4. Replanning 奖励 ----
             if plan_info["replanned"]:
                 if gt:
                     verified = validate_gt_in_text(answer, gt)
                     if verified:
-                        # 有效的 replanning
-                        if plan_info.get("replan_trigger"):
-                            # 主动触发（工具失败后重规划）→ 额外奖励
-                            p_reward += 0.3
-                        else:
-                            # 被动 replan（模型自主发现偏差）
-                            p_reward += 0.2
+                        p_reward += 0.2
                     else:
-                        # replan 了但最终没答对
                         p_reward += 0.05
                 else:
                     p_reward += 0.05
@@ -663,9 +629,6 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
                 p_reward -= 0.2
             else:
                 p_reward += 0.2
-
-        # ======== 应用复杂度自适应权重 ========
-        p_reward *= plan_weight
 
         # ======== 执行相关奖励（复用 train_agent 逻辑）========
 
@@ -696,8 +659,8 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
                         raw = json.loads(raw)
                     except (json.JSONDecodeError, ValueError):
                         raw = {}
-                check = CHECK_ARGS.get(name)
-                valid_call_count += int(bool(name in valid_names and check and check(raw)))
+                check = CHECK_ARGS.get(name, lambda a: bool(a))  # 通用检查: 有参数即有效
+                valid_call_count += int(bool(name in valid_names and check(raw)))
 
             # 工具对齐分
             tool_gap = abs(valid_call_count - max(len(gt), 1)) + max(0, len(all_tool_calls) - valid_call_count)
@@ -712,8 +675,13 @@ def calculate_plan_rewards(completions, gt_batch, tools_batch, num_gen,
             if unfinished:
                 e_reward -= 0.5
 
-        # 重复惩罚
+        # 重复惩罚（v5 加强版）
         penalty = rep_penalty(answer)
+        # 额外检测空白/引号重复模式
+        if answer:
+            whitespace_ratio = sum(1 for c in answer if c in ' \t\n"\'') / len(answer)
+            if whitespace_ratio > 0.5:
+                penalty += 1.0  # 额外重惩罚
         e_reward -= penalty
 
         # Thinking 格式奖励
@@ -760,12 +728,37 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
         with torch.no_grad():
             for messages, tools in zip(messages_batch, tools_batch):
                 for _ in range(args.num_generations):
-                    msgs_copy = [dict(m) for m in messages]
-                    # 替换 system prompt 为 plan 版本
-                    if msgs_copy and msgs_copy[0]["role"] == "system":
-                        msgs_copy[0]["content"] = PLAN_SYSTEM_PROMPT
+                    # === 裁剪多轮历史：只保留 system + 最后一个 user ===
+                    last_user_msg = None
+                    system_msg = None
+                    for m in messages:
+                        if m["role"] == "system":
+                            system_msg = dict(m)
+                        if m["role"] == "user":
+                            last_user_msg = dict(m)
+                    msgs_copy = []
+                    if system_msg:
+                        system_msg["content"] = PLAN_SYSTEM_PROMPT
+                        msgs_copy.append(system_msg)
                     else:
-                        msgs_copy.insert(0, {"role": "system", "content": PLAN_SYSTEM_PROMPT})
+                        msgs_copy.append({"role": "system", "content": PLAN_SYSTEM_PROMPT})
+                    # 注入 few-shot 示例
+                    for fshot in PLAN_FEWSHOT_MESSAGES:
+                        msgs_copy.append(dict(fshot))
+                    # 添加最后一个 user query（实际的工具请求）
+                    if last_user_msg:
+                        msgs_copy.append(last_user_msg)
+
+                    # DEBUG: 在前几步打印完整 prompt 用于排查
+                    if step <= 2 and args.debug_mode:
+                        _dbg_ctx = tokenizer.apply_chat_template(
+                            msgs_copy, tokenize=False, add_generation_prompt=True,
+                            tools=tools, open_thinking=False
+                        )
+                        print(f"[PROMPT_DEBUG] step={step} tools={'Yes' if tools else 'No'} "
+                              f"msgs={len(msgs_copy)} prompt_chars={len(_dbg_ctx)}")
+                        print(f"[PROMPT_DEBUG] prompt=\n{_dbg_ctx}")
+                        print("[PROMPT_DEBUG] ---END---")
 
                     (completion, prompt_ids, response_ids, response_mask,
                      response_old_logps, turn_outputs, plan_info, unfinished,
@@ -863,9 +856,15 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
                 for j in range(args.num_generations):
                     idx = i * args.num_generations + j
                     pi = all_plan_infos[idx]
-                    Logger("  gen[{}][{}] has_plan={}, plan_steps={}".format(
+                    Logger("  gen[{}][{}] has_plan={}, plan_steps={}, degenerate={}".format(
                         i, j, pi["has_plan"],
-                        json.dumps(pi["plan_steps"], ensure_ascii=False)[:200]))
+                        json.dumps(pi["plan_steps"], ensure_ascii=False)[:200],
+                        pi.get("degenerate", False)))
+                    Logger("  gen[{}][{}] turns={}, exec_trace={}".format(
+                        i, j, len(all_turn_outputs[idx]),
+                        json.dumps(pi["execution_trace"], ensure_ascii=False)[:200]))
+                    Logger("  gen[{}][{}] text={}".format(
+                        i, j, repr(all_completions[idx][:300])))
                     Logger("  gen[{}][{}] reward={:.4f} (plan={:.3f}, exec={:.3f})".format(
                         i, j, rewards[idx].item(), plan_scores[idx].item(), exec_scores[idx].item()))
                 Logger('-' * 80)
@@ -876,8 +875,7 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
         std_r = grouped_rewards.std(dim=1, unbiased=False).repeat_interleave(args.num_generations)
         advantages = (rewards - mean_r) / (std_r + 1e-4)
 
-        # Plan/Execute 信用分离：为不同阶段的 token 使用不同的 advantage
-        # plan_scores 驱动 plan token，exec_scores 驱动 execute/synthesize token
+        # Plan/Execute 信用分离
         use_credit_sep = getattr(args, 'credit_separation', True)
         if use_credit_sep:
             grouped_plan = plan_scores.view(-1, args.num_generations)
@@ -891,10 +889,8 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
             exec_advantages = (exec_scores - exec_mean) / (exec_std + 1e-4)
 
             # 构建 phase_mask tensor 并计算 per-token advantage
-            # phase_labels 中: 0=环境(mask=0不参与), 1=plan, 2=execute, 3=synthesize
             phase_mask_list = []
             for pl_labels, p_ids in zip(all_phase_labels, all_prompt_ids):
-                # prompt 部分全部为 0（不参与）
                 full_phases = [0] * len(p_ids) + pl_labels
                 if len(full_phases) > max_len:
                     full_phases = full_phases[-max_len:]
@@ -902,8 +898,6 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
                 phase_mask_list.append(full_phases)
             phase_tensor = torch.tensor(phase_mask_list, device=args.device)[:, 1:]  # shift 对齐 logps
 
-            # per-token advantage: plan token 用 plan_advantage, 其余用 exec_advantage
-            # 形状: [batch, seq_len-1]
             is_plan_token = (phase_tensor == PHASE_PLAN).float()
             is_exec_token = ((phase_tensor == PHASE_EXECUTE) | (phase_tensor == PHASE_SYNTHESIZE)).float()
             per_token_advantages = (
@@ -914,9 +908,12 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
         else:
             per_token_advantages = advantages.unsqueeze(1).expand_as(per_token_logps)
 
-        # ========== 计算 KL 散度和策略损失 ==========
+        # ========== 计算 KL 散度和策略损失（v5: 加 KL clip） ==========
         kl_div = ref_per_token_logps - per_token_logps
         per_token_kl = torch.exp(kl_div) - kl_div - 1
+        # v5 新增：per-token KL clip，防止 KL 爆炸
+        per_token_kl = torch.clamp(per_token_kl, max=args.kl_clip)
+
         ratio = torch.exp(per_token_logps - old_per_token_logps)
 
         if args.loss_type == "cispo":
@@ -948,16 +945,18 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
             pl = loss.item() * args.accumulation_steps
             ar = rewards.mean().item()
             al = token_counts.float().mean().item()
-            kl_val = ((ref_per_token_logps - per_token_logps) * completion_mask).sum().item() / max(token_counts.sum().item(), 1)
+            kl_val = (per_token_kl * completion_mask).sum().item() / max(token_counts.sum().item(), 1)
             gs = grouped_rewards.std(dim=1, unbiased=False).mean().item()
             adv_std = advantages.std().item()
             lr = optimizer.param_groups[0]['lr']
             plan_rate = sum(1 for p in all_plan_infos if p["has_plan"]) / max(len(all_plan_infos), 1)
+            exec_rate = sum(1 for p in all_plan_infos if p["execution_trace"]) / max(len(all_plan_infos), 1)
+            degen_rate = sum(1 for p in all_plan_infos if p.get("degenerate", False)) / max(len(all_plan_infos), 1)
             Logger(
                 'Epoch:[{}/{}]({}/{}), Reward:{:.4f}, KL:{:.4f}, GrpStd:{:.4f}, AdvStd:{:.4f}, '
-                'Loss:{:.4f}, AvgLen:{:.2f}, PlanRate:{:.2%}, LR:{:.8f}'.format(
+                'Loss:{:.4f}, AvgLen:{:.2f}, PlanRate:{:.2%}, ExecRate:{:.2%}, DegenRate:{:.2%}, LR:{:.8f}'.format(
                     epoch + 1, args.epochs, step, iters,
-                    ar, kl_val, gs, adv_std, pl, al, plan_rate, lr))
+                    ar, kl_val, gs, adv_std, pl, al, plan_rate, exec_rate, degen_rate, lr))
             if wandb and is_main_process():
                 wandb.log({
                     "reward": ar, "plan_reward": plan_scores.mean().item(),
@@ -965,6 +964,7 @@ def plan_train_epoch(epoch, loader, iters, rollout_engine, ref_model, tokenizer,
                     "kl_ref": kl_val, "group_reward_std": gs,
                     "advantages_std": adv_std, "policy_loss": pl,
                     "avg_response_len": al, "plan_rate": plan_rate,
+                    "exec_rate": exec_rate, "degen_rate": degen_rate,
                     "learning_rate": lr,
                 })
 
@@ -1022,11 +1022,11 @@ def run_plan_training(args):
         use_moe=args.use_moe,
     )
     # 初始化模型和 tokenizer
-    model, tokenizer = init_model(lm_config, args, device)
+    model, tokenizer = init_model(lm_config, args.model_weight, device=device)
     model.train()
 
     # Ref model（冻结）
-    ref_model, _ = init_model(lm_config, args, device)
+    ref_model, _ = init_model(lm_config, args.model_weight, device=device)
     ref_model.eval()
     for p in ref_model.parameters():
         p.requires_grad = False
@@ -1036,10 +1036,10 @@ def run_plan_training(args):
         model = DistributedDataParallel(model, device_ids=[int(os.environ.get('LOCAL_RANK', 0))])
 
     # Rollout engine
-    rollout_engine = create_rollout_engine(model, tokenizer, device)
+    rollout_engine = create_rollout_engine(engine_type="torch", policy_model=model, tokenizer=tokenizer, device=device, autocast_ctx=None)
 
     # Dataset & DataLoader
-    dataset = AgentRLDataset(args.data_path, tokenizer, split='train')
+    dataset = AgentRLDataset(args.data_path, tokenizer)
     if ddp:
         sampler = DistributedSampler(dataset, shuffle=True)
     else:
@@ -1047,7 +1047,7 @@ def run_plan_training(args):
     loader = DataLoader(
         dataset, batch_size=args.batch_size,
         sampler=sampler, shuffle=(sampler is None),
-        collate_fn=dataset.collate_fn, drop_last=True,
+        drop_last=True, collate_fn=lambda batch: {"messages": [b["messages"] for b in batch], "tools": [b["tools"] for b in batch], "gt": [b["gt"] for b in batch]},
     )
     iters = len(loader)
 
@@ -1091,11 +1091,12 @@ def run_plan_training(args):
             start_step = ckp_data.get('step', 0)
             Logger("Resumed from epoch={}, step={}".format(start_epoch, start_step))
 
-    Logger("=== Plan-then-Execute RL Training ===")
+    Logger("=== Plan-then-Execute RL Training (v5) ===")
     Logger("  Epochs: {}, Steps/epoch: {}, Batch: {}, Generations: {}".format(
         args.epochs, iters, args.batch_size, args.num_generations))
     Logger("  Max turns: {}, Max gen len: {}, Loss type: {}".format(
         args.max_turns, args.max_gen_len, args.loss_type))
+    Logger("  Beta: {}, KL clip: {}, LR: {}".format(args.beta, args.kl_clip, args.learning_rate))
     Logger("  Plan reward weight included in total reward")
 
     for epoch in range(start_epoch, args.epochs):
@@ -1118,7 +1119,7 @@ def run_plan_training(args):
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description="MiniMind Plan-then-Execute RL Training")
+    parser = argparse.ArgumentParser(description="MiniMind Plan-then-Execute RL Training (v5)")
     # Model architecture
     parser.add_argument('--hidden_size', type=int, default=768)
     parser.add_argument('--num_attention_heads', type=int, default=16)
@@ -1136,7 +1137,7 @@ def get_args():
     # Training
     parser.add_argument('--epochs', type=int, default=3)
     parser.add_argument('--batch_size', type=int, default=2)
-    parser.add_argument('--learning_rate', type=float, default=5e-6)
+    parser.add_argument('--learning_rate', type=float, default=3e-6)  # v5: 5e-6 → 3e-6
     parser.add_argument('--weight_decay', type=float, default=0.01)
     parser.add_argument('--grad_clip', type=float, default=1.0)
     parser.add_argument('--accumulation_steps', type=int, default=4)
@@ -1147,7 +1148,8 @@ def get_args():
     parser.add_argument('--loss_type', type=str, default='grpo', choices=['grpo', 'cispo'])
     parser.add_argument('--epsilon', type=float, default=0.2)
     parser.add_argument('--epsilon_high', type=float, default=5.0)
-    parser.add_argument('--beta', type=float, default=0.04)
+    parser.add_argument('--beta', type=float, default=0.1)  # v5: 0.04 → 0.1
+    parser.add_argument('--kl_clip', type=float, default=15.0)  # v5 新增：per-token KL 上限
     # Rollout
     parser.add_argument('--max_turns', type=int, default=4)
     parser.add_argument('--max_gen_len', type=int, default=512)

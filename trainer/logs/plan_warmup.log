@@ -1,0 +1,42 @@
+Model Params: 63.91M
+Trainable Params: 63.912M
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 14388 examples [00:00, 106398.15 examples/s]Generating train split: 24677 examples [00:00, 117673.03 examples/s]
+Epoch:[1/1](50/1543), loss: 0.5044, logits_loss: 0.5044, aux_loss: 0.0000, lr: 0.00000499, epoch_time: 2.0min
+Epoch:[1/1](100/1543), loss: 0.8803, logits_loss: 0.8803, aux_loss: 0.0000, lr: 0.00000495, epoch_time: 2.0min
+Epoch:[1/1](150/1543), loss: 0.1642, logits_loss: 0.1642, aux_loss: 0.0000, lr: 0.00000490, epoch_time: 2.0min
+Epoch:[1/1](200/1543), loss: 0.0260, logits_loss: 0.0260, aux_loss: 0.0000, lr: 0.00000482, epoch_time: 2.0min
+Epoch:[1/1](250/1543), loss: 0.7877, logits_loss: 0.7877, aux_loss: 0.0000, lr: 0.00000471, epoch_time: 2.0min
+Epoch:[1/1](300/1543), loss: 0.7949, logits_loss: 0.7949, aux_loss: 0.0000, lr: 0.00000459, epoch_time: 1.0min
+Epoch:[1/1](350/1543), loss: 0.5996, logits_loss: 0.5996, aux_loss: 0.0000, lr: 0.00000445, epoch_time: 1.0min
+Epoch:[1/1](400/1543), loss: 1.0694, logits_loss: 1.0694, aux_loss: 0.0000, lr: 0.00000429, epoch_time: 1.0min
+Epoch:[1/1](450/1543), loss: 0.5115, logits_loss: 0.5115, aux_loss: 0.0000, lr: 0.00000412, epoch_time: 1.0min
+Epoch:[1/1](500/1543), loss: 0.6269, logits_loss: 0.6269, aux_loss: 0.0000, lr: 0.00000393, epoch_time: 1.0min
+[Checkpoint] New best loss=0.626895 at step 500
+[Checkpoint] Saved step 500 (epoch 1), metrics={loss=0.6269, lr=0.0000}
+Epoch:[1/1](550/1543), loss: 0.8317, logits_loss: 0.8317, aux_loss: 0.0000, lr: 0.00000373, epoch_time: 1.0min
+Epoch:[1/1](600/1543), loss: 0.6793, logits_loss: 0.6793, aux_loss: 0.0000, lr: 0.00000352, epoch_time: 1.0min
+Epoch:[1/1](650/1543), loss: 0.3667, logits_loss: 0.3667, aux_loss: 0.0000, lr: 0.00000330, epoch_time: 1.0min
+Epoch:[1/1](700/1543), loss: 0.3826, logits_loss: 0.3826, aux_loss: 0.0000, lr: 0.00000308, epoch_time: 1.0min
+Epoch:[1/1](750/1543), loss: 0.5693, logits_loss: 0.5693, aux_loss: 0.0000, lr: 0.00000285, epoch_time: 1.0min
+Epoch:[1/1](800/1543), loss: 0.5148, logits_loss: 0.5148, aux_loss: 0.0000, lr: 0.00000262, epoch_time: 1.0min
+Epoch:[1/1](850/1543), loss: 0.6591, logits_loss: 0.6591, aux_loss: 0.0000, lr: 0.00000239, epoch_time: 1.0min
+Epoch:[1/1](900/1543), loss: 0.5410, logits_loss: 0.5410, aux_loss: 0.0000, lr: 0.00000217, epoch_time: 1.0min
+Epoch:[1/1](950/1543), loss: 0.7735, logits_loss: 0.7735, aux_loss: 0.0000, lr: 0.00000195, epoch_time: 0.0min
+Epoch:[1/1](1000/1543), loss: 0.7373, logits_loss: 0.7373, aux_loss: 0.0000, lr: 0.00000174, epoch_time: 0.0min
+[Checkpoint] Saved step 1000 (epoch 1), metrics={loss=0.7373, lr=0.0000}
+Epoch:[1/1](1050/1543), loss: 0.0089, logits_loss: 0.0089, aux_loss: 0.0000, lr: 0.00000154, epoch_time: 0.0min
+Epoch:[1/1](1100/1543), loss: 0.7432, logits_loss: 0.7432, aux_loss: 0.0000, lr: 0.00000135, epoch_time: 0.0min
+Epoch:[1/1](1150/1543), loss: 0.6075, logits_loss: 0.6075, aux_loss: 0.0000, lr: 0.00000118, epoch_time: 0.0min
+Epoch:[1/1](1200/1543), loss: 0.6464, logits_loss: 0.6464, aux_loss: 0.0000, lr: 0.00000103, epoch_time: 0.0min
+Epoch:[1/1](1250/1543), loss: 0.2840, logits_loss: 0.2840, aux_loss: 0.0000, lr: 0.00000089, epoch_time: 0.0min
+Epoch:[1/1](1300/1543), loss: 0.4842, logits_loss: 0.4842, aux_loss: 0.0000, lr: 0.00000077, epoch_time: 0.0min
+Epoch:[1/1](1350/1543), loss: 1.2187, logits_loss: 1.2187, aux_loss: 0.0000, lr: 0.00000067, epoch_time: 0.0min
+Epoch:[1/1](1400/1543), loss: 0.2743, logits_loss: 0.2743, aux_loss: 0.0000, lr: 0.00000059, epoch_time: 0.0min
+Epoch:[1/1](1450/1543), loss: 1.0674, logits_loss: 1.0674, aux_loss: 0.0000, lr: 0.00000054, epoch_time: 0.0min
+Epoch:[1/1](1500/1543), loss: 0.0125, logits_loss: 0.0125, aux_loss: 0.0000, lr: 0.00000051, epoch_time: 0.0min
+[Checkpoint] New best loss=0.012547 at step 1500
+[Checkpoint] Saved step 1500 (epoch 1), metrics={loss=0.0125, lr=0.0000}
+Epoch:[1/1](1543/1543), loss: 0.0085, logits_loss: 0.0085, aux_loss: 0.0000, lr: 0.00000050, epoch_time: 0.0min
+[Checkpoint] New best loss=0.008510 at step 1543
+[Checkpoint] Removed old checkpoint: plan_warmup_768_step500_resume.pth
+[Checkpoint] Saved step 1543 (epoch 1), metrics={loss=0.0085, lr=0.0000}

@@ -1,0 +1,51 @@
+nohup: ignoring input
+
+[Bucket 0] 样本数: 158780, PPL 范围: [3.4, 2.7]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 5000 examples [00:00, 148943.34 examples/s]
+/root/trainer/../scripts/data_quality_scorer.py:623: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 110271 examples [00:00, 820421.39 examples/s]Generating train split: 158780 examples [00:00, 638942.41 examples/s]
+/root/trainer/../scripts/data_quality_scorer.py:570: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(dtype=torch.bfloat16):
+[Bucket 0] train_loss=2.1329, val: 8.9109 → 3.2739 (Δ=-5.6370)
+
+[Bucket 1] 样本数: 158780, PPL 范围: [3.8, 4.0]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 84766 examples [00:00, 654406.32 examples/s]Generating train split: 158780 examples [00:00, 401755.27 examples/s]Generating train split: 158780 examples [00:00, 427804.08 examples/s]
+[Bucket 1] train_loss=2.7111, val: 8.9060 → 2.7896 (Δ=-6.1164)
+
+[Bucket 2] 样本数: 158779, PPL 范围: [4.6, 5.2]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 73666 examples [00:00, 582780.87 examples/s]Generating train split: 132659 examples [00:00, 395567.52 examples/s]Generating train split: 158779 examples [00:00, 384696.08 examples/s]
+[Bucket 2] train_loss=2.9169, val: 8.9107 → 2.6647 (Δ=-6.2460)
+
+[Bucket 3] 样本数: 158780, PPL 范围: [5.8, 5.6]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 70230 examples [00:00, 560926.32 examples/s]Generating train split: 126690 examples [00:00, 483386.04 examples/s]Generating train split: 158780 examples [00:00, 400594.29 examples/s]
+[Bucket 3] train_loss=3.0845, val: 8.9117 → 2.6478 (Δ=-6.2639)
+
+[Bucket 4] 样本数: 158780, PPL 范围: [7.2, 7.2]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 71630 examples [00:00, 566649.24 examples/s]Generating train split: 137266 examples [00:00, 407298.14 examples/s]Generating train split: 158780 examples [00:00, 421131.05 examples/s]
+[Bucket 4] train_loss=3.2534, val: 8.9136 → 2.6447 (Δ=-6.2689)
+
+[Bucket 5] 样本数: 158779, PPL 范围: [7.8, 7.4]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 75095 examples [00:00, 595901.07 examples/s]Generating train split: 147555 examples [00:00, 438629.13 examples/s]Generating train split: 158779 examples [00:00, 454372.49 examples/s]
+[Bucket 5] train_loss=3.4341, val: 8.9051 → 2.6958 (Δ=-6.2094)
+
+[Bucket 6] 样本数: 158780, PPL 范围: [10.0, 11.2]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 82193 examples [00:00, 642556.39 examples/s]Generating train split: 158780 examples [00:00, 483050.82 examples/s]Generating train split: 158780 examples [00:00, 501747.97 examples/s]
+[Bucket 6] train_loss=3.7243, val: 8.9280 → 2.7573 (Δ=-6.1707)
+
+[Bucket 7] 样本数: 158780, PPL 范围: [13.2, 13.0]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 112225 examples [00:00, 889860.15 examples/s]Generating train split: 158780 examples [00:00, 673126.25 examples/s]
+[Bucket 7] train_loss=4.3953, val: 8.9179 → 3.0915 (Δ=-5.8264)
+
+===== 分桶贡献排名 =====
+桶ID   PPL范围               样本数     贡献(↓val_loss)  
+4     [7.2, 7.2]     158780  +6.26894
+3     [5.8, 5.6]     158780  +6.26389
+2     [4.6, 5.2]     158779  +6.24599
+5     [7.8, 7.4]     158779  +6.20935
+6     [10.0, 11.2]     158780  +6.17073
+1     [3.8, 4.0]     158780  +6.11636
+7     [13.2, 13.0]     158780  +5.82640
+0     [3.4, 2.7]     158780  +5.63697
+
+实验结果已保存: ../dataset/bucket_experiment_results.json
