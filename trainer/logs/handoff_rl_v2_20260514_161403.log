@@ -1,0 +1,199 @@
+Start RL v2: 2026年 05月 14日 星期四 16:14:03 CST
+W0514 16:14:05.064000 16599 site-packages/torch/distributed/run.py:793] 
+W0514 16:14:05.064000 16599 site-packages/torch/distributed/run.py:793] *****************************************
+W0514 16:14:05.064000 16599 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0514 16:14:05.064000 16599 site-packages/torch/distributed/run.py:793] *****************************************
+[W514 16:14:08.970126574 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[W514 16:14:08.970350755 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+[Checkpoint] Loading latest (step 50)
+Loading model from: ./checkpoints_qwen_handoff_v2/step_50
+The tokenizer you are loading from './checkpoints_qwen_handoff_v2/step_50' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+`torch_dtype` is deprecated! Use `dtype` instead!
+The tokenizer you are loading from './checkpoints_qwen_handoff_v2/step_50' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+`torch_dtype` is deprecated! Use `dtype` instead!
+  Parameters: 1.54B total, 1543.7M trainable
+Loading model from: ./checkpoints_sft_warmup/best
+The tokenizer you are loading from './checkpoints_sft_warmup/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from './checkpoints_sft_warmup/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+  Parameters: 1.54B total, 1543.7M trainable
+Loaded 990 examples from ./dataset/agent_handoff.jsonl
+================================================================================
+MiniMind-Agent Handoff Training (Qwen2.5-1.5B-Instruct)
+  Model: ./checkpoints_sft_warmup/best
+  Training: epochs=3, batch_size=2, lr=5e-06
+  Handoff: 990 examples, num_generations=2
+  Experts: math_agent, info_agent, translate_agent
+  Loss: grpo, beta=0.1
+  DDP: Yes, world_size=2
+  Gradient Checkpointing: False
+================================================================================
+[rank1]:[W514 16:14:58.952856097 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank0]:[W514 16:14:58.954975207 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[Epoch 1/3] Step 55/248 | loss=0.0181 | reward=1.325 | router_r=0.750 | expert_r=0.575 | handoff=100% | kl=-0.0466
+[Epoch 1/3] Step 60/248 | loss=0.0124 | reward=2.612 | router_r=1.575 | expert_r=1.038 | handoff=100% | kl=-0.0277
+[Epoch 1/3] Step 65/248 | loss=-0.2469 | reward=-0.199 | router_r=-0.087 | expert_r=-0.112 | handoff=75% | kl=-0.0421
+[Epoch 1/3] Step 70/248 | loss=0.0024 | reward=2.925 | router_r=1.700 | expert_r=1.225 | handoff=100% | kl=-0.0335
+[Epoch 1/3] Step 75/248 | loss=0.0100 | reward=2.141 | router_r=1.296 | expert_r=0.846 | handoff=100% | kl=0.0080
+[Epoch 1/3] Step 80/248 | loss=0.0180 | reward=1.709 | router_r=0.742 | expert_r=0.967 | handoff=100% | kl=-0.0510
+[Epoch 1/3] Step 85/248 | loss=0.0022 | reward=2.075 | router_r=0.825 | expert_r=1.250 | handoff=100% | kl=-0.0298
+[Epoch 1/3] Step 90/248 | loss=0.0005 | reward=3.400 | router_r=1.800 | expert_r=1.600 | handoff=100% | kl=-0.0117
+[Epoch 1/3] Step 95/248 | loss=-0.0049 | reward=2.654 | router_r=1.408 | expert_r=1.246 | handoff=100% | kl=-0.0281
+[Epoch 1/3] Step 100/248 | loss=0.0358 | reward=2.763 | router_r=1.750 | expert_r=1.013 | handoff=100% | kl=-0.0120
+[Checkpoint] New best reward=2.7625 at step 100
+[Checkpoint] Saved step 100 (epoch 1)
+[Epoch 1/3] Step 105/248 | loss=0.0006 | reward=2.550 | router_r=1.300 | expert_r=1.250 | handoff=100% | kl=-0.0024
+[Epoch 1/3] Step 110/248 | loss=-0.0017 | reward=0.167 | router_r=0.471 | expert_r=-0.304 | handoff=75% | kl=-0.0249
+[Epoch 1/3] Step 115/248 | loss=0.0019 | reward=0.609 | router_r=0.392 | expert_r=0.217 | handoff=100% | kl=-0.0350
+[Epoch 1/3] Step 120/248 | loss=0.0006 | reward=2.225 | router_r=1.375 | expert_r=0.850 | handoff=100% | kl=-0.0109
+[Epoch 1/3] Step 125/248 | loss=0.0007 | reward=2.850 | router_r=1.625 | expert_r=1.225 | handoff=100% | kl=-0.0171
+[Epoch 1/3] Step 130/248 | loss=0.0015 | reward=3.975 | router_r=2.025 | expert_r=2.000 | handoff=100% | kl=-0.0225
+[Epoch 1/3] Step 135/248 | loss=0.0132 | reward=0.475 | router_r=0.250 | expert_r=0.225 | handoff=100% | kl=-0.0231
+[Epoch 1/3] Step 140/248 | loss=0.0091 | reward=1.750 | router_r=1.300 | expert_r=0.450 | handoff=100% | kl=-0.0268
+[Epoch 1/3] Step 145/248 | loss=0.0015 | reward=0.750 | router_r=0.250 | expert_r=0.500 | handoff=100% | kl=-0.0284
+[Epoch 1/3] Step 150/248 | loss=0.0315 | reward=2.067 | router_r=0.821 | expert_r=1.246 | handoff=100% | kl=-0.0465
+[Checkpoint] Saved step 150 (epoch 1)
+[Epoch 1/3] Step 155/248 | loss=0.0006 | reward=2.625 | router_r=1.375 | expert_r=1.250 | handoff=100% | kl=-0.0094
+[Epoch 1/3] Step 160/248 | loss=0.0008 | reward=2.000 | router_r=1.150 | expert_r=0.850 | handoff=100% | kl=-0.0162
+[Epoch 1/3] Step 165/248 | loss=0.0060 | reward=2.075 | router_r=1.200 | expert_r=0.875 | handoff=100% | kl=-0.0261
+[Epoch 1/3] Step 170/248 | loss=0.0007 | reward=1.050 | router_r=0.950 | expert_r=0.100 | handoff=100% | kl=-0.0079
+[Epoch 1/3] Step 175/248 | loss=0.0010 | reward=3.875 | router_r=1.875 | expert_r=2.000 | handoff=100% | kl=-0.0157
+[Epoch 1/3] Step 180/248 | loss=-0.2461 | reward=2.165 | router_r=1.045 | expert_r=1.120 | handoff=75% | kl=-0.0502
+[Epoch 1/3] Step 185/248 | loss=0.0187 | reward=0.843 | router_r=0.815 | expert_r=0.028 | handoff=50% | kl=-0.0467
+[Epoch 1/3] Step 190/248 | loss=0.0111 | reward=-0.187 | router_r=0.131 | expert_r=-0.319 | handoff=50% | kl=-0.0773
+[Epoch 1/3] Step 195/248 | loss=0.0201 | reward=2.612 | router_r=1.575 | expert_r=1.038 | handoff=100% | kl=-0.0330
+[Epoch 1/3] Step 200/248 | loss=0.0240 | reward=2.068 | router_r=0.822 | expert_r=1.247 | handoff=100% | kl=-0.0306
+[Checkpoint] Removed old: step_50
+[Checkpoint] Saved step 200 (epoch 1)
+[Epoch 1/3] Step 205/248 | loss=0.0340 | reward=1.583 | router_r=1.117 | expert_r=0.467 | handoff=100% | kl=-0.0226
+[Epoch 1/3] Step 210/248 | loss=0.0123 | reward=2.181 | router_r=1.190 | expert_r=0.990 | handoff=50% | kl=-0.0919
+[Epoch 1/3] Step 215/248 | loss=0.0112 | reward=1.507 | router_r=0.816 | expert_r=0.691 | handoff=100% | kl=-0.0182
+[Epoch 1/3] Step 220/248 | loss=0.0007 | reward=2.625 | router_r=1.375 | expert_r=1.250 | handoff=100% | kl=0.0016
+[Epoch 1/3] Step 225/248 | loss=0.0004 | reward=2.550 | router_r=1.300 | expert_r=1.250 | handoff=100% | kl=-0.0012
+[Epoch 1/3] Step 230/248 | loss=0.0164 | reward=2.281 | router_r=1.340 | expert_r=0.990 | handoff=50% | kl=-0.1194
+[Epoch 1/3] Step 235/248 | loss=-0.2442 | reward=1.540 | router_r=0.795 | expert_r=0.745 | handoff=75% | kl=-0.0446
+[Epoch 1/3] Step 240/248 | loss=0.0012 | reward=2.100 | router_r=0.900 | expert_r=1.250 | handoff=100% | kl=-0.0080
+[Epoch 1/3] Step 245/248 | loss=-0.2316 | reward=0.471 | router_r=0.361 | expert_r=0.111 | handoff=25% | kl=-0.1401
+[Checkpoint] New best reward=3.8000 at step 248
+[Checkpoint] Removed old: step_100
+[Checkpoint] Saved step 248 (epoch 1)
+[Epoch 2/3] Step 5/248 | loss=0.0089 | reward=2.225 | router_r=1.375 | expert_r=0.850 | handoff=100% | kl=-0.0212
+[Epoch 2/3] Step 10/248 | loss=0.0120 | reward=1.781 | router_r=1.190 | expert_r=0.590 | handoff=50% | kl=-0.0935
+[Epoch 2/3] Step 15/248 | loss=0.0257 | reward=0.843 | router_r=0.815 | expert_r=0.028 | handoff=50% | kl=-0.1142
+[Epoch 2/3] Step 20/248 | loss=0.0015 | reward=2.550 | router_r=1.300 | expert_r=1.250 | handoff=100% | kl=-0.0080
+[Epoch 2/3] Step 25/248 | loss=0.0270 | reward=2.257 | router_r=1.266 | expert_r=0.991 | handoff=50% | kl=-0.1570
+[Epoch 2/3] Step 30/248 | loss=0.0069 | reward=3.675 | router_r=1.875 | expert_r=1.800 | handoff=100% | kl=-0.0190
+[Epoch 2/3] Step 35/248 | loss=0.0015 | reward=2.225 | router_r=1.375 | expert_r=0.850 | handoff=100% | kl=-0.0282
+[Epoch 2/3] Step 40/248 | loss=0.0214 | reward=0.564 | router_r=0.582 | expert_r=-0.018 | handoff=0% | kl=-0.2875
+[Epoch 2/3] Step 45/248 | loss=0.0118 | reward=2.256 | router_r=1.265 | expert_r=0.990 | handoff=50% | kl=-0.0940
+[Epoch 2/3] Step 50/248 | loss=0.0101 | reward=0.924 | router_r=0.724 | expert_r=0.199 | handoff=50% | kl=-0.0853
+[Checkpoint] Removed old: step_150
+[Checkpoint] Saved step 50 (epoch 2)
+[Epoch 2/3] Step 55/248 | loss=0.0392 | reward=1.287 | router_r=1.000 | expert_r=0.287 | handoff=100% | kl=-0.0131
+[Epoch 2/3] Step 60/248 | loss=0.0032 | reward=1.882 | router_r=0.891 | expert_r=1.041 | handoff=100% | kl=-0.0307
+[Epoch 2/3] Step 65/248 | loss=0.0087 | reward=2.258 | router_r=1.267 | expert_r=0.992 | handoff=50% | kl=-0.0657
+[Epoch 2/3] Step 70/248 | loss=0.0146 | reward=0.902 | router_r=0.463 | expert_r=0.438 | handoff=100% | kl=-0.0483
+[Epoch 2/3] Step 75/248 | loss=0.0107 | reward=0.933 | router_r=0.692 | expert_r=0.242 | handoff=50% | kl=-0.0541
+[Epoch 2/3] Step 80/248 | loss=0.0013 | reward=1.375 | router_r=0.875 | expert_r=0.500 | handoff=100% | kl=-0.0123
+[Epoch 2/3] Step 85/248 | loss=0.0258 | reward=2.258 | router_r=1.267 | expert_r=0.992 | handoff=50% | kl=-0.1710
+[Epoch 2/3] Step 90/248 | loss=0.0008 | reward=2.375 | router_r=1.550 | expert_r=0.825 | handoff=100% | kl=-0.0237
+[Epoch 2/3] Step 95/248 | loss=0.0021 | reward=2.875 | router_r=1.700 | expert_r=1.225 | handoff=100% | kl=-0.0490
+[Epoch 2/3] Step 100/248 | loss=0.0114 | reward=2.007 | router_r=1.366 | expert_r=0.641 | handoff=100% | kl=-0.0153
+[Checkpoint] Removed old: step_200
+[Checkpoint] Saved step 100 (epoch 2)
+[Epoch 2/3] Step 105/248 | loss=0.0127 | reward=1.582 | router_r=0.891 | expert_r=0.691 | handoff=100% | kl=-0.0226
+[Epoch 2/3] Step 110/248 | loss=0.0085 | reward=2.067 | router_r=1.196 | expert_r=0.871 | handoff=100% | kl=-0.0239
+[Epoch 2/3] Step 115/248 | loss=0.0015 | reward=2.775 | router_r=1.550 | expert_r=1.225 | handoff=100% | kl=-0.0069
+[Epoch 2/3] Step 120/248 | loss=0.0320 | reward=1.352 | router_r=0.864 | expert_r=0.489 | handoff=100% | kl=-0.0224
+[Epoch 2/3] Step 125/248 | loss=0.0018 | reward=2.218 | router_r=1.371 | expert_r=0.846 | handoff=100% | kl=-0.0224
+[Epoch 2/3] Step 130/248 | loss=0.0091 | reward=2.141 | router_r=1.296 | expert_r=0.846 | handoff=100% | kl=-0.0078
+[Epoch 2/3] Step 135/248 | loss=0.0024 | reward=1.675 | router_r=1.200 | expert_r=0.475 | handoff=100% | kl=-0.0191
+[Epoch 2/3] Step 140/248 | loss=0.0001 | reward=2.700 | router_r=1.450 | expert_r=1.250 | handoff=100% | kl=-0.0016
+[Epoch 2/3] Step 145/248 | loss=-0.2283 | reward=0.741 | router_r=0.589 | expert_r=0.152 | handoff=75% | kl=-0.0394
+[Epoch 2/3] Step 150/248 | loss=0.0459 | reward=1.558 | router_r=0.942 | expert_r=0.617 | handoff=50% | kl=-0.1893
+[Checkpoint] Removed old: step_248
+[Checkpoint] Saved step 150 (epoch 2)
+[Epoch 2/3] Step 155/248 | loss=0.0416 | reward=0.567 | router_r=0.583 | expert_r=-0.017 | handoff=0% | kl=-0.5432
+[Epoch 2/3] Step 160/248 | loss=0.0458 | reward=0.568 | router_r=0.584 | expert_r=-0.016 | handoff=0% | kl=-0.5092
+[Epoch 2/3] Step 165/248 | loss=0.0223 | reward=0.567 | router_r=0.583 | expert_r=-0.017 | handoff=0% | kl=-0.3160
+[Epoch 2/3] Step 170/248 | loss=0.0245 | reward=1.008 | router_r=0.767 | expert_r=0.242 | handoff=50% | kl=-0.1226
+[Epoch 2/3] Step 175/248 | loss=0.0136 | reward=2.183 | router_r=1.192 | expert_r=0.992 | handoff=50% | kl=-0.1014
+[Epoch 2/3] Step 180/248 | loss=0.0189 | reward=1.438 | router_r=1.175 | expert_r=0.263 | handoff=100% | kl=-0.0224
+[Epoch 2/3] Step 185/248 | loss=0.0013 | reward=3.875 | router_r=1.875 | expert_r=2.000 | handoff=100% | kl=-0.0054
+[Epoch 2/3] Step 190/248 | loss=0.0132 | reward=2.214 | router_r=1.370 | expert_r=0.845 | handoff=100% | kl=-0.0266
+[Epoch 2/3] Step 195/248 | loss=0.0029 | reward=3.475 | router_r=1.875 | expert_r=1.600 | handoff=100% | kl=-0.0209
+[Epoch 2/3] Step 200/248 | loss=0.0210 | reward=1.783 | router_r=1.192 | expert_r=0.592 | handoff=50% | kl=-0.1201
+[Checkpoint] Removed old: step_50
+[Checkpoint] Saved step 200 (epoch 2)
+[Epoch 2/3] Step 205/248 | loss=0.0126 | reward=2.543 | router_r=1.296 | expert_r=1.246 | handoff=100% | kl=0.0030
+[Epoch 2/3] Step 210/248 | loss=0.0132 | reward=0.818 | router_r=0.321 | expert_r=0.496 | handoff=100% | kl=-0.0626
+[Epoch 2/3] Step 215/248 | loss=0.0029 | reward=2.000 | router_r=1.125 | expert_r=0.875 | handoff=100% | kl=-0.0121
+[Epoch 2/3] Step 220/248 | loss=0.0012 | reward=2.700 | router_r=1.450 | expert_r=1.250 | handoff=100% | kl=-0.0251
+[Epoch 2/3] Step 225/248 | loss=0.0012 | reward=1.525 | router_r=1.050 | expert_r=0.475 | handoff=100% | kl=-0.0146
+[Epoch 2/3] Step 230/248 | loss=0.0005 | reward=2.625 | router_r=1.375 | expert_r=1.250 | handoff=100% | kl=0.0051
+[Epoch 2/3] Step 235/248 | loss=0.0095 | reward=0.933 | router_r=0.692 | expert_r=0.242 | handoff=50% | kl=-0.0642
+[Epoch 2/3] Step 240/248 | loss=0.0012 | reward=2.225 | router_r=1.375 | expert_r=0.850 | handoff=100% | kl=-0.0147
+[Epoch 2/3] Step 245/248 | loss=0.0025 | reward=2.950 | router_r=1.775 | expert_r=1.225 | handoff=100% | kl=-0.0201
+[Checkpoint] Removed old: step_100
+[Checkpoint] Saved step 248 (epoch 2)
+[Epoch 3/3] Step 5/248 | loss=-0.2443 | reward=0.842 | router_r=0.471 | expert_r=0.371 | handoff=75% | kl=-0.0438
+[Epoch 3/3] Step 10/248 | loss=0.0005 | reward=3.475 | router_r=1.875 | expert_r=1.600 | handoff=100% | kl=-0.0196
+[Epoch 3/3] Step 15/248 | loss=0.0012 | reward=1.375 | router_r=0.875 | expert_r=0.500 | handoff=100% | kl=0.0020
+[Epoch 3/3] Step 20/248 | loss=0.0149 | reward=1.633 | router_r=1.017 | expert_r=0.617 | handoff=50% | kl=-0.0821
+[Epoch 3/3] Step 25/248 | loss=0.0027 | reward=2.625 | router_r=1.375 | expert_r=1.250 | handoff=100% | kl=-0.0193
+[Epoch 3/3] Step 30/248 | loss=-0.2432 | reward=2.133 | router_r=1.041 | expert_r=1.116 | handoff=75% | kl=-0.0702
+[Epoch 3/3] Step 35/248 | loss=0.0006 | reward=2.150 | router_r=1.300 | expert_r=0.850 | handoff=100% | kl=-0.0052
+[Epoch 3/3] Step 40/248 | loss=0.0024 | reward=0.975 | router_r=0.875 | expert_r=0.100 | handoff=100% | kl=-0.0278
+[Epoch 3/3] Step 45/248 | loss=0.0008 | reward=1.375 | router_r=0.875 | expert_r=0.500 | handoff=100% | kl=-0.0075
+[Epoch 3/3] Step 50/248 | loss=0.0058 | reward=2.000 | router_r=1.125 | expert_r=0.875 | handoff=100% | kl=-0.0050
+[Checkpoint] Removed old: step_150
+[Checkpoint] Saved step 50 (epoch 3)
+[Epoch 3/3] Step 55/248 | loss=0.0355 | reward=0.565 | router_r=0.583 | expert_r=-0.017 | handoff=0% | kl=-0.4475
+[Epoch 3/3] Step 60/248 | loss=0.0109 | reward=0.533 | router_r=0.692 | expert_r=-0.158 | handoff=50% | kl=-0.0877
+[Epoch 3/3] Step 65/248 | loss=0.0206 | reward=2.183 | router_r=1.192 | expert_r=0.992 | handoff=50% | kl=-0.1431
+[Epoch 3/3] Step 70/248 | loss=0.0010 | reward=2.650 | router_r=1.450 | expert_r=1.250 | handoff=100% | kl=-0.0114
+[Epoch 3/3] Step 75/248 | loss=0.0006 | reward=1.125 | router_r=1.050 | expert_r=0.075 | handoff=100% | kl=-0.0187
+[Epoch 3/3] Step 80/248 | loss=0.0178 | reward=0.608 | router_r=0.767 | expert_r=-0.158 | handoff=50% | kl=-0.1249
+[Epoch 3/3] Step 85/248 | loss=0.0309 | reward=1.362 | router_r=1.075 | expert_r=0.287 | handoff=100% | kl=-0.0334
+[Epoch 3/3] Step 90/248 | loss=0.0289 | reward=1.633 | router_r=1.017 | expert_r=0.617 | handoff=50% | kl=-0.1657
+[Epoch 3/3] Step 95/248 | loss=0.0048 | reward=1.925 | router_r=1.050 | expert_r=0.875 | handoff=100% | kl=-0.0170
+[Epoch 3/3] Step 100/248 | loss=0.0279 | reward=0.567 | router_r=0.583 | expert_r=-0.017 | handoff=0% | kl=-0.3889
+[Checkpoint] Removed old: step_200
+[Checkpoint] Saved step 100 (epoch 3)
+[Epoch 3/3] Step 105/248 | loss=0.0135 | reward=0.595 | router_r=0.504 | expert_r=0.091 | handoff=75% | kl=-0.0409
+[Epoch 3/3] Step 110/248 | loss=0.0163 | reward=2.150 | router_r=1.300 | expert_r=0.850 | handoff=100% | kl=-0.0073
+[Epoch 3/3] Step 115/248 | loss=0.0004 | reward=2.850 | router_r=1.625 | expert_r=1.225 | handoff=100% | kl=-0.0068
+[Epoch 3/3] Step 120/248 | loss=0.0118 | reward=0.933 | router_r=0.691 | expert_r=0.241 | handoff=50% | kl=-0.0671
+[Epoch 3/3] Step 125/248 | loss=0.0140 | reward=0.467 | router_r=0.246 | expert_r=0.221 | handoff=100% | kl=-0.0325
+[Epoch 3/3] Step 130/248 | loss=-0.0029 | reward=3.856 | router_r=1.865 | expert_r=1.990 | handoff=100% | kl=-0.0084
+[Epoch 3/3] Step 135/248 | loss=0.0172 | reward=2.258 | router_r=1.267 | expert_r=0.992 | handoff=50% | kl=-0.1279
+[Epoch 3/3] Step 140/248 | loss=0.0134 | reward=1.233 | router_r=1.017 | expert_r=0.217 | handoff=50% | kl=-0.0837
+[Epoch 3/3] Step 145/248 | loss=0.0122 | reward=1.633 | router_r=1.017 | expert_r=0.617 | handoff=50% | kl=-0.0390
+[Epoch 3/3] Step 150/248 | loss=0.0046 | reward=1.497 | router_r=1.036 | expert_r=0.461 | handoff=100% | kl=-0.0006
+[Checkpoint] Removed old: step_248
+[Checkpoint] Saved step 150 (epoch 3)
+[Epoch 3/3] Step 155/248 | loss=0.0117 | reward=2.300 | router_r=1.450 | expert_r=0.850 | handoff=100% | kl=0.0028
+[Epoch 3/3] Step 160/248 | loss=0.0137 | reward=0.608 | router_r=0.767 | expert_r=-0.158 | handoff=50% | kl=-0.0978
+[Epoch 3/3] Step 165/248 | loss=0.0060 | reward=2.583 | router_r=1.354 | expert_r=1.229 | handoff=100% | kl=-0.0122
+[Epoch 3/3] Step 170/248 | loss=0.0145 | reward=2.259 | router_r=1.267 | expert_r=0.992 | handoff=50% | kl=-0.1288
+[Epoch 3/3] Step 175/248 | loss=0.0113 | reward=0.475 | router_r=0.250 | expert_r=0.225 | handoff=100% | kl=-0.0111
+[Epoch 3/3] Step 180/248 | loss=0.0015 | reward=1.050 | router_r=0.750 | expert_r=0.300 | handoff=100% | kl=-0.0290
+[Epoch 3/3] Step 185/248 | loss=0.0117 | reward=1.558 | router_r=0.942 | expert_r=0.617 | handoff=50% | kl=-0.0423
+[Epoch 3/3] Step 190/248 | loss=-0.0043 | reward=2.617 | router_r=1.371 | expert_r=1.246 | handoff=100% | kl=-0.0056
+[Epoch 3/3] Step 195/248 | loss=0.0007 | reward=3.250 | router_r=1.625 | expert_r=1.625 | handoff=100% | kl=-0.0078
+[Epoch 3/3] Step 200/248 | loss=0.0011 | reward=2.625 | router_r=1.375 | expert_r=1.250 | handoff=100% | kl=-0.0000
+[Checkpoint] Removed old: step_50
+[Checkpoint] Saved step 200 (epoch 3)
+[Epoch 3/3] Step 205/248 | loss=0.0200 | reward=2.000 | router_r=1.125 | expert_r=0.875 | handoff=100% | kl=-0.0123
+[Epoch 3/3] Step 210/248 | loss=-0.2293 | reward=0.829 | router_r=0.671 | expert_r=0.158 | handoff=75% | kl=-0.0859
+[Epoch 3/3] Step 215/248 | loss=0.0010 | reward=3.875 | router_r=1.875 | expert_r=2.000 | handoff=100% | kl=-0.0121
+[Epoch 3/3] Step 220/248 | loss=0.0033 | reward=1.825 | router_r=1.375 | expert_r=0.450 | handoff=100% | kl=-0.0186
+[Epoch 3/3] Step 225/248 | loss=0.0102 | reward=2.625 | router_r=1.375 | expert_r=1.250 | handoff=100% | kl=-0.0079
+[Epoch 3/3] Step 230/248 | loss=0.0098 | reward=2.355 | router_r=1.259 | expert_r=1.096 | handoff=75% | kl=-0.0316
+[Epoch 3/3] Step 235/248 | loss=0.0184 | reward=1.002 | router_r=0.763 | expert_r=0.238 | handoff=50% | kl=-0.0738
+[Epoch 3/3] Step 240/248 | loss=-0.2268 | reward=0.475 | router_r=0.362 | expert_r=0.112 | handoff=25% | kl=-0.2337
+[Epoch 3/3] Step 245/248 | loss=0.0240 | reward=2.258 | router_r=1.267 | expert_r=0.992 | handoff=50% | kl=-0.1545
+[Checkpoint] Removed old: step_100
+[Checkpoint] Saved step 248 (epoch 3)
+
+Training complete.
+End RL v2: 2026年 05月 14日 星期四 18:55:48 CST

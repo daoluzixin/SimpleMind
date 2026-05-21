@@ -4,9 +4,16 @@ __pycache__/
 out
 website/
 docs-minimind/
-docs/
+docs/求职准备/
 images/
 .idea/
+.venv/
 MEMORY.md
 USER.md
 dataset/
+server_backup/
+*.pt
+*.pth
+*.bin
+*.safetensors
+checkpoints*/

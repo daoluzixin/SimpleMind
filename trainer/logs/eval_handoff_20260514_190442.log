@@ -1,0 +1,619 @@
+19:04:42 | 
+================================================================================
+19:04:42 |   Handoff RL Evaluation
+19:04:42 |   Model: ./checkpoints_qwen_handoff_v2/best
+19:04:42 |   Samples: 50 / 40
+19:04:42 |   Temperature: 0.3
+19:04:42 |   Log file: /root/minimind/logs/eval_handoff_20260514_190442.log
+19:04:42 | ================================================================================
+
+19:04:46 |   [  1/40] ✓ | expect=math       | got=math       | handoff=Y | query=123乘以456等于多少？
+19:04:46 |   ┌─ Sample 1: 123乘以456等于多少？
+19:04:46 |   │  Expected: expert=math, needs_tool=True, gt=['56088']
+19:04:46 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:04:46 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 123 * 456"}}
+</tool_call>
+19:04:46 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "123 * 456"}}
+</tool_call>
+19:04:46 |   │  [Expert(turn2)] 计算结果是：56088
+19:04:46 |   │  [Router(Synth)] 计算结果是：56088。
+19:04:46 |   │  route_ok=True, gt_hit={'56088'}, e2e={'56088'}
+19:04:46 |   └─────────────────────────────────────────────────────────────
+19:04:49 |   [  2/40] ✓ | expect=math       | got=math       | handoff=Y | query=帮我算一下 (25 + 75) × 4
+19:04:49 |   ┌─ Sample 2: 帮我算一下 (25 + 75) × 4
+19:04:49 |   │  Expected: expert=math, needs_tool=True, gt=['400']
+19:04:49 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:04:49 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 (25 + 75) * 4"}}
+</tool_call>
+19:04:49 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "(25 + 75) * 4"}}
+</tool_call>
+19:04:49 |   │  [Expert(turn2)] 计算结果为：400
+19:04:49 |   │  [Router(Synth)] 计算结果为：400。
+19:04:49 |   │  route_ok=True, gt_hit={'400'}, e2e={'400'}
+19:04:49 |   └─────────────────────────────────────────────────────────────
+19:04:53 |   [  3/40] ✗ | expect=math       | got=math       | handoff=Y | query=3.14 × 10的平方是多少？
+19:04:53 |   ┌─ Sample 3: 3.14 × 10的平方是多少？
+19:04:53 |   │  Expected: expert=math, needs_tool=True, gt=['314']
+19:04:53 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:04:53 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 3.14 * 10^2"}}
+</tool_call>
+19:04:53 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "3.14 * pow(10, 2)"}}
+</tool_call>
+19:04:53 |   │  [Expert(turn2)] 对不起，我无法找到'pow'函数，这看起来可能不是常用的Python库中的内置函数。请确保输入的数学表达式正确，并尝试重新计算。如果问题依然存在，请提供更多的上下文信息。
+19:04:53 |   │  [Router(Synth)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 3.14 * pow(10, 2)"}}
+</tool_call>
+19:04:53 |   │  route_ok=True, gt_hit=set(), e2e=set()
+19:04:53 |   └─────────────────────────────────────────────────────────────
+19:04:55 |   [  4/40] ✓ | expect=math       | got=math       | handoff=Y | query=一个正方形边长5cm，面积是多少？
+19:04:55 |   ┌─ Sample 4: 一个正方形边长5cm，面积是多少？
+19:04:55 |   │  Expected: expert=math, needs_tool=True, gt=['25']
+19:04:55 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:04:55 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算正方形面积：边长5cm"}}
+</tool_call>
+19:04:55 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "5*5"}}
+</tool_call>
+19:04:55 |   │  [Expert(turn2)] 计算的结果是：25平方米。
+19:04:55 |   │  [Router(Synth)] 正方形的面积为25平方米。
+19:04:55 |   │  route_ok=True, gt_hit={'25'}, e2e={'25'}
+19:04:55 |   └─────────────────────────────────────────────────────────────
+19:04:58 |   [  5/40] ✓ | expect=math       | got=math       | handoff=Y | query=10公里等于多少英里？
+19:04:58 |   ┌─ Sample 5: 10公里等于多少英里？
+19:04:58 |   │  Expected: expert=math, needs_tool=True, gt=['6.2137', '6.21', '6.214']
+19:04:58 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:04:58 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "将10公里转换为英里"}}
+</tool_call>
+19:04:58 |   │  [Expert(turn1)] <tool_call>
+{"name": "unit_converter", "arguments": {"value": 10, "from_unit": "km", "to_unit": "mi"}}
+</tool_call>
+19:04:58 |   │  [Expert(turn2)] 10公里等于约6.21371英里。
+19:04:58 |   │  [Router(Synth)] 10公里大约等于6.21371英里。
+19:04:58 |   │  route_ok=True, gt_hit={'6.2137', '6.21'}, e2e={'6.2137', '6.21'}
+19:04:58 |   └─────────────────────────────────────────────────────────────
+19:05:01 |   [  6/40] ✓ | expect=math       | got=math       | handoff=Y | query=50磅等于多少公斤？
+19:05:01 |   ┌─ Sample 6: 50磅等于多少公斤？
+19:05:01 |   │  Expected: expert=math, needs_tool=True, gt=['22.68', '22.7']
+19:05:01 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:05:01 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "将50磅转换为公斤"}}
+</tool_call>
+19:05:01 |   │  [Expert(turn1)] <tool_call>
+{"name": "unit_converter", "arguments": {"value": 50, "from_unit": "lb", "to_unit": "kg"}}
+</tool_call>
+19:05:01 |   │  [Expert(turn2)] 50磅等于约22.68公斤。
+19:05:01 |   │  [Router(Synth)] 50磅大约等于22.68公斤。
+19:05:01 |   │  route_ok=True, gt_hit={'22.68'}, e2e={'22.68'}
+19:05:01 |   └─────────────────────────────────────────────────────────────
+19:05:04 |   [  7/40] ✗ | expect=math       | got=math       | handoff=Y | query=100华氏度等于多少摄氏度？
+19:05:04 |   ┌─ Sample 7: 100华氏度等于多少摄氏度？
+19:05:04 |   │  Expected: expert=math, needs_tool=True, gt=['37.78', '37.8']
+19:05:04 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:05:04 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "将100华氏度转换为摄氏度"}}
+</tool_call>
+19:05:04 |   │  [Expert(turn1)] <tool_call>
+{"name": "unit_converter", "arguments": {"value": 100, "from_unit": "Fahrenheit", "to_unit": "Celsius"}}
+</tool_call>
+19:05:04 |   │  [Expert(turn2)] 100华氏度等于约55.56摄氏度。
+19:05:04 |   │  [Router(Synth)] 100华氏度大约等于55.56摄氏度。
+19:05:04 |   │  route_ok=True, gt_hit=set(), e2e=set()
+19:05:04 |   └─────────────────────────────────────────────────────────────
+19:05:06 |   [  8/40] ✓ | expect=math       | got=math       | handoff=Y | query=999除以3等于多少？
+19:05:06 |   ┌─ Sample 8: 999除以3等于多少？
+19:05:06 |   │  Expected: expert=math, needs_tool=True, gt=['333']
+19:05:06 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:05:06 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 999 / 3"}}
+</tool_call>
+19:05:06 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "999 / 3"}}
+</tool_call>
+19:05:06 |   │  [Expert(turn2)] 计算结果为：333.0
+19:05:06 |   │  [Router(Synth)] 计算结果为：333.0。
+19:05:06 |   │  route_ok=True, gt_hit={'333'}, e2e={'333'}
+19:05:06 |   └─────────────────────────────────────────────────────────────
+19:05:09 |   [  9/40] ✓ | expect=math       | got=math       | handoff=Y | query=2的10次方是多少？
+19:05:09 |   ┌─ Sample 9: 2的10次方是多少？
+19:05:09 |   │  Expected: expert=math, needs_tool=True, gt=['1024']
+19:05:09 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:05:09 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 2^10"}}
+</tool_call>
+19:05:09 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "2^10"}}
+</tool_call>
+19:05:09 |   │  [Expert(turn2)] 计算结果是：2^10 = 1024
+19:05:09 |   │  [Router(Synth)] 2的10次方等于1024。
+19:05:09 |   │  route_ok=True, gt_hit={'1024'}, e2e={'1024'}
+19:05:09 |   └─────────────────────────────────────────────────────────────
+19:05:12 |   [ 10/40] ✓ | expect=math       | got=math       | handoff=Y | query=根号144等于多少？
+19:05:12 |   ┌─ Sample 10: 根号144等于多少？
+19:05:12 |   │  Expected: expert=math, needs_tool=True, gt=['12']
+19:05:12 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:05:12 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "计算 √144"}}
+</tool_call>
+19:05:12 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "sqrt(144)"}}
+</tool_call>
+19:05:12 |   │  [Expert(turn2)] 看起来我尝试使用了一个不存在的函数名称（'sqrt'）。应该使用 'sqrt' 函数，这是 Python 中的平方根函数。现在我可以重新计算。
+19:05:12 |   │  [Router(Synth)] 根号144等于12。
+19:05:12 |   │  route_ok=True, gt_hit={'12'}, e2e={'12'}
+19:05:12 |   └─────────────────────────────────────────────────────────────
+19:05:14 |   [ 11/40] ✓ | expect=info       | got=info       | handoff=Y | query=北京今天天气怎么样？
+19:05:14 |   ┌─ Sample 11: 北京今天天气怎么样？
+19:05:14 |   │  Expected: expert=info, needs_tool=True, gt=['28°C', '晴', '28']
+19:05:14 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:14 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询北京的天气"}}
+</tool_call>
+19:05:14 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_weather", "arguments": {"location": "北京"}}
+</tool_call>
+19:05:14 |   │  [Expert(turn2)] 北京当前温度为28°C，湿度65%，天气是晴朗的。
+19:05:14 |   │  [Router(Synth)] 北京的天气如下：当前温度28°C，湿度65%，天气晴朗。
+19:05:14 |   │  route_ok=True, gt_hit={'28', '28°C', '晴'}, e2e={'28', '28°C', '晴'}
+19:05:14 |   └─────────────────────────────────────────────────────────────
+19:05:17 |   [ 12/40] ✗ | expect=info       | got=info       | handoff=Y | query=上海现在的气温是多少度？
+19:05:17 |   ┌─ Sample 12: 上海现在的气温是多少度？
+19:05:17 |   │  Expected: expert=info, needs_tool=True, gt=['26°C', '26']
+19:05:17 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:17 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询上海的天气"}}
+</tool_call>
+19:05:17 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_weather", "arguments": {"location": "上海"}}
+</tool_call>
+19:05:17 |   │  [Expert(turn2)] 上海今天的天气是：15°C，湿度65%，多云。
+19:05:17 |   │  [Router(Synth)] 上海今天的气温是15°C，湿度大约为65%，天气以多云为主。
+19:05:17 |   │  route_ok=True, gt_hit=set(), e2e=set()
+19:05:17 |   └─────────────────────────────────────────────────────────────
+19:05:19 |   [ 13/40] ✓ | expect=info       | got=info       | handoff=Y | query=深圳今天下雨了吗？
+19:05:19 |   ┌─ Sample 13: 深圳今天下雨了吗？
+19:05:19 |   │  Expected: expert=info, needs_tool=True, gt=['30°C', '多云', '30']
+19:05:19 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:19 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询深圳的天气"}}
+</tool_call>
+19:05:19 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_weather", "arguments": {"location": "深圳"}}
+</tool_call>
+19:05:19 |   │  [Expert(turn2)] 深圳的天气是：温度30°C，湿度65%，天气为晴。
+19:05:19 |   │  [Router(Synth)] 深圳的天气是：温度30°C，湿度65%，天气为晴。
+19:05:19 |   │  route_ok=True, gt_hit={'30', '30°C'}, e2e={'30', '30°C'}
+19:05:19 |   └─────────────────────────────────────────────────────────────
+19:05:23 |   [ 14/40] ✓ | expect=info       | got=info       | handoff=Y | query=现在纽约几点了？
+19:05:23 |   ┌─ Sample 14: 现在纽约几点了？
+19:05:23 |   │  Expected: expert=info, needs_tool=True, gt=['EST', 'EDT', '纽约']
+19:05:23 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:23 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询纽约(America/New_York)的当前时间"}}
+</tool_call>
+19:05:23 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_time", "arguments": {"timezone": "America/New_York"}}
+</tool_call>
+19:05:23 |   │  [Expert(turn2)] 纽约(America/New_York)的当前时间为：2025年03月07日 01时30分（UTC-4）。
+19:05:23 |   │  [Router(Synth)] 纽约(America/New_York)的当前时间为：2025年03月07日 01时30分（UTC-4）。
+19:05:23 |   │  route_ok=True, gt_hit={'纽约'}, e2e={'纽约'}
+19:05:23 |   └─────────────────────────────────────────────────────────────
+19:05:27 |   [ 15/40] ✗ | expect=info       | got=info       | handoff=Y | query=东京现在是什么时间？
+19:05:27 |   ┌─ Sample 15: 东京现在是什么时间？
+19:05:27 |   │  Expected: expert=info, needs_tool=True, gt=['JST', '东京']
+19:05:27 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:27 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询东京(Asia/Tokyo)的当前时间"}}
+</tool_call>
+19:05:27 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_time", "arguments": {"timezone": "Asia/Tokyo"}}
+</tool_call>
+19:05:27 |   │  [Expert(turn2)] 东京(Asia/Tokyo)的当前时间为：2025年3月7日，15点30分。
+19:05:27 |   │  [Router(Synth)] Tokyo (Asia/Tokyo)'s current time is 3/7/2025, 15:30.
+19:05:27 |   │  route_ok=True, gt_hit=set(), e2e=set()
+19:05:27 |   └─────────────────────────────────────────────────────────────
+19:05:30 |   [ 16/40] ✓ | expect=info       | got=info       | handoff=Y | query=100美元能换多少人民币？
+19:05:30 |   ┌─ Sample 16: 100美元能换多少人民币？
+19:05:30 |   │  Expected: expert=info, needs_tool=True, gt=['7.21', '721']
+19:05:30 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:30 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询USD兑CNY的汇率"}}
+</tool_call>
+19:05:30 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_exchange_rate", "arguments": {"from_currency": "USD", "to_currency": "CNY"}}
+</tool_call>
+19:05:30 |   │  [Expert(turn2)] 美元兑人民币的汇率为：1 USD = 7.21 CNY。
+19:05:30 |   │  [Router(Synth)] 根据我查到的信息，100美元大约可以兑换到721人民币(CNY)左右。请注意，实际汇率可能会有所波动，请以实时查询为准。
+19:05:30 |   │  route_ok=True, gt_hit={'721'}, e2e={'721'}
+19:05:30 |   └─────────────────────────────────────────────────────────────
+19:05:33 |   [ 17/40] ✗ | expect=info       | got=info       | handoff=Y | query=1欧元等于多少日元？
+19:05:33 |   ┌─ Sample 17: 1欧元等于多少日元？
+19:05:33 |   │  Expected: expert=info, needs_tool=True, gt=['157', '158', '156']
+19:05:33 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:33 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询欧元兑日元的汇率"}}
+</tool_call>
+19:05:33 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_exchange_rate", "arguments": {"from_currency": "EUR", "to_currency": "JPY"}}
+</tool_call>
+19:05:33 |   │  [Expert(turn2)] 欧元兑日元的汇率为1:1.00。
+19:05:33 |   │  [Router(Synth)] 1欧元大约兑换1.00日元。
+19:05:33 |   │  route_ok=True, gt_hit=set(), e2e=set()
+19:05:33 |   └─────────────────────────────────────────────────────────────
+19:05:35 |   [ 18/40] ✓ | expect=info       | got=info       | handoff=Y | query=广州今天天气如何？
+19:05:35 |   ┌─ Sample 18: 广州今天天气如何？
+19:05:35 |   │  Expected: expert=info, needs_tool=True, gt=['32°C', '晴', '32']
+19:05:35 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:35 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询广州的天气"}}
+</tool_call>
+19:05:35 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_weather", "arguments": {"location": "广州"}}
+</tool_call>
+19:05:35 |   │  [Expert(turn2)] 广州的天气是32°C，湿度为65%，感觉很闷热。
+19:05:35 |   │  [Router(Synth)] 广州的天气是32°C，湿度为65%，感觉很闷热。
+19:05:35 |   │  route_ok=True, gt_hit={'32°C', '32'}, e2e={'32°C', '32'}
+19:05:35 |   └─────────────────────────────────────────────────────────────
+19:05:39 |   [ 19/40] ✓ | expect=info       | got=info       | handoff=Y | query=伦敦现在几点？
+19:05:39 |   ┌─ Sample 19: 伦敦现在几点？
+19:05:39 |   │  Expected: expert=info, needs_tool=True, gt=['GMT', 'BST', '伦敦']
+19:05:39 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:05:39 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询伦敦(Europe/London)的当前时间"}}
+</tool_call>
+19:05:39 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_time", "arguments": {"timezone": "Europe/London"}}
+</tool_call>
+19:05:39 |   │  [Expert(turn2)] 伦敦(Europe/London)的当前时间是2025年3月7日星期四的上午6:30。
+19:05:39 |   │  [Router(Synth)] 伦敦(Europe/London)的当前时间是2025年3月7日星期四的上午6:30。
+19:05:39 |   │  route_ok=True, gt_hit={'伦敦'}, e2e={'伦敦'}
+19:05:39 |   └─────────────────────────────────────────────────────────────
+19:05:41 |   [ 20/40] ✗ | expect=info       | got=math       | handoff=Y | query=50英镑等于多少人民币？
+19:05:41 |   ┌─ Sample 20: 50英镑等于多少人民币？
+19:05:41 |   │  Expected: expert=info, needs_tool=True, gt=['9', '45', '450']
+19:05:41 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:05:41 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "将50英镑转换为人民币"}}
+</tool_call>
+19:05:41 |   │  [Expert(turn1)] <tool_call>
+{"name": "unit_converter", "arguments": {"value": 50, "from_unit": "GBP", "to_unit": "CNY"}}
+</tool_call>
+19:05:41 |   │  [Expert(turn2)] 将50英镑转换为人民币，结果是50.0元。
+19:05:41 |   │  [Router(Synth)] 50英镑约等于50.0元人民币。
+19:05:41 |   │  route_ok=True, gt_hit=set(), e2e=False
+19:05:41 |   └─────────────────────────────────────────────────────────────
+19:05:44 |   [ 21/40] ✓ | expect=translate  | got=translate  | handoff=Y | query=帮我把'你好世界'翻译成英文
+19:05:44 |   ┌─ Sample 21: 帮我把'你好世界'翻译成英文
+19:05:44 |   │  Expected: expert=translate, needs_tool=True, gt=['Hello World', 'Hello, World']
+19:05:44 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:05:44 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'你好世界'翻译为英文"}}
+</tool_call>
+19:05:44 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "你好世界", "target_language": "en"}}
+</tool_call>
+19:05:44 |   │  [Expert(turn2)] '你好世界'翻译为'Hello World'.
+19:05:44 |   │  [Router(Synth)] 已成功将'你好世界'翻译为'Hello World'。
+19:05:44 |   │  route_ok=True, gt_hit={'Hello World'}, e2e={'Hello World'}
+19:05:44 |   └─────────────────────────────────────────────────────────────
+19:05:46 |   [ 22/40] ✗ | expect=translate  | got=translate  | handoff=Y | query='Machine Learning'翻译成中文是什么？
+19:05:46 |   ┌─ Sample 22: 'Machine Learning'翻译成中文是什么？
+19:05:46 |   │  Expected: expert=translate, needs_tool=True, gt=['机器学习']
+19:05:46 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:05:46 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'machine learning'翻译为中文"}}
+</tool_call>
+19:05:46 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "machine learning", "target_language": "zh"}}
+</tool_call>
+19:05:46 |   │  [Expert(turn2)] 'machine learning'在中文中翻译为'machine learning'。
+19:05:46 |   │  [Router(Synth)] 'Machine Learning'的中文翻译是'machine learning'。
+19:05:46 |   │  route_ok=True, gt_hit=set(), e2e=set()
+19:05:46 |   └─────────────────────────────────────────────────────────────
+19:05:49 |   [ 23/40] ✓ | expect=translate  | got=translate  | handoff=Y | query=帮我翻译一下'人工智能改变未来'
+19:05:49 |   ┌─ Sample 23: 帮我翻译一下'人工智能改变未来'
+19:05:49 |   │  Expected: expert=translate, needs_tool=True, gt=['Artificial Intelligence', 'AI', 'future']
+19:05:49 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:05:49 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'人工智能改变未来'翻译为英文"}}
+</tool_call>
+19:05:49 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "人工智能改变未来", "target_language": "en"}}
+</tool_call>
+19:05:49 |   │  [Expert(turn2)] 已成功将'人工智能改变未来'翻译为英文，结果是："人工智能 change the future"
+19:05:49 |   │  [Router(Synth)] "人工智能 change the future"
+19:05:49 |   │  route_ok=True, gt_hit={'future'}, e2e={'future'}
+19:05:49 |   └─────────────────────────────────────────────────────────────
+19:05:52 |   [ 24/40] ✓ | expect=translate  | got=translate  | handoff=Y | query='Deep Learning'用中文怎么说？
+19:05:52 |   ┌─ Sample 24: 'Deep Learning'用中文怎么说？
+19:05:52 |   │  Expected: expert=translate, needs_tool=True, gt=['深度学习']
+19:05:52 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:05:52 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'Deep Learning'翻译为中文"}}
+</tool_call>
+19:05:52 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "Deep Learning", "target_language": "zh"}}
+</tool_call>
+19:05:52 |   │  [Expert(turn2)] '"Deep Learning" 翻译为中文是 "深度学习"。
+19:05:52 |   │  [Router(Synth)] '\'Deep Learning\'' 翻译为中文是 '\'深度学习\''。
+19:05:52 |   │  route_ok=True, gt_hit={'深度学习'}, e2e={'深度学习'}
+19:05:52 |   └─────────────────────────────────────────────────────────────
+19:05:55 |   [ 25/40] ✓ | expect=translate  | got=translate  | handoff=Y | query=把'今天天气真好'翻译成英文
+19:05:55 |   ┌─ Sample 25: 把'今天天气真好'翻译成英文
+19:05:55 |   │  Expected: expert=translate, needs_tool=True, gt=['weather', 'nice', 'good', 'today']
+19:05:55 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:05:55 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'今天天气真好'翻译为英文"}}
+</tool_call>
+19:05:55 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "今天天气真好", "target_language": "en"}}
+</tool_call>
+19:05:55 |   │  [Expert(turn2)] '今天天气真好'的英文翻译是'Good weather today'.
+19:05:55 |   │  [Router(Synth)] "今天天气真好"的英文翻译是"Good weather today"。
+19:05:55 |   │  route_ok=True, gt_hit={'good', 'today', 'weather'}, e2e={'good', 'today', 'weather'}
+19:05:55 |   └─────────────────────────────────────────────────────────────
+19:05:57 |   [ 26/40] ✓ | expect=translate  | got=translate  | handoff=Y | query='Natural Language Processing'的
+19:05:57 |   ┌─ Sample 26: 'Natural Language Processing'的中文是什么？
+19:05:57 |   │  Expected: expert=translate, needs_tool=True, gt=['自然语言处理']
+19:05:57 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:05:57 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'Natural Language Processing'翻译为中文"}}
+</tool_call>
+19:05:57 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "自然语言处理", "target_language": "zh"}}
+</tool_call>
+19:05:57 |   │  [Expert(turn2)] '自然语言处理'在中文中翻译为'自然语言处理'。
+19:05:57 |   │  [Router(Synth)] "Natural Language Processing"在中文中翻译为"自然语言处理"。
+19:05:57 |   │  route_ok=True, gt_hit={'自然语言处理'}, e2e={'自然语言处理'}
+19:05:57 |   └─────────────────────────────────────────────────────────────
+19:06:00 |   [ 27/40] ✓ | expect=translate  | got=translate  | handoff=Y | query=帮我把'谢谢你的帮助'翻译成英文
+19:06:00 |   ┌─ Sample 27: 帮我把'谢谢你的帮助'翻译成英文
+19:06:00 |   │  Expected: expert=translate, needs_tool=True, gt=['Thank', 'help']
+19:06:00 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:06:00 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'谢谢你的帮助'翻译为英文"}}
+</tool_call>
+19:06:00 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "谢谢你的帮助", "target_language": "en"}}
+</tool_call>
+19:06:00 |   │  [Expert(turn2)] '"谢谢你的帮助"的英文翻译是："Thank you for your help."
+19:06:00 |   │  [Router(Synth)] '谢谢你你的帮助'的英文翻译是："Thank you for your help."
+19:06:00 |   │  route_ok=True, gt_hit={'Thank', 'help'}, e2e={'Thank', 'help'}
+19:06:00 |   └─────────────────────────────────────────────────────────────
+19:06:03 |   [ 28/40] ✓ | expect=translate  | got=translate  | handoff=Y | query='Computer Science'中文怎么翻译？
+19:06:03 |   ┌─ Sample 28: 'Computer Science'中文怎么翻译？
+19:06:03 |   │  Expected: expert=translate, needs_tool=True, gt=['计算机科学']
+19:06:03 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:06:03 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'计算机科学'翻译为中文"}}
+</tool_call>
+19:06:03 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "计算机科学", "target_language": "zh"}}
+</tool_call>
+19:06:03 |   │  [Expert(turn2)] "计算机科学"的中文翻译是："计算机科学"
+19:06:03 |   │  [Router(Synth)] '计算机科学'的中文翻译是：'计算机科学'。
+19:06:03 |   │  route_ok=True, gt_hit={'计算机科学'}, e2e={'计算机科学'}
+19:06:03 |   └─────────────────────────────────────────────────────────────
+19:06:05 |   [ 29/40] ✓ | expect=translate  | got=translate  | handoff=Y | query=翻译一下'知识就是力量'
+19:06:05 |   ┌─ Sample 29: 翻译一下'知识就是力量'
+19:06:05 |   │  Expected: expert=translate, needs_tool=True, gt=['Knowledge', 'power']
+19:06:05 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:06:05 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'知识就是力量'翻译为英文"}}
+</tool_call>
+19:06:05 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "knowledge is power", "target_language": "en"}}
+</tool_call>
+19:06:05 |   │  [Expert(turn2)] "Knowledge is power"的英文翻译为："知识就是力量"。
+19:06:05 |   │  [Router(Synth)] '知识就是力量'的英文翻译为："Knowledge is power"。
+19:06:05 |   │  route_ok=True, gt_hit={'power', 'Knowledge'}, e2e={'power', 'Knowledge'}
+19:06:05 |   └─────────────────────────────────────────────────────────────
+19:06:08 |   [ 30/40] ✓ | expect=translate  | got=translate  | handoff=Y | query='Reinforcement Learning'是什么意思？
+19:06:08 |   ┌─ Sample 30: 'Reinforcement Learning'是什么意思？
+19:06:08 |   │  Expected: expert=translate, needs_tool=True, gt=['强化学习']
+19:06:08 |   │  Result: handoff=True, delegated=delegate_to_translate_agent
+19:06:08 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_translate_agent", "arguments": {"task": "将'Reinforcement Learning'翻译为中文"}}
+</tool_call>
+19:06:08 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_text", "arguments": {"text": "Reinforcement Learning", "target_language": "zh"}}
+</tool_call>
+19:06:08 |   │  [Expert(turn2)] "Reinforcement Learning"在中文中翻译为"强化学习"。
+19:06:08 |   │  [Router(Synth)] "Reinforcement Learning"在中文中翻译为"强化学习"。
+19:06:08 |   │  route_ok=True, gt_hit={'强化学习'}, e2e={'强化学习'}
+19:06:08 |   └─────────────────────────────────────────────────────────────
+19:06:11 |   [ 31/40] ✗ | expect=none       | got=info       | handoff=Y | query=你好，今天过得怎么样？
+19:06:11 |   ┌─ Sample 31: 你好，今天过得怎么样？
+19:06:11 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:11 |   │  Result: handoff=True, delegated=delegate_to_info_agent
+19:06:11 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_info_agent", "arguments": {"task": "查询'北京'的天气"}}
+</tool_call>
+19:06:11 |   │  [Expert(turn1)] <tool_call>
+{"name": "get_current_weather", "arguments": {"location": "北京"}}
+</tool_call>
+19:06:11 |   │  [Expert(turn2)] 北京的当前天气是：28°C，湿度为65%，天晴。
+19:06:11 |   │  [Router(Synth)] 北京的当前天气是：28°C，湿度为65%，天晴。
+19:06:11 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:11 |   └─────────────────────────────────────────────────────────────
+19:06:15 |   [ 32/40] ✗ | expect=none       | got=math       | handoff=Y | query=你觉得人工智能的未来会怎样？
+19:06:15 |   ┌─ Sample 32: 你觉得人工智能的未来会怎样？
+19:06:15 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:15 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:15 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "解释'人工智能的未来'"}}
+</tool_call>
+19:06:15 |   │  [Expert(turn1)] <tool_call>
+{"name": "explain", "arguments": {"text": "人工智能的未来"}}
+</tool_call>
+19:06:15 |   │  [Expert(turn2)] '人工智能的未来'指的是人工智能技术在各个领域的应用和发展趋势，包括但不限于医疗、教育、交通等。随着算法的进步和数据量的增加，人工智能将在更多领域实现更广泛的应用，为人类社会带来更多的便利和创新。
+19:06:15 |   │  [Router(Synth)] 人工智能的未来指其在各领域的广泛应用和发展趋势，如医疗、教育、交通等，预计通过算法进步和数据积累，AI将进一步深化这些领域的应用，提升效率与创新性。
+19:06:15 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:15 |   └─────────────────────────────────────────────────────────────
+19:06:18 |   [ 33/40] ✗ | expect=none       | got=math       | handoff=Y | query=给我讲一个关于程序员的笑话
+19:06:18 |   ┌─ Sample 33: 给我讲一个关于程序员的笑话
+19:06:18 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:18 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:18 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "生成程序员笑话"}}
+</tool_call>
+19:06:18 |   │  [Expert(turn1)] <tool_call>
+{"name": "generate_joke", "arguments": {"category": "programmer"}}
+</tool_call>
+19:06:18 |   │  [Expert(turn2)] <tool_call>
+{"name": "get_answer", "arguments": {"question": "程序员笑话"}}
+</tool_call>
+19:06:18 |   │  [Expert(turn3)] <tool_call>
+{"name": "answer_question", "arguments": {"question": "程序员笑话"}}
+</tool_call>
+19:06:18 |   │  [Router(Synth)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "获取程序员笑话"}}
+</tool_call>
+19:06:18 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:18 |   └─────────────────────────────────────────────────────────────
+19:06:19 |   [ 34/40] ✓ | expect=none       | got=direct     | handoff=N | query=什么是深度学习？简单解释一下
+19:06:19 |   ┌─ Sample 34: 什么是深度学习？简单解释一下
+19:06:19 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:19 |   │  Result: handoff=False, delegated=none
+19:06:19 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "解释'深度学习'}}
+19:06:19 |   │  route_ok=True, gt_hit=N/A, e2e=True
+19:06:19 |   └─────────────────────────────────────────────────────────────
+19:06:21 |   [ 35/40] ✗ | expect=none       | got=math       | handoff=Y | query=推荐几本关于机器学习的好书
+19:06:21 |   ┌─ Sample 35: 推荐几本关于机器学习的好书
+19:06:21 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:21 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:21 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "查找关于机器学习的书籍"}}
+</tool_call>
+19:06:21 |   │  [Expert(turn1)] <tool_call>
+{"name": "search_books", "arguments": {"category": "机器学习"}}
+</tool_call>
+19:06:21 |   │  [Expert(turn2)] 很高兴！我找到了一些关于机器学习的书籍。
+19:06:21 |   │  [Router(Synth)]  delegato_math_agent已经帮您找到了一些关于机器学习的书籍，请查收！
+19:06:21 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:21 |   └─────────────────────────────────────────────────────────────
+19:06:25 |   [ 36/40] ✗ | expect=none       | got=math       | handoff=Y | query=Python和Java哪个更适合初学者？
+19:06:25 |   ┌─ Sample 36: Python和Java哪个更适合初学者？
+19:06:25 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:25 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:25 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "解释Python和Java适合初学者的特性"}}
+</tool_call>
+19:06:25 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "2 + 3"}}
+</tool_call>
+19:06:25 |   │  [Expert(turn2)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "4 * 6"}}
+</tool_call>
+19:06:25 |   │  [Expert(turn3)] 
+19:06:25 |   │  [Router(Synth)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "总结Python和Java在初学者中的适用性对比"}}
+</tool_call>
+19:06:25 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:25 |   └─────────────────────────────────────────────────────────────
+19:06:30 |   [ 37/40] ✗ | expect=none       | got=math       | handoff=Y | query=写一首关于春天的短诗
+19:06:30 |   ┌─ Sample 37: 写一首关于春天的短诗
+19:06:30 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:30 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:30 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "将'春风吹绿江南岸，燕舞蝶飞花满园。'这首诗翻译为英文"}}
+</tool_call>
+19:06:30 |   │  [Expert(turn1)] <tool_call>
+{"name": "translate_poem_to_english", "arguments": {"poem": "春风吹绿江南岸，燕舞蝶飞花满园"}}
+</tool_call>
+19:06:30 |   │  [Expert(turn2)] <tool_call>
+{"name": "translate_poem_to_english", "arguments": {"poem": "春风吹绿江南岸，燕舞蝶飞花满园"}}
+</tool_call>
+19:06:30 |   │  [Expert(turn3)] <tool_call>
+{"name": "translate_poem_to_english", "arguments": {"poem": "春风吹绿江南岸，燕舞蝶飞花满园"}}
+</tool_call>
+19:06:30 |   │  [Router(Synth)] <tool_call>
+{"name": "translate_poem_to_english", "arguments": {"poem": "春风吹绿江南岸，燕舞蝶飞花满园"}}
+</tool_call>
+19:06:30 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:30 |   └─────────────────────────────────────────────────────────────
+19:06:31 |   [ 38/40] ✓ | expect=none       | got=direct     | handoff=N | query=如何保持良好的编程习惯？
+19:06:31 |   ┌─ Sample 38: 如何保持良好的编程习惯？
+19:06:31 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:31 |   │  Result: handoff=False, delegated=none
+19:06:31 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "解释'保持良好编程习惯的建议'}}
+19:06:31 |   │  route_ok=True, gt_hit=N/A, e2e=True
+19:06:31 |   └─────────────────────────────────────────────────────────────
+19:06:36 |   [ 39/40] ✗ | expect=none       | got=math       | handoff=Y | query=你能自我介绍一下吗？
+19:06:36 |   ┌─ Sample 39: 你能自我介绍一下吗？
+19:06:36 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:36 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:36 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "生成一个自我介绍"}}
+</tool_call>
+19:06:36 |   │  [Expert(turn1)] <tool_call>
+{"name": "calculate_math", "arguments": {"expression": "2 + 2"}}
+</tool_call>
+19:06:36 |   │  [Expert(turn2)] "math"函数返回了4，这是一个简单的加法运算。现在让我们将这个数值转换为英语单词形式：
+
+<tool_call>
+{"name": "unit_converter", "arguments": {"value": 4, "from_unit": "decimal", "to_unit": "words"}}
+</tool_call>
+19:06:36 |   │  [Expert(turn3)] 'unit_converter' 函数将数字4从"decimal"（十进制）格式转换为"words"（英文单词）形式。结果是"four".
+19:06:36 |   │  [Router(Synth)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "将数字4转换为英文单词"}}
+</tool_call>
+19:06:36 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:36 |   └─────────────────────────────────────────────────────────────
+19:06:39 |   [ 40/40] ✗ | expect=none       | got=math       | handoff=Y | query=解释一下什么是Transformer架构
+19:06:39 |   ┌─ Sample 40: 解释一下什么是Transformer架构
+19:06:39 |   │  Expected: expert=none, needs_tool=False, gt=[]
+19:06:39 |   │  Result: handoff=True, delegated=delegate_to_math_agent
+19:06:39 |   │  [Router(Route)] <tool_call>
+{"name": "delegate_to_math_agent", "arguments": {"task": "解释Transformer架构"}}
+</tool_call>
+19:06:39 |   │  [Expert(turn1)] <tool_call>
+{"name": "explain_transformer_architecture", "arguments": {"input_text": "Transformer架构"}}
+</tool_call>
+19:06:39 |   │  [Expert(turn2)] <tool_call>
+{"name": "explain_transformer_architecture", "arguments": {"input_text": "Transformer架构"}}
+</tool_call>
+19:06:39 |   │  [Expert(turn3)] <tool_call>
+{"name": "explain_transformer_architecture", "arguments": {"input_text": "Transformer架构"}}
+</tool_call>
+19:06:39 |   │  [Router(Synth)] 
+19:06:39 |   │  route_ok=False, gt_hit=N/A, e2e=False
+19:06:39 |   └─────────────────────────────────────────────────────────────
+19:06:39 | 
+================================================================================
+19:06:39 |   EVALUATION REPORT
+19:06:39 | ================================================================================
+19:06:39 | 
+  Total samples: 40
+19:06:39 |   Time elapsed:  115.6s (2.89s/sample)
+19:06:39 | 
+  Metric                              Value
+19:06:39 |   ──────────────────────────────────────────
+19:06:39 |   Route Accuracy                      80.0%
+19:06:39 |   Expert Selection Accuracy           76.3%
+19:06:39 |   False Trigger Rate                  80.0%
+19:06:39 |   Miss Rate                            0.0%
+19:06:39 |   GT Hit Rate                         76.7%
+19:06:39 |   E2E Success Rate                    62.5%
+19:06:39 | 
+  Per-Expert Breakdown:
+19:06:39 |   Expert        Total   Route%  Select%      GT%
+19:06:39 |   ────────────────────────────────────────────
+19:06:39 |   math             10   100.0%   100.0%    80.0%
+19:06:39 |   info             10   100.0%    90.0%    60.0%
+19:06:39 |   translate        10   100.0%   100.0%    90.0%
+19:06:39 |   none             10    20.0%     0.0%     0.0%
+19:06:39 | 
+  Log saved to: /root/minimind/logs/eval_handoff_20260514_190442.log
+19:06:39 |   Results saved to: /root/minimind/logs/eval_results_20260514_190442.json
+19:06:39 | ================================================================================
+

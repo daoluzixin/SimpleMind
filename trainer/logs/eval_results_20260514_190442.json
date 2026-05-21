@@ -1,0 +1,870 @@
+{
+  "model_path": "./checkpoints_qwen_handoff_v2/best",
+  "num_samples": 40,
+  "elapsed_seconds": 115.6339898109436,
+  "metrics": {
+    "route_accuracy": 80.0,
+    "expert_selection_accuracy": 76.31578947368422,
+    "false_trigger_rate": 80.0,
+    "miss_rate": 0.0,
+    "gt_hit_rate": 76.66666666666667,
+    "e2e_success_rate": 62.5
+  },
+  "per_expert": {
+    "math": {
+      "total": 10,
+      "route_ok": 10,
+      "expert_ok": 10,
+      "gt_ok": 8
+    },
+    "info": {
+      "total": 10,
+      "route_ok": 10,
+      "expert_ok": 9,
+      "gt_ok": 6
+    },
+    "translate": {
+      "total": 10,
+      "route_ok": 10,
+      "expert_ok": 10,
+      "gt_ok": 9
+    },
+    "none": {
+      "total": 10,
+      "route_ok": 2,
+      "expert_ok": 0,
+      "gt_ok": 0
+    }
+  },
+  "details": [
+    {
+      "idx": 0,
+      "query": "123乘以456等于多少？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "56088"
+      ],
+      "e2e_ok": [
+        "56088"
+      ],
+      "final_answer": "计算结果是：56088。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 123 * 456\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"123 * 456\"}}\n</tool_call>",
+        "计算结果是：56088",
+        "计算结果是：56088。"
+      ]
+    },
+    {
+      "idx": 1,
+      "query": "帮我算一下 (25 + 75) × 4",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "400"
+      ],
+      "e2e_ok": [
+        "400"
+      ],
+      "final_answer": "计算结果为：400。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 (25 + 75) * 4\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"(25 + 75) * 4\"}}\n</tool_call>",
+        "计算结果为：400",
+        "计算结果为：400。"
+      ]
+    },
+    {
+      "idx": 2,
+      "query": "3.14 × 10的平方是多少？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": [],
+      "final_answer": "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 3.14 * pow(10, 2)\"}}\n</tool_call>",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 3.14 * 10^2\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"3.14 * pow(10, 2)\"}}\n</tool_call>",
+        "对不起，我无法找到'pow'函数，这看起来可能不是常用的Python库中的内置函数。请确保输入的数学表达式正确，并尝试重新计算。如果问题依然存在，请提供更多的上下文信息。",
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 3.14 * pow(10, 2)\"}}\n</tool_call>"
+      ]
+    },
+    {
+      "idx": 3,
+      "query": "一个正方形边长5cm，面积是多少？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "25"
+      ],
+      "e2e_ok": [
+        "25"
+      ],
+      "final_answer": "正方形的面积为25平方米。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算正方形面积：边长5cm\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"5*5\"}}\n</tool_call>",
+        "计算的结果是：25平方米。",
+        "正方形的面积为25平方米。"
+      ]
+    },
+    {
+      "idx": 4,
+      "query": "10公里等于多少英里？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "6.2137",
+        "6.21"
+      ],
+      "e2e_ok": [
+        "6.2137",
+        "6.21"
+      ],
+      "final_answer": "10公里大约等于6.21371英里。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将10公里转换为英里\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"unit_converter\", \"arguments\": {\"value\": 10, \"from_unit\": \"km\", \"to_unit\": \"mi\"}}\n</tool_call>",
+        "10公里等于约6.21371英里。",
+        "10公里大约等于6.21371英里。"
+      ]
+    },
+    {
+      "idx": 5,
+      "query": "50磅等于多少公斤？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "22.68"
+      ],
+      "e2e_ok": [
+        "22.68"
+      ],
+      "final_answer": "50磅大约等于22.68公斤。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将50磅转换为公斤\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"unit_converter\", \"arguments\": {\"value\": 50, \"from_unit\": \"lb\", \"to_unit\": \"kg\"}}\n</tool_call>",
+        "50磅等于约22.68公斤。",
+        "50磅大约等于22.68公斤。"
+      ]
+    },
+    {
+      "idx": 6,
+      "query": "100华氏度等于多少摄氏度？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": [],
+      "final_answer": "100华氏度大约等于55.56摄氏度。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将100华氏度转换为摄氏度\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"unit_converter\", \"arguments\": {\"value\": 100, \"from_unit\": \"Fahrenheit\", \"to_unit\": \"Celsius\"}}\n</tool_call>",
+        "100华氏度等于约55.56摄氏度。",
+        "100华氏度大约等于55.56摄氏度。"
+      ]
+    },
+    {
+      "idx": 7,
+      "query": "999除以3等于多少？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "333"
+      ],
+      "e2e_ok": [
+        "333"
+      ],
+      "final_answer": "计算结果为：333.0。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 999 / 3\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"999 / 3\"}}\n</tool_call>",
+        "计算结果为：333.0",
+        "计算结果为：333.0。"
+      ]
+    },
+    {
+      "idx": 8,
+      "query": "2的10次方是多少？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "1024"
+      ],
+      "e2e_ok": [
+        "1024"
+      ],
+      "final_answer": "2的10次方等于1024。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 2^10\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"2^10\"}}\n</tool_call>",
+        "计算结果是：2^10 = 1024",
+        "2的10次方等于1024。"
+      ]
+    },
+    {
+      "idx": 9,
+      "query": "根号144等于多少？",
+      "expected_expert": "math",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "12"
+      ],
+      "e2e_ok": [
+        "12"
+      ],
+      "final_answer": "根号144等于12。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"计算 √144\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"sqrt(144)\"}}\n</tool_call>",
+        "看起来我尝试使用了一个不存在的函数名称（'sqrt'）。应该使用 'sqrt' 函数，这是 Python 中的平方根函数。现在我可以重新计算。",
+        "根号144等于12。"
+      ]
+    },
+    {
+      "idx": 10,
+      "query": "北京今天天气怎么样？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "28",
+        "28°C",
+        "晴"
+      ],
+      "e2e_ok": [
+        "28",
+        "28°C",
+        "晴"
+      ],
+      "final_answer": "北京的天气如下：当前温度28°C，湿度65%，天气晴朗。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询北京的天气\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_weather\", \"arguments\": {\"location\": \"北京\"}}\n</tool_call>",
+        "北京当前温度为28°C，湿度65%，天气是晴朗的。",
+        "北京的天气如下：当前温度28°C，湿度65%，天气晴朗。"
+      ]
+    },
+    {
+      "idx": 11,
+      "query": "上海现在的气温是多少度？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": [],
+      "final_answer": "上海今天的气温是15°C，湿度大约为65%，天气以多云为主。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询上海的天气\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_weather\", \"arguments\": {\"location\": \"上海\"}}\n</tool_call>",
+        "上海今天的天气是：15°C，湿度65%，多云。",
+        "上海今天的气温是15°C，湿度大约为65%，天气以多云为主。"
+      ]
+    },
+    {
+      "idx": 12,
+      "query": "深圳今天下雨了吗？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "30",
+        "30°C"
+      ],
+      "e2e_ok": [
+        "30",
+        "30°C"
+      ],
+      "final_answer": "深圳的天气是：温度30°C，湿度65%，天气为晴。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询深圳的天气\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_weather\", \"arguments\": {\"location\": \"深圳\"}}\n</tool_call>",
+        "深圳的天气是：温度30°C，湿度65%，天气为晴。",
+        "深圳的天气是：温度30°C，湿度65%，天气为晴。"
+      ]
+    },
+    {
+      "idx": 13,
+      "query": "现在纽约几点了？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "纽约"
+      ],
+      "e2e_ok": [
+        "纽约"
+      ],
+      "final_answer": "纽约(America/New_York)的当前时间为：2025年03月07日 01时30分（UTC-4）。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询纽约(America/New_York)的当前时间\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_time\", \"arguments\": {\"timezone\": \"America/New_York\"}}\n</tool_call>",
+        "纽约(America/New_York)的当前时间为：2025年03月07日 01时30分（UTC-4）。",
+        "纽约(America/New_York)的当前时间为：2025年03月07日 01时30分（UTC-4）。"
+      ]
+    },
+    {
+      "idx": 14,
+      "query": "东京现在是什么时间？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": [],
+      "final_answer": "Tokyo (Asia/Tokyo)'s current time is 3/7/2025, 15:30.",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询东京(Asia/Tokyo)的当前时间\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_time\", \"arguments\": {\"timezone\": \"Asia/Tokyo\"}}\n</tool_call>",
+        "东京(Asia/Tokyo)的当前时间为：2025年3月7日，15点30分。",
+        "Tokyo (Asia/Tokyo)'s current time is 3/7/2025, 15:30."
+      ]
+    },
+    {
+      "idx": 15,
+      "query": "100美元能换多少人民币？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "721"
+      ],
+      "e2e_ok": [
+        "721"
+      ],
+      "final_answer": "根据我查到的信息，100美元大约可以兑换到721人民币(CNY)左右。请注意，实际汇率可能会有所波动，请以实时查询为准。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询USD兑CNY的汇率\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_exchange_rate\", \"arguments\": {\"from_currency\": \"USD\", \"to_currency\": \"CNY\"}}\n</tool_call>",
+        "美元兑人民币的汇率为：1 USD = 7.21 CNY。",
+        "根据我查到的信息，100美元大约可以兑换到721人民币(CNY)左右。请注意，实际汇率可能会有所波动，请以实时查询为准。"
+      ]
+    },
+    {
+      "idx": 16,
+      "query": "1欧元等于多少日元？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": [],
+      "final_answer": "1欧元大约兑换1.00日元。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询欧元兑日元的汇率\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_exchange_rate\", \"arguments\": {\"from_currency\": \"EUR\", \"to_currency\": \"JPY\"}}\n</tool_call>",
+        "欧元兑日元的汇率为1:1.00。",
+        "1欧元大约兑换1.00日元。"
+      ]
+    },
+    {
+      "idx": 17,
+      "query": "广州今天天气如何？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "32°C",
+        "32"
+      ],
+      "e2e_ok": [
+        "32°C",
+        "32"
+      ],
+      "final_answer": "广州的天气是32°C，湿度为65%，感觉很闷热。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询广州的天气\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_weather\", \"arguments\": {\"location\": \"广州\"}}\n</tool_call>",
+        "广州的天气是32°C，湿度为65%，感觉很闷热。",
+        "广州的天气是32°C，湿度为65%，感觉很闷热。"
+      ]
+    },
+    {
+      "idx": 18,
+      "query": "伦敦现在几点？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "伦敦"
+      ],
+      "e2e_ok": [
+        "伦敦"
+      ],
+      "final_answer": "伦敦(Europe/London)的当前时间是2025年3月7日星期四的上午6:30。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询伦敦(Europe/London)的当前时间\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_time\", \"arguments\": {\"timezone\": \"Europe/London\"}}\n</tool_call>",
+        "伦敦(Europe/London)的当前时间是2025年3月7日星期四的上午6:30。",
+        "伦敦(Europe/London)的当前时间是2025年3月7日星期四的上午6:30。"
+      ]
+    },
+    {
+      "idx": 19,
+      "query": "50英镑等于多少人民币？",
+      "expected_expert": "info",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": false,
+      "final_answer": "50英镑约等于50.0元人民币。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将50英镑转换为人民币\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"unit_converter\", \"arguments\": {\"value\": 50, \"from_unit\": \"GBP\", \"to_unit\": \"CNY\"}}\n</tool_call>",
+        "将50英镑转换为人民币，结果是50.0元。",
+        "50英镑约等于50.0元人民币。"
+      ]
+    },
+    {
+      "idx": 20,
+      "query": "帮我把'你好世界'翻译成英文",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "Hello World"
+      ],
+      "e2e_ok": [
+        "Hello World"
+      ],
+      "final_answer": "已成功将'你好世界'翻译为'Hello World'。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'你好世界'翻译为英文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"你好世界\", \"target_language\": \"en\"}}\n</tool_call>",
+        "'你好世界'翻译为'Hello World'.",
+        "已成功将'你好世界'翻译为'Hello World'。"
+      ]
+    },
+    {
+      "idx": 21,
+      "query": "'Machine Learning'翻译成中文是什么？",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [],
+      "e2e_ok": [],
+      "final_answer": "'Machine Learning'的中文翻译是'machine learning'。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'machine learning'翻译为中文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"machine learning\", \"target_language\": \"zh\"}}\n</tool_call>",
+        "'machine learning'在中文中翻译为'machine learning'。",
+        "'Machine Learning'的中文翻译是'machine learning'。"
+      ]
+    },
+    {
+      "idx": 22,
+      "query": "帮我翻译一下'人工智能改变未来'",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "future"
+      ],
+      "e2e_ok": [
+        "future"
+      ],
+      "final_answer": "\"人工智能 change the future\"",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'人工智能改变未来'翻译为英文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"人工智能改变未来\", \"target_language\": \"en\"}}\n</tool_call>",
+        "已成功将'人工智能改变未来'翻译为英文，结果是：\"人工智能 change the future\"",
+        "\"人工智能 change the future\""
+      ]
+    },
+    {
+      "idx": 23,
+      "query": "'Deep Learning'用中文怎么说？",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "深度学习"
+      ],
+      "e2e_ok": [
+        "深度学习"
+      ],
+      "final_answer": "'\\'Deep Learning\\'' 翻译为中文是 '\\'深度学习\\''。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'Deep Learning'翻译为中文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"Deep Learning\", \"target_language\": \"zh\"}}\n</tool_call>",
+        "'\"Deep Learning\" 翻译为中文是 \"深度学习\"。",
+        "'\\'Deep Learning\\'' 翻译为中文是 '\\'深度学习\\''。"
+      ]
+    },
+    {
+      "idx": 24,
+      "query": "把'今天天气真好'翻译成英文",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "good",
+        "today",
+        "weather"
+      ],
+      "e2e_ok": [
+        "good",
+        "today",
+        "weather"
+      ],
+      "final_answer": "\"今天天气真好\"的英文翻译是\"Good weather today\"。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'今天天气真好'翻译为英文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"今天天气真好\", \"target_language\": \"en\"}}\n</tool_call>",
+        "'今天天气真好'的英文翻译是'Good weather today'.",
+        "\"今天天气真好\"的英文翻译是\"Good weather today\"。"
+      ]
+    },
+    {
+      "idx": 25,
+      "query": "'Natural Language Processing'的中文是什么？",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "自然语言处理"
+      ],
+      "e2e_ok": [
+        "自然语言处理"
+      ],
+      "final_answer": "\"Natural Language Processing\"在中文中翻译为\"自然语言处理\"。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'Natural Language Processing'翻译为中文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"自然语言处理\", \"target_language\": \"zh\"}}\n</tool_call>",
+        "'自然语言处理'在中文中翻译为'自然语言处理'。",
+        "\"Natural Language Processing\"在中文中翻译为\"自然语言处理\"。"
+      ]
+    },
+    {
+      "idx": 26,
+      "query": "帮我把'谢谢你的帮助'翻译成英文",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "Thank",
+        "help"
+      ],
+      "e2e_ok": [
+        "Thank",
+        "help"
+      ],
+      "final_answer": "'谢谢你你的帮助'的英文翻译是：\"Thank you for your help.\"",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'谢谢你的帮助'翻译为英文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"谢谢你的帮助\", \"target_language\": \"en\"}}\n</tool_call>",
+        "'\"谢谢你的帮助\"的英文翻译是：\"Thank you for your help.\"",
+        "'谢谢你你的帮助'的英文翻译是：\"Thank you for your help.\""
+      ]
+    },
+    {
+      "idx": 27,
+      "query": "'Computer Science'中文怎么翻译？",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "计算机科学"
+      ],
+      "e2e_ok": [
+        "计算机科学"
+      ],
+      "final_answer": "'计算机科学'的中文翻译是：'计算机科学'。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'计算机科学'翻译为中文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"计算机科学\", \"target_language\": \"zh\"}}\n</tool_call>",
+        "\"计算机科学\"的中文翻译是：\"计算机科学\"",
+        "'计算机科学'的中文翻译是：'计算机科学'。"
+      ]
+    },
+    {
+      "idx": 28,
+      "query": "翻译一下'知识就是力量'",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "power",
+        "Knowledge"
+      ],
+      "e2e_ok": [
+        "power",
+        "Knowledge"
+      ],
+      "final_answer": "'知识就是力量'的英文翻译为：\"Knowledge is power\"。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'知识就是力量'翻译为英文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"knowledge is power\", \"target_language\": \"en\"}}\n</tool_call>",
+        "\"Knowledge is power\"的英文翻译为：\"知识就是力量\"。",
+        "'知识就是力量'的英文翻译为：\"Knowledge is power\"。"
+      ]
+    },
+    {
+      "idx": 29,
+      "query": "'Reinforcement Learning'是什么意思？",
+      "expected_expert": "translate",
+      "needs_tool": true,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_translate_agent",
+      "route_ok": true,
+      "gt_hit": [
+        "强化学习"
+      ],
+      "e2e_ok": [
+        "强化学习"
+      ],
+      "final_answer": "\"Reinforcement Learning\"在中文中翻译为\"强化学习\"。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_translate_agent\", \"arguments\": {\"task\": \"将'Reinforcement Learning'翻译为中文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_text\", \"arguments\": {\"text\": \"Reinforcement Learning\", \"target_language\": \"zh\"}}\n</tool_call>",
+        "\"Reinforcement Learning\"在中文中翻译为\"强化学习\"。",
+        "\"Reinforcement Learning\"在中文中翻译为\"强化学习\"。"
+      ]
+    },
+    {
+      "idx": 30,
+      "query": "你好，今天过得怎么样？",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_info_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "北京的当前天气是：28°C，湿度为65%，天晴。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_info_agent\", \"arguments\": {\"task\": \"查询'北京'的天气\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_current_weather\", \"arguments\": {\"location\": \"北京\"}}\n</tool_call>",
+        "北京的当前天气是：28°C，湿度为65%，天晴。",
+        "北京的当前天气是：28°C，湿度为65%，天晴。"
+      ]
+    },
+    {
+      "idx": 31,
+      "query": "你觉得人工智能的未来会怎样？",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "人工智能的未来指其在各领域的广泛应用和发展趋势，如医疗、教育、交通等，预计通过算法进步和数据积累，AI将进一步深化这些领域的应用，提升效率与创新性。",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释'人工智能的未来'\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"explain\", \"arguments\": {\"text\": \"人工智能的未来\"}}\n</tool_call>",
+        "'人工智能的未来'指的是人工智能技术在各个领域的应用和发展趋势，包括但不限于医疗、教育、交通等。随着算法的进步和数据量的增加，人工智能将在更多领域实现更广泛的应用，为人类社会带来更多的便利和创新。",
+        "人工智能的未来指其在各领域的广泛应用和发展趋势，如医疗、教育、交通等，预计通过算法进步和数据积累，AI将进一步深化这些领域的应用，提升效率与创新性。"
+      ]
+    },
+    {
+      "idx": 32,
+      "query": "给我讲一个关于程序员的笑话",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"获取程序员笑话\"}}\n</tool_call>",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"生成程序员笑话\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"generate_joke\", \"arguments\": {\"category\": \"programmer\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"get_answer\", \"arguments\": {\"question\": \"程序员笑话\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"answer_question\", \"arguments\": {\"question\": \"程序员笑话\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"获取程序员笑话\"}}\n</tool_call>"
+      ]
+    },
+    {
+      "idx": 33,
+      "query": "什么是深度学习？简单解释一下",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": false,
+      "delegated_expert": "none",
+      "route_ok": true,
+      "gt_hit": "N/A",
+      "e2e_ok": true,
+      "final_answer": "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释'深度学习'}}",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释'深度学习'}}"
+      ]
+    },
+    {
+      "idx": 34,
+      "query": "推荐几本关于机器学习的好书",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": " delegato_math_agent已经帮您找到了一些关于机器学习的书籍，请查收！",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"查找关于机器学习的书籍\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"search_books\", \"arguments\": {\"category\": \"机器学习\"}}\n</tool_call>",
+        "很高兴！我找到了一些关于机器学习的书籍。",
+        " delegato_math_agent已经帮您找到了一些关于机器学习的书籍，请查收！"
+      ]
+    },
+    {
+      "idx": 35,
+      "query": "Python和Java哪个更适合初学者？",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"总结Python和Java在初学者中的适用性对比\"}}\n</tool_call>",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释Python和Java适合初学者的特性\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"2 + 3\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"4 * 6\"}}\n</tool_call>",
+        "",
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"总结Python和Java在初学者中的适用性对比\"}}\n</tool_call>"
+      ]
+    },
+    {
+      "idx": 36,
+      "query": "写一首关于春天的短诗",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "<tool_call>\n{\"name\": \"translate_poem_to_english\", \"arguments\": {\"poem\": \"春风吹绿江南岸，燕舞蝶飞花满园\"}}\n</tool_call>",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将'春风吹绿江南岸，燕舞蝶飞花满园。'这首诗翻译为英文\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_poem_to_english\", \"arguments\": {\"poem\": \"春风吹绿江南岸，燕舞蝶飞花满园\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_poem_to_english\", \"arguments\": {\"poem\": \"春风吹绿江南岸，燕舞蝶飞花满园\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_poem_to_english\", \"arguments\": {\"poem\": \"春风吹绿江南岸，燕舞蝶飞花满园\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"translate_poem_to_english\", \"arguments\": {\"poem\": \"春风吹绿江南岸，燕舞蝶飞花满园\"}}\n</tool_call>"
+      ]
+    },
+    {
+      "idx": 37,
+      "query": "如何保持良好的编程习惯？",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": false,
+      "delegated_expert": "none",
+      "route_ok": true,
+      "gt_hit": "N/A",
+      "e2e_ok": true,
+      "final_answer": "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释'保持良好编程习惯的建议'}}",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释'保持良好编程习惯的建议'}}"
+      ]
+    },
+    {
+      "idx": 38,
+      "query": "你能自我介绍一下吗？",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将数字4转换为英文单词\"}}\n</tool_call>",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"生成一个自我介绍\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"calculate_math\", \"arguments\": {\"expression\": \"2 + 2\"}}\n</tool_call>",
+        "\"math\"函数返回了4，这是一个简单的加法运算。现在让我们将这个数值转换为英语单词形式：\n\n<tool_call>\n{\"name\": \"unit_converter\", \"arguments\": {\"value\": 4, \"from_unit\": \"decimal\", \"to_unit\": \"words\"}}\n</tool_call>",
+        "'unit_converter' 函数将数字4从\"decimal\"（十进制）格式转换为\"words\"（英文单词）形式。结果是\"four\".",
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"将数字4转换为英文单词\"}}\n</tool_call>"
+      ]
+    },
+    {
+      "idx": 39,
+      "query": "解释一下什么是Transformer架构",
+      "expected_expert": "none",
+      "needs_tool": false,
+      "handoff_occurred": true,
+      "delegated_expert": "delegate_to_math_agent",
+      "route_ok": false,
+      "gt_hit": "N/A",
+      "e2e_ok": false,
+      "final_answer": "",
+      "all_outputs": [
+        "<tool_call>\n{\"name\": \"delegate_to_math_agent\", \"arguments\": {\"task\": \"解释Transformer架构\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"explain_transformer_architecture\", \"arguments\": {\"input_text\": \"Transformer架构\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"explain_transformer_architecture\", \"arguments\": {\"input_text\": \"Transformer架构\"}}\n</tool_call>",
+        "<tool_call>\n{\"name\": \"explain_transformer_architecture\", \"arguments\": {\"input_text\": \"Transformer架构\"}}\n</tool_call>",
+        ""
+      ]
+    }
+  ]
+}

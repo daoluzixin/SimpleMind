@@ -1,74 +1,97 @@
 # SimpleMind
 
-基于 [MiniMind](https://github.com/jingyaogong/minimind) 的 Agent RL 实验项目。在原版 64M 参数超小语言模型训练框架基础上，探索超小模型在 Agentic 场景下通过强化学习获得工具调用和推理规划能力的可行性与边界。
+基于 [MiniMind](https://github.com/jingyaogong/minimind) 的 LLM Agent 训练与推理实验项目。从 64M 参数超小模型的原型验证出发，逐步扩展到 Qwen2.5-1.5B 的工程化 RL 训练和 Qwen2.5-7B 的推理引擎实现，覆盖 **预训练 → SFT → 数据质量工程 → Agent 强化学习 → 推理优化** 完整链路。
 
 ---
 
-## 实验概览
+## 核心实验
 
-本项目在 MiniMind 的 64M Dense 模型上进行了三条实验线：
+### 1. Plan-then-Execute 多步 Agent RL（Qwen2.5-1.5B）
 
-**Agent RL（工具调用强化学习）** — 训练模型学会识别何时调用工具、生成正确的 function call 并理解返回结果。基于 GRPO/CISPO 框架，多轮 rollout + GT 验证 + 工具调用正确性综合评分。
+在 2×A100-80GB 上训练 Router/Expert 多 Agent 架构。Router 接收用户请求后输出 `execute_plan` 工具调用，按拓扑序分派 Expert 执行子任务，最终 Synthesize 整合回答。
 
-**Plan-then-Execute RL（规划+执行）** — 在工具调用之前强制模型先输出结构化执行计划（`<plan>` 标签），再按计划执行工具，最后总结回答。Reward 包含格式分、计划对齐分、质量分和执行分四个维度。经历 v4→v6 共 6 个版本迭代。
+训练范式为 SFT Warmup（格式植入）→ GRPO 策略优化 → Eval 三阶段。引入 Router/Expert 信用分离机制，规划阶段和执行阶段的梯度独立更新，互不干扰。
 
-**Agent Handoff（多 Agent 协同）** — RouterAgent 负责意图识别和任务分发，Expert Agents 负责实际工具调用。所有 Agent 共享权重但使用不同 system prompt 区分角色。代码框架已实现（1185 行），未进行训练实验。
+测试集结果：多步规划准确率 98%（49/50）、端到端成功率 58%（29/50）。端到端损耗主要来自 Expert 的 tool_call 格式遵循问题——模型学会了正确决策但未完全学会输出格式，验证了 SFT+RL 二阶段训练的必要性。
 
----
+### 2. SFT→RL 数据分布传递效应（Qwen2.5-1.5B）
 
-## 实验结论
+在 Handoff 单步路由实验中发现：SFT warmup 78% 的 tool_call 样本配比直接决定了 RL 的策略起点，导致误触率（不需要工具时仍发起委托）收敛于 80%，RL 阶段的 -0.3 惩罚无法翻转这个先验。
 
-Plan RL 实验跑满全线（v4~v6），核心发现：**64M 参数存在明确的容量天花板**。
+根因诊断后设计三方修复：SFT 配比对齐目标分布（78%→56%）、RL 数据扩充 none 类样本（24%→37%）、非对称 reward 设计（误触惩罚系数 1.5x + 渐进式惩罚）。
 
-- v6 跑完 1140 步，PlanRate 从 64%（SFT 惯性）缓慢衰减至 3%，DegenRate 始终为 0%（无急性崩塌）
-- 推理测试（v6 step500）显示模型学会了 plan 格式壳子（PlanRate 100%），但语义质量极差：参数照抄 few-shot、步骤重复、工具选择错误
-- 结论：64M 参数不足以支撑 plan→execute 的语义推理，RL 只能强化表面模式而非真正的规划能力
+### 3. 数据质量自动过滤（MiniMind 64M）
 
-Agent RL 基线实验验证了工具调用训练流程的可行性，模型能学会 function call 的格式但泛化能力有限。
+基于模型 PPL 信号实现自动数据过滤管线：PPL 批量计算 → KDE 谷点检测自动定阈值 → 长度归一化消除系统偏差。分桶对比实验（8 桶各自独立训练）验证倒 U 型贡献曲线——极端段 val loss 较中间段高 24%。裁剪 35% 低贡献数据后 val loss 无损。
+
+### 4. Continuous Batching 推理引擎（Qwen2.5-7B, RTX 4090）
+
+从零实现教学级 CB 引擎，包含三种模式：Serial（baseline）、CB Sequential Decode（调度优化）、CB Batched Decode（批量 forward）。适配 HuggingFace transformers 5.9.0 DynamicCache API，实现左 padding KV Cache 对齐。
+
+32 请求压测下 P95 延迟从 36s 降至 2.4s（15x 改善）。Batch Scaling 实验（bs=1/2/4/8 吞吐无差异）定位 Python 层面 KV Cache pad/cat/slice 操作为吞吐瓶颈，实证了 PagedAttention 必须 CUDA 实现的根因。
+
+### 5. 64M 模型 RL 能力边界探索（MiniMind 64M）
+
+在 64M 参数模型上完成了 Agent RL 的完整方法论验证：v1~v3 排除超参干扰定位 reward 函数结构性 mismatch → v4/v5 修复后首次获得正奖励 → v5 后期捕获 Reward Hacking（输出退化为无意义短文本刷分）→ Plan RL v4~v6 逐步打通 plan→execute 链路。最终确认 64M 参数存在容量天花板（PlanRate 从 64% 缓慢衰减至 3%），但训练机制和方法论可直接迁移到更大模型。
 
 ---
 
 ## 项目结构
 
 ```
-model/                  模型定义（Dense + MoE，对齐 Qwen3 生态）
+model/                          模型定义（Dense + MoE）
 trainer/
-  train_agent.py        Agent RL 训练（多轮工具调用 GRPO/CISPO）
-  train_plan.py         Plan-then-Execute RL 训练（v5 修复版）
-  agent_handoff.py      多 Agent 协同框架（RouterAgent + Expert Agents）
-  rollout_engine.py     Rollout 引擎（解耦生成后端）
-  trainer_utils.py      训练工具函数
-  train_*.py            其他训练脚本（pretrain/sft/lora/dpo/ppo/grpo/distillation）
-  logs/                 实验日志（sft/agent_rl/plan_warmup/plan_rl 全版本）
-scripts/                推理服务与工具（OpenAI API / WebUI / 模型转换）
-test_plan_gen.py        Plan 模型推理测试脚本
+  train_agent.py                Agent RL 训练（多轮工具调用 GRPO）
+  train_plan.py                 Plan-then-Execute RL（64M, v6）
+  agent_handoff.py              多 Agent Handoff 框架（64M）
+  rollout_engine.py             Rollout 引擎
+  train_pretrain.py             预训练
+  train_full_sft.py             全参 SFT
+  train_grpo.py                 GRPO 基础实现
+  train_dpo.py / train_ppo.py   DPO / PPO
+  train_lora.py                 LoRA 微调
+  train_distillation.py         知识蒸馏
+  logs/                         全量实验日志（64M + 1.5B）
+agent_handoff_qwen.py           Qwen2.5-1.5B Handoff RL 主训练脚本
+agent_plan_qwen.py              Qwen2.5-1.5B Plan-then-Execute RL
+sft_warmup_qwen.py              Qwen2.5-1.5B SFT Warmup
+sft_plan_warmup.py              Plan 格式 SFT 数据准备
+eval_handoff.py                 Handoff 评测脚本
+eval_plan.py                    Plan-then-Execute 评测脚本
+scripts/
+  continuous_batching_engine.py CB 推理引擎核心实现
+  benchmark_continuous_batching.py  CB 性能压测
+  serve_openai_api.py           OpenAI 兼容 API 服务
+  data_quality_scorer.py        PPL 数据质量评分与过滤
+  web_demo.py                   WebUI 演示
+  run_*.sh                      各实验启动脚本
+benchmark_logs/                 CB 压测原始日志
+docs/
+  实验记录/                     完整实验报告（5 篇）
+  操作指南/                     DDP 训练等操作文档
 ```
 
 ---
 
-## 训练日志
+## 实验报告
 
-`trainer/logs/` 保留了全部有实验价值的完整日志：
+`docs/实验记录/` 目录保存了每个实验方向的完整报告：
 
-| 日志 | 实验内容 |
-|------|----------|
-| sft_0509_1733 | SFT 基线训练 |
-| ppl_score / ppl_filter | PPL 数据质量评估与过滤 |
-| bucket_exp | 数据桶策略实验 |
-| agent_rl_0510 | Agent RL 工具调用训练 |
-| plan_warmup / v2 | Plan SFT 预热（教模型 plan 格式） |
-| plan_rl_v4~v6 | Plan RL 正式训练（核心实验） |
-| v4_reward_fix / v5_lr1e6_reward_fix | Reward 修复对照实验 |
-| inference_v6_step500 | v6 模型推理质量评估 |
+| 报告 | 内容 |
+|------|------|
+| plan_execute_experiment_report.md | Plan-then-Execute 全流程：性能优化（18min→7s/step）+ 两阶段训练 + Demo 诊断 |
+| handoff_qwen_experiment_report.md | Handoff 单步路由：SFT→RL 传递效应发现 + 三方修复方案 |
+| agent_rl_experiment_report.md | 64M Agent RL 完整迭代：v1~v5 + Plan RL v4~v6 + 能力边界确认 |
+| continuous_batching_benchmark_report.md | CB 推理引擎：4 组压测 + Python overhead 根因分析 |
 
 ---
 
 ## 技术栈
 
-- PyTorch 原生实现，不依赖 transformers/trl/peft 的高层封装
-- Tokenizer: BPE + ByteLevel，支持 `<tool_call>` / `<tool_response>` / `<think>` / `<plan>` 标记
-- 训练框架: DDP 分布式 + wandb 可视化 + 断点续训
-- 推理: 兼容 OpenAI API 协议，支持 llama.cpp / vllm / ollama
+- PyTorch 原生实现，不依赖 trl/peft 高层封装
+- 训练：GRPO/CISPO 策略优化、DDP 分布式、gradient checkpointing + KV cache 推理分离
+- 推理：Continuous Batching 调度、DynamicCache API、OpenAI 兼容 API
+- 数据：PPL 自动过滤、KDE 分布分析、分桶消融实验
 
 ---
 
@@ -77,26 +100,28 @@ test_plan_gen.py        Plan 模型推理测试脚本
 ```bash
 pip install -r requirements.txt
 
-# Agent RL 训练
-python trainer/train_agent.py --mode train --data_path dataset/agent_rl.jsonl
+# Qwen2.5-1.5B Handoff RL 训练（需要 2×A100）
+bash scripts/run_handoff_qwen_single.sh
 
-# Plan RL 训练
-python trainer/train_plan.py --mode train --data_path dataset/agent_rl.jsonl
+# Qwen2.5-1.5B Plan-then-Execute RL
+bash scripts/run_plan_qwen.sh
 
-# 推理测试
-python test_plan_gen.py
+# 64M Agent RL 训练（单卡 4090 即可）
+python trainer/train_agent.py --mode train --data_path dataset/xlam_agent_rl.jsonl
 
-# 完整训练链路: Pretrain → SFT → LoRA → DPO/PPO/GRPO → Agentic RL → Plan-then-Execute
-python trainer/train_pretrain.py
-python trainer/train_full_sft.py
-python trainer/train_grpo.py
+# CB 推理引擎压测（Qwen2.5-7B, 单卡 4090）
+bash scripts/run_benchmark.sh
+
+# 评测
+python eval_handoff.py
+python eval_plan.py
 ```
 
 ---
 
 ## 致谢
 
-本项目基于 [jingyaogong/minimind](https://github.com/jingyaogong/minimind) 开源项目开发，感谢原作者提供的完整训练代码与数据集。
+本项目基于 [jingyaogong/minimind](https://github.com/jingyaogong/minimind) 开源项目开发，感谢原作者提供的完整训练代码和预训练数据。
 
 ## License
 
